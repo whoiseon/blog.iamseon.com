@@ -1,6 +1,5 @@
-import ThemeToggle from '@/src/features/theme/ThemeToggle/ThemeToggle';
-import Link from 'next/link';
+import HomePage from '@/src/pages/home/ui/HomePage';
 
 export default function Home() {
-  return <main></main>;
+  return <HomePage />;
 }
