@@ -12,6 +12,9 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
+      minHeight: {
+        headerHeight: '50px',
+      },
     },
   },
   plugins: [],

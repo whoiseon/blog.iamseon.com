@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .logo-text-highlight {
+        @apply text-green-500 dark:text-green-400
+    }
+}
+
+.header-inner {
+    width: 92%;
+    max-width: calc(100% - 40px);
+}

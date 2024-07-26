@@ -17,7 +17,16 @@ function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="icon" size="icon">
-          <Icons.Moon width={24} height={24} className="text-inherit" />
+          <Icons.Sun
+            width={24}
+            height={24}
+            className="text-inherit rotate-0 scale-100 transition-all dark:scale-0 dark:-rotate-90"
+          />
+          <Icons.Moon
+            width={24}
+            height={24}
+            className="absolute text-inherit rotate-90 scale-0 transition-all dark:scale-100 dark:rotate-0"
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
