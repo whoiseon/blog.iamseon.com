@@ -1,6 +1,6 @@
 'use client';
 
-import HeaderNavList from '@/src/widgets/header/ui/HeaderNavList';
+import HeaderNavList from './HeaderNavList';
 import Logo from '@/src/shared/assets/Logo/Logo';
 
 function AppHeader() {

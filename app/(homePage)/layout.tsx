@@ -1,8 +1,12 @@
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 import AppHeader from '@/src/widgets/header/ui/AppHeader';
 import AppFooter from '@/src/widgets/footer/ui/AppFooter';
 
-function HomeLayout({ children }: PropsWithChildren) {
+interface Props {
+  children?: ReactNode;
+}
+
+function HomeLayout({ children }: Props) {
   return (
     <>
       <AppHeader />

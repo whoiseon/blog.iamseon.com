@@ -1,1 +1,1 @@
-export * from './useGetQuery';
+export * from './useGetQueryString';

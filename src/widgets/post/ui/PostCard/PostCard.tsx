@@ -2,12 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { escapeForUrl } from '@/src/shared/lib/utils';
 
 function PostCard() {
   return (
     <li>
       <Link
-        href="/"
+        href={`/post/${escapeForUrl(
+          '고성능 GPU 클러스터 도입기 #1: 요리하라고 해서 왔는데 프라이팬이 없어요',
+        )}`}
         className="flex flex-col-reverse md:flex-row md:items-center py-5 gap-x-5 w-full cursor-pointer text-neutral-900 dark:text-neutral-50 hover:text-green-500 dark:hover:text-green-400 transition"
       >
         <div className="flex flex-col md:w-[74%]">
@@ -27,12 +30,12 @@ function PostCard() {
         </div>
         <div className="relative flex justify-center items-center rounded-md overflow-hidden mb-4 md:mb-auto w-[100%] md:w-[26%]">
           <Image
-            className=""
+            className="w-full h-auto"
             src="/image/temp-image-1.png"
             alt="temp image"
-            layout="responsive"
             width={185}
             height={100}
+            priority
           />
         </div>
       </Link>
