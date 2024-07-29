@@ -1,6 +1,6 @@
 'use client';
 
-import ThemeToggle from '@/src/features/theme/ThemeToggle/ThemeToggle';
+import ThemeToggle from '@/src/features/theme/ThemeToggle';
 import { Icons } from '@/src/shared/assets';
 import { LinkButton } from '@/src/shared/ui';
 
