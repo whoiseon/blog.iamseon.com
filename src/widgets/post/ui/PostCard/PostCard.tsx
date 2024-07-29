@@ -11,7 +11,7 @@ function PostCard() {
         className="flex flex-col-reverse md:flex-row md:items-center py-5 gap-x-5 w-full cursor-pointer text-neutral-900 dark:text-neutral-50 hover:text-green-500 dark:hover:text-green-400 transition"
       >
         <div className="flex flex-col md:w-[74%]">
-          <h2 className="text-inherit text-xl font-bold line-clamp-2 leading-[1.6] mb-2">
+          <h2 className="text-inherit text-lg md:text-xl font-bold line-clamp-2 leading-[1.6] mb-2">
             고성능 GPU 클러스터 도입기 #1: 요리하라고 해서 왔는데 프라이팬이
             없어요
           </h2>

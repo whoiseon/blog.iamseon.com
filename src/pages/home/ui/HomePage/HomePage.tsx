@@ -22,7 +22,7 @@ function HomePage() {
         </div>
       </section>
       <section className="hidden items-start flex-col flex-grow border-l-[1px] border-l-neutral-200 dark:border-l-neutral-800 lg:flex">
-        <div className="h-full w-[350px] px-6 mb-[60px]">
+        <div className="h-full w-[320px] px-6 mb-[60px]">
           <ContentContainer title="태그" isSticky>
             <TagGroup
               tags={['react', 'typescript', 'Machine Learning', 'UX Design']}
