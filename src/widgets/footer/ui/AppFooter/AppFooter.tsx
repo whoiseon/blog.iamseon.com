@@ -1,6 +1,12 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 function AppFooter() {
+  const pathname = usePathname();
+
+  if (pathname === '/write') return null;
+
   return (
     <footer className="h-[80px]">
       <div className="flex items-center justify-center h-full">

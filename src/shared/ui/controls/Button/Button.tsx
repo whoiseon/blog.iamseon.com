@@ -10,6 +10,8 @@ const buttonVariants = cva(
       variant: {
         default:
           'bg-white text-neutral-900 hover:bg-neutral-200 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-100',
+        ghost:
+          'bg-white text-neutral-600 hover:text-neutral-800 hover:bg-neutral-200 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-400 dark:hover:text-neutral-200',
         primary:
           'bg-green-500 text-white hover:bg-green-600 active:bg-green-700 dark:bg-green-400 dark:text-neutral-900 dark:hover:bg-green-300 dark:active:bg-green-400',
         primaryGhost:
@@ -19,8 +21,8 @@ const buttonVariants = cva(
         icon: 'bg-white text-neutral-600 hover:bg-neutral-200 hover:text-neutral-700 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:hover:text-neutral-300 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-400',
       },
       size: {
-        sm: 'text-sm px-3 py-1',
-        md: 'text-md px-4 py-2',
+        sm: 'text-sm px-3 py-1.5',
+        md: 'text-md px-4 py-1.5',
         lg: 'text-lg px-5 py-2',
         icon: 'p-1.5',
       },
