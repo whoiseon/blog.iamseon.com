@@ -26,6 +26,11 @@ const config: Config = {
             },
           },
         },
+        editor: {
+          green: {
+            selection: 'rgba(74, 222, 118, 0.3)',
+          },
+        },
       },
     },
   },

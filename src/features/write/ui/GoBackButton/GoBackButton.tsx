@@ -10,7 +10,7 @@ function GoBackButton() {
     <Button variant="ghost" size="sm" onClick={goBack} className="-ml-3">
       <div className="flex items-center gap-x-2">
         <Icons.BackArrow width={14} height={14} />
-        <span className="text-[1rem]">나가기</span>
+        <span>나가기</span>
       </div>
     </Button>
   );

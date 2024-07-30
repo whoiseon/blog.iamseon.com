@@ -1,0 +1,55 @@
+.post-content-style {
+    code {
+        @apply bg-neutral-200 text-neutral-950 dark:bg-neutral-800 dark:text-neutral-50 text-[15px];
+    }
+
+    p {
+        @apply text-[18px] leading-[1.7] break-keep my-[1.125rem];
+    }
+
+    h1, h2, h3 {
+        @apply leading-[1.5] mb-[1rem];
+    }
+
+    h1 {
+        @apply text-[2.5rem];
+    }
+
+    h2 {
+        @apply text-[2rem];
+    }
+
+    blockquote {
+        @apply text-[18px] my-[1.25rem] py-5 px-8 border-l-[4px] bg-neutral-50 dark:bg-neutral-900 rounded-tr-md rounded-br-md;
+    }
+
+    .yoopta-block-options-item {
+        button[style="background-color: rgb(209, 250, 229);"],
+        button[style="background-color: rgb(225, 243, 254);"],
+        button[style="background-color: rgb(254, 243, 201);"],
+        button[style="background-color: rgb(254, 225, 226);"],
+        button[style="background-color: rgb(245, 247, 249);"] {
+            @apply bg-neutral-200 dark:bg-neutral-800 !important;
+        }
+    }
+
+    div[data-element-type="code"] {
+        @apply my-[1.25rem];
+
+        .cm-editor {
+            @apply border-0 bg-neutral-800 dark:bg-neutral-900;
+        }
+
+        .cm-content {
+            @apply p-5;
+        }
+
+        .yoopta-button {
+            @apply bg-neutral-600 dark:bg-neutral-700;
+        }
+    }
+
+    a.yoopta-link {
+        @apply text-green-500 dark:text-green-400 no-underline hover:underline;
+    }
+}

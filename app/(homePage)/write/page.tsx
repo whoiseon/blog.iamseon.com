@@ -1,5 +1,7 @@
+import WritePage from '@/src/pages/post/ui/WritePage';
+
 function PostWritePage() {
-  return <div>123</div>;
+  return <WritePage />;
 }
 
 export default PostWritePage;

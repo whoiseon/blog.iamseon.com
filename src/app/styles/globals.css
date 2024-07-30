@@ -12,3 +12,11 @@
     width: 92%;
     max-width: calc(100% - 40px);
 }
+
+::-moz-selection {
+    background: #f00 !important;
+    color: #fff !important;;
+}
+::selection {
+    @apply bg-editor-green-selection text-neutral-950 dark:text-white !important;;
+}

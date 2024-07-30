@@ -7,16 +7,36 @@ import { Icons } from '@/src/shared/assets';
 
 interface TagProps {
   name: string;
+  className?: string;
   isHighlight?: boolean;
+  isButton?: boolean;
+  onClick?: () => void;
 }
 
-function Tag({ name, isHighlight = true }: TagProps) {
+function Tag({
+  name,
+  isHighlight = true,
+  className,
+  isButton = false,
+  onClick,
+}: TagProps) {
   const currentQueryTitle = useGetQueryString('tag');
   const isCurrentTag = currentQueryTitle === escapeForUrl(name);
 
+  if (isButton) {
+    return (
+      <div
+        className={`cursor-pointer inline-flex font-medium items-center justify-center rounded-2xl border-[1px] border-transparent py-1 pl-[10px] pr-2 text-[13px] ${isCurrentTag && isHighlight ? 'bg-tag-green-alpha-500 hover:bg-tag-green-alpha-600 dark:bg-tag-green-alpha-400 dark:hover:bg-tag-green-alpha-300 text-green-600 dark:text-green-300' : `bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 ${className}`}`}
+        onClick={onClick}
+      >
+        {name}
+      </div>
+    );
+  }
+
   return (
     <Link
-      className={`inline-flex font-medium items-center justify-center rounded-2xl border-[1px] border-transparent py-1 pl-[10px] pr-2 text-[13px] font-normal ${isCurrentTag && isHighlight ? 'bg-tag-green-alpha-500 hover:bg-tag-green-alpha-600 dark:bg-tag-green-alpha-400 dark:hover:bg-tag-green-alpha-300 text-green-600 dark:text-green-300' : 'bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200'}`}
+      className={`inline-flex font-medium items-center justify-center rounded-2xl border-[1px] border-transparent py-1 pl-[10px] pr-2 text-[13px] ${isCurrentTag && isHighlight ? 'bg-tag-green-alpha-500 hover:bg-tag-green-alpha-600 dark:bg-tag-green-alpha-400 dark:hover:bg-tag-green-alpha-300 text-green-600 dark:text-green-300' : `bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 ${className}`}`}
       href={isCurrentTag ? '/' : `/?tag=${escapeForUrl(name)}`}
     >
       {name}
