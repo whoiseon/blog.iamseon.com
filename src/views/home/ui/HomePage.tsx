@@ -2,7 +2,6 @@
 
 import ContentContainer from '@/src/shared/ui/lab/ContentContainer';
 import PostList from '@/src/widgets/post/ui/PostList';
-import Tag from '@/src/shared/ui/data-display/Tag';
 import { useGetQueryString } from '@/src/shared/lib/hooks';
 import { replaceDashToSpace } from '@/src/shared/lib/utils';
 import TagGroup from '@/src/widgets/tag/ui/TagGroup';

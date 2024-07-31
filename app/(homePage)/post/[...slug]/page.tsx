@@ -1,4 +1,4 @@
-import PostPage from '@/src/pages/post/ui/PostPage';
+import PostPage from '@/src/views/post';
 
 type PageParams = {
   slug: string[];

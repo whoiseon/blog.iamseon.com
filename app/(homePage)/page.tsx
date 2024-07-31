@@ -1,5 +1,12 @@
-import HomePage from '@/src/pages/home/ui/HomePage';
+import { Suspense } from 'react';
+import HomePage from '@/src/views/home';
 
-export default function Home() {
-  return <HomePage />;
+function Home() {
+  return (
+    <Suspense>
+      <HomePage />
+    </Suspense>
+  );
 }
+
+export default Home;

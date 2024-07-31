@@ -1,4 +1,4 @@
-import WritePage from '@/src/pages/post/ui/WritePage';
+import WritePage from '@/src/views/write';
 
 function PostWritePage() {
   return <WritePage />;
