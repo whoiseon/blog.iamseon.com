@@ -33,7 +33,7 @@ const tools = {
 
 function Editor({ editor, isPost = false }: EditorProps) {
   return (
-    <div className="w-full pl-[3.25rem] pr-5 md:mx-auto md:w-[704px] md:p-0">
+    <div className="w-full px-5 pr-5 md:mx-auto md:w-[850px]">
       <YooptaEditor
         readOnly={isPost}
         className="post-content-style"
