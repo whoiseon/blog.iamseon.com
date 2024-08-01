@@ -5,7 +5,7 @@ import PublishButton from '@/src/features/write/ui/PublishButton';
 
 function WriteActionsBox() {
   return (
-    <div className="hidden items-center justify-center gap-x-2.5 md:flex">
+    <div className="flex items-center justify-center gap-x-2.5">
       <TempSaveButton />
       <PublishButton />
     </div>

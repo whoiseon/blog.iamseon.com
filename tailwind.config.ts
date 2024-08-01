@@ -32,6 +32,28 @@ const config: Config = {
           },
         },
       },
+      keyframes: {
+        fullSlideUp: {
+          '0%': {
+            transform: 'translateY(100%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        fullSlideDown: {
+          '0%': {
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            transform: 'translateY(100%)',
+          },
+        },
+      },
+      animation: {
+        fullSlideUp: 'fullSlideUp 0.25s ease-in',
+        fullSlideDown: 'fullSlideDown 0.25s ease-out forwards',
+      },
     },
   },
   plugins: [],

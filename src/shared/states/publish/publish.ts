@@ -1,29 +1,29 @@
-import { YooptaContentValue } from '@yoopta/editor';
+import { YooEditor, YooptaContentValue } from '@yoopta/editor';
 import { create } from 'zustand';
 
 interface PublishStoreState {
-  title: string | null;
+  isPublishing: boolean;
   tags: string[] | null;
-  content: YooptaContentValue | null;
+  editor: YooEditor | null;
 }
 
 interface PublishStore extends PublishStoreState {
   actions: {
-    setTitle: (title: string) => void;
+    setIsPublishing: (isPublishing: boolean) => void;
     setTags: (tags: string[]) => void;
-    setContent: (content: YooptaContentValue) => void;
+    setEditor: (editor: YooEditor) => void;
   };
 }
 
 const usePublishStore = create<PublishStore>((set) => ({
-  title: null,
+  isPublishing: false,
   tags: null,
-  content: null,
+  editor: null,
   actions: {
-    setTitle: (title: string) => set((state) => ({ ...state, title })),
+    setIsPublishing: (isPublishing: boolean) =>
+      set((state) => ({ ...state, isPublishing })),
     setTags: (tags: string[]) => set((state) => ({ ...state, tags })),
-    setContent: (content: YooptaContentValue) =>
-      set((state) => ({ ...state, content })),
+    setEditor: (editor: YooEditor) => set((state) => ({ ...state, editor })),
   },
 }));
 

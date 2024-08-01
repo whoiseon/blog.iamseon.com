@@ -6,7 +6,7 @@ import Tag from '@/src/shared/ui/data-display/Tag';
 
 export interface TagInputProps {
   tags: string[];
-  onChange: React.Dispatch<React.SetStateAction<string[]>>;
+  onChange: (tags: string[]) => void;
 }
 
 function TagInput({ onChange, tags: initialTags }: TagInputProps) {
