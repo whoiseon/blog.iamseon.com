@@ -4,7 +4,7 @@ import { cn } from '@/src/shared/lib/styles';
 import Link from 'next/link';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md outline-none text-sm transition-all  disabled:pointer-events-none disabled-opacity-50',
+  'inline-flex items-center justify-center rounded-md outline-none text-sm transition-all  disabled:pointer-events-none disabled-opacity-50 whitespace-nowrap',
   {
     variants: {
       variant: {

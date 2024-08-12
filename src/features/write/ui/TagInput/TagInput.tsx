@@ -89,13 +89,13 @@ function TagInput({ onChange, tags: initialTags }: TagInputProps) {
 
   return (
     <OutsideClickHandler onOutsideClick={onOutsideClick}>
-      <div className="w-[850px] mt-[1.25rem] md:mt-[4rem] mx-auto px-5 py-3.5">
+      <div className="w-full mx-auto">
         <div className="h-full flex items-center flex-wrap gap-2">
           {tags.map((tag, i) => (
             <Tag key={tag} onClick={() => onRemove(tag)} name={tag} isButton />
           ))}
           <input
-            className="text-md bg-white dark:bg-black outline-none placeholder:text-neutral-600 dark:placeholder:text-neutral-400"
+            className="h-[34px] text-md bg-white dark:bg-black outline-none placeholder:text-neutral-600 dark:placeholder:text-neutral-500 mb-2"
             onChange={onChangeInput}
             value={value}
             onKeyDown={onKeyDown}

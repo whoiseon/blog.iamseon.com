@@ -255,4 +255,160 @@ export const Icons = {
       />
     </svg>
   ),
+  Bold: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="-2 0 22 22"
+      id="meteor-icon-kit__solid-bold"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.5 2.91465C0.9174 2.70873 0.5 2.15311 0.5 1.5C0.5 0.67157 1.17157 0 2 0H9.5C12.8137 0 15.5 2.68629 15.5 6C15.5 7.44502 14.9892 8.77073 14.1383 9.8064C16.1426 10.9135 17.5 13.0482 17.5 15.5C17.5 19.0899 14.5899 22 11 22H2C1.17157 22 0.5 21.3284 0.5 20.5C0.5 19.8469 0.9174 19.2913 1.5 19.0854V2.91465zM4.5 3V9H9.5C11.1569 9 12.5 7.65685 12.5 6C12.5 4.34315 11.1569 3 9.5 3H4.5zM4.5 12V19H11C12.933 19 14.5 17.433 14.5 15.5C14.5 13.567 12.933 12 11 12H4.5z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
+  Italic: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M12 3L8 17m4-14H8m4 0h4M8 17H4m4 0h4"
+      />
+    </svg>
+  ),
+  Strike: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17 5H10C8.34315 5 7 6.34315 7 8V9C7 10.6569 8.34315 12 10 12H17M7 19H14C15.6569 19 17 17.6569 17 16V15"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+      <path
+        d="M5 12H19"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  ),
+  Heading: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M7 4v8m0 8v-8m10-8v8m0 8v-8m0 0H7M5 4h4m6 0h4m0 16h-4m-6 0H5"
+      />
+    </svg>
+  ),
+  Blockquote: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className} si-glyph si-glyph-quote-close`}
+      viewBox="0 -0.5 17 17"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g transform="translate(1.000000, 1.000000)" fill="currentColor">
+          <path
+            d="M1,13.969 C0.447,13.969 0,13.534 0,13 C0,12.466 0.447,12.031 1,12.031 C3.757,12.031 5,10.83 5,8.124 L5,6.978 L1.559,6.978 C0.729,6.978 0.053,6.3 0.053,5.467 L0.053,1.511 C0.053,0.677 0.729,-0.001 1.559,-0.001 L5.494,-0.001 C6.324,-0.001 7,0.677 7,1.511 L7,8.123 C7,11.898 4.859,13.969 1,13.969 L1,13.969 Z"
+            className="si-glyph-fill"
+          ></path>
+          <path
+            d="M10,13.969 C9.447,13.969 9,13.534 9,13 C9,12.466 9.447,12.031 10,12.031 C12.757,12.031 14,10.83 14,8.124 L14,6.947 L10.533,6.947 C9.699,6.947 9.021,6.271 9.021,5.441 L9.021,1.505 C9.021,0.675 9.699,-0.001 10.533,-0.001 L14.488,-0.001 C15.322,-0.001 16,0.675 16,1.505 L16,8.123 C16,11.898 13.859,13.969 10,13.969 L10,13.969 Z"
+            className="si-glyph-fill"
+          ></path>
+        </g>
+      </g>
+    </svg>
+  ),
+  CodeBlock: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 8L5 11.6923L9 16M15 8L19 11.6923L15 16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  Link: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 7H16C18.7614 7 21 9.23858 21 12C21 14.7614 18.7614 17 16 17H14M10 7H8C5.23858 7 3 9.23858 3 12C3 14.7614 5.23858 17 8 17H10M8 12H16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  Image: ({ width = 24, height = 24, className }: IconProps) => (
+    <svg
+      width={width}
+      height={width}
+      className={`${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM7.5 10C8.88071 10 10 8.88071 10 7.5C10 6.11929 8.88071 5 7.5 5C6.11929 5 5 6.11929 5 7.5C5 8.88071 6.11929 10 7.5 10ZM10.3536 13.3536L12.5 15.5L18.1464 9.85355C18.4614 9.53857 19 9.76165 19 10.2071V19H5V18L9.64645 13.3536C9.84171 13.1583 10.1583 13.1583 10.3536 13.3536Z"
+        fill="currentColor"
+      />
+    </svg>
+  ),
 };

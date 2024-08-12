@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
+        code: 'Fira Mono, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
       },
       minHeight: {
         headerHeight: '50px',

@@ -8,6 +8,12 @@
     }
 }
 
+@font-face {
+    font-family: 'Fira Mono';
+    font-style: normal;
+    src: url("/fonts/code/FiraMono-Regular.ttf") format("truetype");
+}
+
 .header-inner {
     width: 92%;
     max-width: calc(100% - 40px);

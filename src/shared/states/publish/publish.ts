@@ -1,32 +1,45 @@
-import { YooEditor, YooptaContentValue } from '@yoopta/editor';
 import { create } from 'zustand';
 
 interface PublishStoreState {
-  isPublishing: boolean;
-  tags: string[] | null;
-  editor: YooEditor | null;
+  id?: number;
+  title: string;
+  body: string;
+  tags: string[];
+  urlSlug: string;
+  description?: string;
+  isTemp: boolean;
+  thumbnail: string;
+  isPublic: boolean;
 }
 
 interface PublishStore extends PublishStoreState {
   actions: {
-    setIsPublishing: (isPublishing: boolean) => void;
-    setTags: (tags: string[]) => void;
-    setEditor: (editor: YooEditor) => void;
+    setPublishStore: (publishState: PublishStoreState) => void;
+    setIsPublic: (isPublic: boolean) => void;
   };
 }
 
 const usePublishStore = create<PublishStore>((set) => ({
-  isPublishing: false,
-  tags: null,
-  editor: null,
+  id: undefined,
+  title: '',
+  body: '',
+  tags: [],
+  urlSlug: '',
+  description: '',
+  isTemp: false,
+  thumbnail: '',
+  isPublic: true,
   actions: {
-    setIsPublishing: (isPublishing: boolean) =>
-      set((state) => ({ ...state, isPublishing })),
-    setTags: (tags: string[]) => set((state) => ({ ...state, tags })),
-    setEditor: (editor: YooEditor) => set((state) => ({ ...state, editor })),
+    setPublishStore: (publishState: PublishStoreState) =>
+      set((state) => ({
+        ...publishState,
+      })),
+    setIsPublic: (isPublic: boolean) =>
+      set((state) => ({
+        ...state,
+        isPublic,
+      })),
   },
 }));
 
-const usePublishStoreActions = () => usePublishStore((state) => state.actions);
-
-export { usePublishStore, usePublishStoreActions };
+export { usePublishStore };

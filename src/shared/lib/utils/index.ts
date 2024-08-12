@@ -12,3 +12,10 @@ export function escapeForUrl(text: string): string {
 export function replaceDashToSpace(text: string): string {
   return text.replaceAll('-', ' ');
 }
+
+export function detectJSDOM() {
+  if (window === undefined) return false;
+
+  if (typeof window.navigator === 'undefined') return false;
+  return window.navigator.userAgent.includes('jsdom');
+}

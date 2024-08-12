@@ -1,0 +1,43 @@
+.markdown-editor-block {
+    @apply flex flex-col h-full relative;
+
+    .CodeMirror-lines {
+        @apply pt-[4px] pb-[4rem] px-0 !important;
+    }
+
+    .CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
+        @apply px-[3rem] py-0 !important;
+    }
+
+    .CodeMirror {
+        @apply min-h-0 flex-1 font-[1.125rem] leading-[1.5] text-neutral-800 dark:text-neutral-200 bg-white dark:bg-black !important;
+
+        .cm-header {
+            @apply leading-[1.5] text-neutral-800 dark:text-neutral-200 !important;
+        }
+
+        .cm-header-1 {
+            @apply text-[2.5rem] !important;
+        }
+
+        .cm-header-2 {
+            @apply text-[2rem] !important;
+        }
+
+        .cm-header-3 {
+            @apply text-[1.5rem] !important;
+        }
+
+        .cm-header-4, .cm-header-5, .cm-header-6 {
+            @apply text-[1.3125rem] !important;
+        }
+
+        .CodeMirror-placeholder {
+            @apply text-neutral-600 dark:text-neutral-400 !important;
+        }
+
+        .cm-em, .cm-strong {
+            @apply text-neutral-800 dark:text-neutral-200 !important;
+        }
+    }
+}

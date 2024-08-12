@@ -1,10 +1,17 @@
 'use client';
 
-import EditorContainer from '@/src/widgets/write/ui/EditorContainer';
+import dynamic from 'next/dynamic';
+
+const EditorContainer = dynamic(
+  () => import('@/src/widgets/write/ui/EditorContainer'),
+  {
+    ssr: true,
+  },
+);
 
 function WritePage() {
   return (
-    <main>
+    <main className="w-full h-full overflow-hidden">
       <EditorContainer />
     </main>
   );
