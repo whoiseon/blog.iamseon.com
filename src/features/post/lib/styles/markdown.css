@@ -1,0 +1,41 @@
+.markdown-render-block {
+    pre {
+        @apply font-code text-[0.875rem] p-4 rounded-sm leading-[1.5] overflow-x-auto tracking-[0px] my-[1.5rem];
+
+        code {
+            @apply bg-transparent !important;
+        }
+    }
+
+    img {
+        @apply max-w-full h-auto block my-[1.5rem];
+    }
+
+    iframe {
+        @apply w-[748px] h-[430px] max-w-full bg-black block m-auto border-0 rounded-sm overflow-hidden;
+    }
+
+    table {
+        @apply min-w-[40%] max-w-[100%] border-[1px] border-neutral-200 dark:border-neutral-800 border-collapse text-[0.875rem];
+
+        thead > tr > th {
+            @apply border-b-[2px] border-b-neutral-200 dark:border-b-neutral-800;
+        }
+
+        th, td {
+            @apply p-2 break-words;
+        }
+
+        td + td, th + th {
+            @apply border-l-[1px] border-l-neutral-200 dark:border-l-neutral-800;
+        }
+
+        tr:nth-child(even) {
+            @apply bg-neutral-50 dark:bg-neutral-950;
+        }
+
+        tr:nth-child(odd) {
+            @apply bg-white dark:bg-black;
+        }
+    }
+}

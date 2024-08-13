@@ -133,7 +133,7 @@ function EditorContainer() {
           initialBody={initialBody}
         />
       </div>
-      <div className="min-w-0 flex-1 hidden lg:flex flex-col relative bg-white dark:bg-black border-l-[1px] border-l-neutral-100 dark:border-neutral-900">
+      <div className="min-w-0 flex-1 hidden lg:flex flex-col relative bg-white dark:bg-black border-l-[1px] border-l-neutral-200 dark:border-neutral-900">
         <MarkdownPreview markdown={markdown} />
       </div>
       <PublishContainer visible={published} onClose={handleCancelPublish} />

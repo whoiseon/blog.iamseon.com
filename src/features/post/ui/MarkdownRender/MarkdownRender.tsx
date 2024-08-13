@@ -1,5 +1,8 @@
 'use client';
 
+import '../../lib/styles/prism.css';
+import '../../lib/styles/markdown.css';
+
 import katexWhitelist from '@/src/features/write/lib/katexWhiteList';
 import sanitize from 'sanitize-html';
 import { useEffect, useMemo, useState } from 'react';
@@ -16,7 +19,8 @@ import prismPlugin from '@/src/features/write/lib/prismPlugin';
 import { throttle } from 'throttle-debounce';
 import parse from 'html-react-parser';
 import { setHeadingId } from '@/src/widgets/post/lib/utils';
-import Typography from '@/src/features/post/ui/Typography';
+import Typography from '@/src/features/post/ui/MarkdownRender/Typography';
+import MarkdownRenderErrorBoundary from '@/src/features/post/ui/MarkdownRender/MarkdownRenderErrorBoundary';
 
 function strikeThrough(htmlString: string) {
   return htmlString.replace(/~~(.*?)~~/g, '<del>$1</del>');
@@ -167,7 +171,24 @@ function MarkdownRender({ markdown, editing, className }: Props) {
     throttledUpdate(markdown as string);
   }, [markdown, throttledUpdate]);
 
-  return <Typography>123</Typography>;
+  return (
+    <Typography>
+      {editing ? (
+        <MarkdownRenderErrorBoundary
+          onError={() => setHasTagError(true)}
+          hasTagError={hasTagError}
+        >
+          <div className="markdown-render-block prism-theme">{element}</div>
+        </MarkdownRenderErrorBoundary>
+      ) : (
+        <div
+          suppressHydrationWarning
+          className={`markdown-render-block prism-theme ${className ? className : ''}`}
+          dangerouslySetInnerHTML={{ __html: setHeadingId(html) }}
+        />
+      )}
+    </Typography>
+  );
 }
 
 export default MarkdownRender;

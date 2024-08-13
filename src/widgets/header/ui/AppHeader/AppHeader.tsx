@@ -2,8 +2,6 @@
 
 import HeaderNavList from './HeaderNavList';
 import Logo from '@/src/shared/assets/Logo/Logo';
-import GoBackButton from '@/src/features/write/ui/GoBackButton';
-import WriteActionsBox from '../../../write/ui/EditorContainer/WriteFooter/WriteActionsBox';
 
 function AppHeader() {
   return (

@@ -1,0 +1,108 @@
+.prism-theme pre {
+    @apply bg-neutral-100 dark:bg-neutral-900 !important;
+}
+
+.prism-theme code[class*="language-"], .prism-theme pre[class*="language-"] {
+    @apply text-prism-text-light dark:text-prism-text-dark bg-transparent text-left whitespace-pre hyphens-none !important;
+
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    tab-size: 4;
+}
+
+.prism-theme pre[class*="language-"]::-moz-selection, .prism-theme pre[class*="language-"] ::-moz-selection, .prism-theme code[class*="language-"]::-moz-selection, .prism-theme code[class*="language-"] ::-moz-selection {
+    @apply bg-prism-selection-light dark:bg-prism-selection-dark drop-shadow-none;
+}
+
+.prism-theme pre[class*="language-"]::selection, .prism-theme pre[class*="language-"] ::selection, .prism-theme code[class*="language-"]::selection, .prism-theme code[class*="language-"] ::selection {
+    @apply bg-prism-selection-light dark:bg-prism-selection-dark drop-shadow-none;
+}
+
+@media print {
+    .prism-theme code[class*="language-"], .prism-theme pre[class*="language-"] {
+        @apply drop-shadow-none;
+    }
+}
+
+.prism-theme pre[class*="language-"] {
+    @apply p-4 my-2 mx-0;
+}
+
+.prism-theme:not(pre) > code[class*="language-"] {
+    @apply p-[0.1em] rounded-[0.3em] whitespace-normal;
+}
+
+.prism-theme .token.comment, .prism-theme .token.prolog, .prism-theme .token.doctype, .prism-theme .token.cdata {
+    @apply text-prism-code1-light dark:text-prism-code1-dark;
+}
+
+.prism-theme .token.punctuation {
+    @apply text-prism-code2-light dark:text-prism-code2-dark;
+}
+
+.prism-theme .token.selector, .prism-theme .token.tag {
+    @apply text-prism-code3-light dark:text-prism-code3-dark;
+}
+
+.prism-theme .token.property, .prism-theme .token.boolean, .prism-theme .token.number, .prism-theme .token.constant, .prism-theme .token.symbol, .prism-theme .token.deleted, .prism-theme .token.attr-name {
+    @apply text-prism-code4-light dark:text-prism-code4-dark;
+}
+
+.prism-theme .token.string, .prism-theme .token.char, .prism-theme .token.attr-value, .prism-theme .token.builtin, .prism-theme .token.inserted {
+    @apply text-prism-code6-light dark:text-prism-code6-dark;
+}
+
+.prism-theme .token.operator, .prism-theme .token.entity, .prism-theme .token.url, .prism-theme .language-css .prism-theme .token.string, .prism-theme .style .token.string {
+    @apply text-prism-code5-light dark:text-prism-code5-dark;
+}
+
+.prism-theme .token.atrule, .prism-theme .token.keyword {
+    @apply text-prism-code7-light dark:text-prism-code7-dark;
+}
+
+.prism-theme .token.function {
+    @apply text-prism-code8-light dark:text-prism-code8-dark !important;
+}
+
+.prism-theme .token.regex, .prism-theme .token.important, .prism-theme .token.variable {
+    @apply text-prism-code9-light dark:text-prism-code9-dark;
+}
+
+.prism-theme .token.important, .prism-theme .token.bold {
+    @apply font-bold;
+}
+
+.prism-theme .token.italic {
+    font-style: italic;
+}
+
+.prism-theme .token.entity {
+    @apply cursor-help;
+}
+
+.prism-theme pre.line-numbers {
+    @apply relative pl-[3.8em];
+
+    counter-reset: lineNumber;
+}
+
+.prism-theme pre.line-numbers > code {
+    @apply relative;
+}
+
+.prism-theme .line-numbers .prism-theme .line-numbers-rows {
+    @apply absolute pointer-events-none top-0 text-[100%] -left-[3.8em] w-[3em] -tracking-[1px] border-r-0 select-none;
+}
+
+.prism-theme .line-numbers-rows > span {
+    @apply pointer-events-none block;
+
+    counter-increment: lineNumber;
+}
+
+.prism-theme .line-numbers-rows > span:before {
+    @apply text-prism-line_number-light dark:text-prism-line_number-dark block text-right pr-[0.8em];
+
+    content: counter(lineNumber);
+}

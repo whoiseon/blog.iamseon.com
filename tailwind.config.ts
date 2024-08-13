@@ -7,6 +7,7 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  safelist: ['text-prism-code8-light', 'text-prism-code8-dark'],
   theme: {
     extend: {
       fontFamily: {
@@ -30,6 +31,56 @@ const config: Config = {
         editor: {
           green: {
             selection: 'rgba(74, 222, 118, 0.3)',
+          },
+        },
+        prism: {
+          text: {
+            light: '#24292e',
+            dark: '#e0e6f1',
+          },
+          selection: {
+            light: 'rgba(0, 0, 0, 0.15)',
+            dark: '#383e49',
+          },
+          code1: {
+            light: '#969896',
+            dark: '#7c858d',
+          },
+          code2: {
+            light: '#24292e',
+            dark: '#abb2bf',
+          },
+          code3: {
+            light: '#a626a4',
+            dark: '#e06c75',
+          },
+          code4: {
+            light: '#63a35c',
+            dark: '#d19a66',
+          },
+          code5: {
+            light: '#0184bc',
+            dark: '#98c379',
+          },
+          code6: {
+            light: '#50a14f',
+            dark: '#56b6c2',
+          },
+          code7: {
+            light: '#a626a4',
+            dark: '#c678dd',
+          },
+          code8: {
+            light: '#005cc5',
+            dark: '#61afef',
+          },
+          code9: {
+            light: '#a626a4',
+            dark: '#c678dd',
+          },
+          line_number: {
+            light: '#585c63',
+            dark: '#5c6370',
           },
         },
       },

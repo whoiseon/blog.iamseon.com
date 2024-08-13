@@ -1,5 +1,5 @@
 .typography-block {
-    @apply font-sans font-[1.125rem] text-neutral-950 dark:text-neutral-50 transition leading-[1.7] -tracking-[0.004em] break-keep;
+    @apply font-sans text-[1.125rem] text-neutral-950 dark:text-neutral-50 transition leading-[1.7] -tracking-[0.004em] break-keep;
 
     ul {
         @apply list-disc pl-[2.5rem] my-[1.125rem];
@@ -30,7 +30,7 @@
     }
 
     hr {
-        @apply border-0 h-[1px] w-full bg-neutral-300 dark:bg-neutral-700;
+        @apply border-0 h-[1px] w-full bg-neutral-300 dark:bg-neutral-700 my-8;
     }
 
     em {
@@ -44,23 +44,27 @@
     }
 
     h1 {
-        @apply font-[2.5rem];
+        @apply text-[2.5rem];
+    }
+
+    h1:nth-child(1) {
+        @apply mt-7 mb-[64px];
     }
 
     h2 {
-        @apply font-[2rem];
+        @apply text-[2rem];
     }
 
     h3 {
-        @apply font-[1.5rem];
+        @apply text-[1.5rem];
     }
 
     h4 {
-        @apply font-[1.3125rem];
+        @apply text-[1.3125rem];
     }
 
     h1, h2, h3, h4 {
-        @apply font-bold leading-[1.5] mb-4;
+        @apply font-bold leading-[1.5] mt-7 mb-4;
     }
 
     p + h1, p + h2, p + h3, p + h4 {
@@ -70,5 +74,16 @@
     blockquote {
         @apply my-[2rem] border-l-[4px] border-l-green-500 dark:border-l-green-400 rounded-tr-sm rounded-br-sm bg-neutral-100 dark:bg-neutral-900 mx-0 py-4 pr-4 pl-[2rem] text-neutral-950 dark:text-neutral-50;
 
+        ul, ol {
+            @apply pl-4;
+        }
+
+        *:first-child {
+            @apply mt-0;
+        }
+
+        *:last-child {
+            @apply mb-0;
+        }
     }
 }

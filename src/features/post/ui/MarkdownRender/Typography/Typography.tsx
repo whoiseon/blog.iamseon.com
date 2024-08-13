@@ -1,6 +1,6 @@
 'use client';
 
-import '../../lib/styles/typography.css';
+import '../../../lib/styles/typography.css';
 
 import { PropsWithChildren } from 'react';
 
