@@ -82,7 +82,7 @@ function filter(html: string) {
       ol: ['start'],
       ...katexWhitelist.attributes,
     },
-    allowedSchemes: ['blob'],
+    allowedSchemes: ['blob', 'http', 'https'],
     allowedStyles: {
       '*': {
         // Match HEX and RGB
