@@ -14,6 +14,7 @@ import {
 import WriteFooter from '@/src/widgets/write/ui/EditorContainer/WriteFooter';
 import { usePublishStore } from '@/src/shared/states/publish/publish';
 import { escapeForUrl } from '@/src/shared/lib/utils';
+import DesktopOnlyMessage from '@/src/widgets/write/ui/DesktopOnlyMessage';
 
 const MarkdownEditor = dynamic(
   () => import('@/src/widgets/write/ui/EditorContainer/MarkdownEditor'),
@@ -123,18 +124,7 @@ function EditorContainer() {
 
   return (
     <div className="flex w-full h-full">
-      <div className="flex flex-col flex-1 gap-y-4 items-center md:hidden pt-[4rem]">
-        <div>
-          <p className="text-center">
-            데스크탑 환경에서만 <br />{' '}
-            <b className="text-green-500 dark:text-green-400">포스팅</b>을 할 수
-            있습니다.
-          </p>
-        </div>
-        <Button variant="primary" size="lg" weight="bold">
-          홈으로
-        </Button>
-      </div>
+      <DesktopOnlyMessage />
       <div className="min-w-0 flex-1 hidden md:flex flex-col relative bg-white dark:bg-black">
         <MarkdownEditor
           markdown={markdown}
