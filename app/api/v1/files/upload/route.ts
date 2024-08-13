@@ -12,6 +12,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const formData = await req.formData();
     const image = formData.get('image') as File;
+    const type = formData.get('type') as 'post' | 'thumbnail';
     const Body = (await image.arrayBuffer()) as Buffer;
 
     if (!image) {
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
 
-    const Key = generateFilePath(image.name);
+    const Key = generateFilePath(image.name, type);
 
     await s3.send(
       new PutObjectCommand({

@@ -31,9 +31,12 @@ const generateFileName = (filename: string) => {
   return `${uuid}.${extension}`;
 };
 
-export const generateFilePath = (filename: string) => {
+export const generateFilePath = (
+  filename: string,
+  type: 'post' | 'thumbnail',
+) => {
   const today = getTodayDateToString();
   const fileName = generateFileName(filename);
 
-  return `${today}/${fileName}`;
+  return `${today}/${type}/${fileName}`;
 };

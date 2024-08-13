@@ -105,7 +105,9 @@ function EditorContainer() {
       const blobUrl = URL.createObjectURL(file);
       setImageBlobUrl(blobUrl);
 
-      await serverUpload(file);
+      await serverUpload(file, {
+        type: 'post',
+      });
     },
     [serverUpload],
   );
