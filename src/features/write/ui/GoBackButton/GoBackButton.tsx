@@ -7,7 +7,7 @@ import { Icons } from '@/src/shared/assets';
 function GoBackButton() {
   const goBack = useGoBack();
   return (
-    <Button variant="ghost" size="sm" onClick={goBack} className="-ml-3">
+    <Button variant="ghost" size="sm" onClick={goBack}>
       <div className="flex items-center gap-x-2">
         <Icons.BackArrow width={14} height={14} />
         <span>나가기</span>

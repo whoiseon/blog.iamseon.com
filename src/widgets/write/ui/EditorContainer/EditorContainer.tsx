@@ -6,7 +6,11 @@ import PublishContainer from '@/src/widgets/write/ui/PublishContainer';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import { Button } from '@/src/shared/ui';
-import { useGetQueryString, useUpload } from '@/src/shared/lib/hooks';
+import {
+  useGetQueryString,
+  useServerUpload,
+  useUpload,
+} from '@/src/shared/lib/hooks';
 import WriteFooter from '@/src/widgets/write/ui/EditorContainer/WriteFooter';
 import { usePublishStore } from '@/src/shared/states/publish/publish';
 import { escapeForUrl } from '@/src/shared/lib/utils';
@@ -27,6 +31,7 @@ const MarkdownPreview = dynamic(
 
 function EditorContainer() {
   const { actions } = usePublishStore();
+  const { upload: serverUpload, image } = useServerUpload();
 
   const postId = useGetQueryString('id') || undefined;
 
@@ -51,6 +56,7 @@ function EditorContainer() {
   };
 
   const onPublish = useCallback(() => {
+    let body: string[] = [];
     const title = getTitle(markdown.split('\n')[0]);
 
     if (!title || !markdown) {
@@ -63,13 +69,20 @@ function EditorContainer() {
       return;
     }
 
+    if (title) {
+      body = markdown.split('\n');
+      body.splice(0, 1);
+    } else {
+      alert('제목을 입력해주세요.');
+      return;
+    }
+
     actions.setPublishStore({
       id: Number(postId),
       title,
       tags,
-      body: markdown,
+      body: body.join('\n'),
       description: '',
-      isTemp: false,
       thumbnail: '',
       urlSlug: escapeForUrl(title),
       isPublic: true,
@@ -87,10 +100,15 @@ function EditorContainer() {
     }
   }, [tags, markdown]);
 
-  const uploadImage = useCallback((file: File) => {
-    const blobUrl = URL.createObjectURL(file);
-    setImageBlobUrl(blobUrl);
-  }, []);
+  const uploadImage = useCallback(
+    async (file: File) => {
+      const blobUrl = URL.createObjectURL(file);
+      setImageBlobUrl(blobUrl);
+
+      // await serverUpload(file);
+    },
+    [serverUpload],
+  );
 
   const handleCancelPublish = () => {
     setPublished(false);
@@ -130,6 +148,7 @@ function EditorContainer() {
           }
           theme={theme === 'system' ? systemTheme : theme}
           tempBlobImage={imageBlobUrl}
+          lastUploadedImage={image}
           initialBody={initialBody}
         />
       </div>

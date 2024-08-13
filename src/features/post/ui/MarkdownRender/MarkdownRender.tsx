@@ -21,6 +21,7 @@ import parse from 'html-react-parser';
 import { setHeadingId } from '@/src/widgets/post/lib/utils';
 import Typography from '@/src/features/post/ui/MarkdownRender/Typography';
 import MarkdownRenderErrorBoundary from '@/src/features/post/ui/MarkdownRender/MarkdownRenderErrorBoundary';
+import Head from 'next/head';
 
 function strikeThrough(htmlString: string) {
   return htmlString.replace(/~~(.*?)~~/g, '<del>$1</del>');
@@ -31,8 +32,7 @@ function sanitizeEventScript(htmlString: string) {
 }
 
 function filter(html: string) {
-  const presanitized = sanitizeEventScript(html);
-  return sanitize(presanitized, {
+  return sanitize(sanitizeEventScript(html), {
     allowedTags: [
       'h1',
       'h2',
@@ -74,7 +74,7 @@ function filter(html: string) {
     ],
     allowedAttributes: {
       a: ['href', 'name', 'target'],
-      img: ['src'],
+      img: ['src', 'alt', 'width', 'height', 'title'],
       iframe: ['src', 'allow', 'allowfullscreen', 'scrolling', 'class'],
       '*': ['class', 'id', 'aria-hidden'],
       span: ['style'],
@@ -82,6 +82,7 @@ function filter(html: string) {
       ol: ['start'],
       ...katexWhitelist.attributes,
     },
+    allowedSchemes: ['blob'],
     allowedStyles: {
       '*': {
         // Match HEX and RGB
@@ -112,8 +113,8 @@ function MarkdownRender({ markdown, editing, className }: Props) {
     filter(
       remark()
         .use(breaks)
-        .use(slug)
         .use(remarkParse)
+        .use(slug)
         .use(prismPlugin)
         .use(remark2rehype, { allowDangerousHtml: true })
         .use(raw)
@@ -152,7 +153,7 @@ function MarkdownRender({ markdown, editing, className }: Props) {
             setDelay(nextDelay);
           }
 
-          const html = setHeadingId(strikeThrough(String(file)));
+          const html = strikeThrough(String(file));
 
           if (!editing) {
             setHtml(filter(html));
@@ -161,6 +162,7 @@ function MarkdownRender({ markdown, editing, className }: Props) {
 
           try {
             const el = parse(html);
+            setHasTagError(false);
             setElement(el);
           } catch (e) {}
         });
@@ -173,6 +175,16 @@ function MarkdownRender({ markdown, editing, className }: Props) {
 
   return (
     <Typography>
+      <Head>
+        {/\$(.*)\$/.test(markdown as string) && (
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+            integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq"
+            crossOrigin="anonymous"
+          />
+        )}
+      </Head>
       {editing ? (
         <MarkdownRenderErrorBoundary
           onError={() => setHasTagError(true)}

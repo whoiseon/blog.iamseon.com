@@ -21,15 +21,27 @@ const PUBLISH_CONTAINER_ANIMATION_REMOVE =
 function PublishContainer({ visible, onClose }: Props) {
   useBodyScrollLock();
 
-  const { title } = usePublishStore();
+  const { title, ...post } = usePublishStore();
 
   const [upload, file] = useUpload();
 
   const [description, setDescription] = useState<string>('');
-
   const [className, setClassName] = useState<string>(
     PUBLISH_CONTAINER_ANIMATION_RENDER,
   );
+
+  const onPublish = () => {
+    console.log({
+      id: post.id,
+      title,
+      tags: post.tags,
+      body: post.body,
+      description,
+      isPublic: post.isPublic,
+      thumbnail: post.thumbnail,
+      urlSlug: post.urlSlug,
+    });
+  };
 
   const handleChangeDescription = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
@@ -69,7 +81,7 @@ function PublishContainer({ visible, onClose }: Props) {
         <div className="flex-1 min-w-0">
           <section className="h-full flex flex-col justify-between">
             <ConfigSection />
-            <PublishFooter onCancel={handleCancel} />
+            <PublishFooter onCancel={handleCancel} onPublish={onPublish} />
           </section>
         </div>
       </div>

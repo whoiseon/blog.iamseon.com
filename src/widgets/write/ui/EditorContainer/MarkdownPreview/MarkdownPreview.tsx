@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import MarkdownRender from '../../../../../features/post/ui/MarkdownRender';
+import MarkdownRender from '@/src/features/post/ui/MarkdownRender';
 
 interface Props {
   markdown: string;

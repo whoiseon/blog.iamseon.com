@@ -422,10 +422,31 @@ function MarkdownEditor({
     codemirror.getDoc().replaceSelection(imageMarkdown);
   };
 
+  const addImageToEditor = (image: string) => {
+    if (!codemirror) return;
+    const lines = codemirror.getValue().split('\n');
+    const lineIndex = lines.findIndex((line) => line.includes('![업로드중..]'));
+    if (lineIndex === -1) return;
+
+    const startCh = lines[lineIndex].indexOf('![업로드중..');
+    codemirror
+      .getDoc()
+      .replaceRange(
+        `![](${encodeURI(image)})`,
+        { line: lineIndex, ch: startCh },
+        { line: lineIndex, ch: lines[lineIndex].length },
+      );
+  };
+
   useEffect(() => {
     if (!tempBlobImage) return;
     addTempImageBlobToEditor(tempBlobImage);
   }, [tempBlobImage]);
+
+  useEffect(() => {
+    if (!lastUploadedImage) return;
+    addImageToEditor(lastUploadedImage);
+  }, [lastUploadedImage]);
 
   useEffect(() => {
     initialize();

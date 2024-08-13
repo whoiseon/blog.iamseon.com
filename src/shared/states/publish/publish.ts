@@ -7,7 +7,6 @@ interface PublishStoreState {
   tags: string[];
   urlSlug: string;
   description?: string;
-  isTemp: boolean;
   thumbnail: string;
   isPublic: boolean;
 }
@@ -26,7 +25,6 @@ const usePublishStore = create<PublishStore>((set) => ({
   tags: [],
   urlSlug: '',
   description: '',
-  isTemp: false,
   thumbnail: '',
   isPublic: true,
   actions: {

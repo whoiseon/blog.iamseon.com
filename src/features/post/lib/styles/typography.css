@@ -14,7 +14,7 @@
             @apply font-normal;
         }
         code {
-            @apply bg-neutral-200 dark:bg-neutral-800 px-[0.4em] py-[0.2em] text-[85%] rounded-sm;
+            @apply bg-neutral-100 dark:bg-neutral-800 px-[0.4em] py-[0.2em] text-[85%] rounded-sm;
         }
         a {
             @apply text-green-500 dark:text-green-400;

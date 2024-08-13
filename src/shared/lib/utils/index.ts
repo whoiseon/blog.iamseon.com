@@ -1,3 +1,5 @@
+import { formatDate } from 'date-fns';
+
 export function escapeForUrl(text: string): string {
   return text
     .replace(
@@ -18,4 +20,8 @@ export function detectJSDOM() {
 
   if (typeof window.navigator === 'undefined') return false;
   return window.navigator.userAgent.includes('jsdom');
+}
+
+export function getTodayDateToString() {
+  return formatDate(new Date(), 'yyyy-MM-dd');
 }
