@@ -11,7 +11,7 @@ interface MainProps {
 
 function MainContainer({ left, right }: MainProps) {
   return (
-    <main className="flex items-stretch">
+    <main className="flex items-stretch bg-white dark:bg-black">
       <section className="flex items-start flex-col flex-grow lg:items-end">
         <div className="h-full w-full min-h-[3rem] lg:w-[900px] lg:max-w-[900px] mb-[60px] px-5 lg:px-6 lg:mr-6">
           {left}

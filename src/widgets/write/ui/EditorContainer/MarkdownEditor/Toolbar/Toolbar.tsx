@@ -29,7 +29,7 @@ function Toolbar({ onClick = () => {}, innerRef }: Props) {
         >
           <div className="flex items-start text-[1.25rem] font-semibold font-serif">
             <Icons.Heading width={22} height={22} />
-            <span className="text-[0.75rem] -ml-[3px]">{number}</span>
+            <span className="text-[0.75rem] -ml-[2px] -mt-[4px]">{number}</span>
           </div>
         </button>
       ))}

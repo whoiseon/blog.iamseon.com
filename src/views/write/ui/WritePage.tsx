@@ -11,7 +11,7 @@ const EditorContainer = dynamic(
 
 function WritePage() {
   return (
-    <main className="w-full h-full overflow-hidden">
+    <main className="w-full h-dvh overflow-hidden">
       <EditorContainer />
     </main>
   );

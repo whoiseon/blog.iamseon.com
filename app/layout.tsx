@@ -28,7 +28,7 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          'h-dvh w-full bg-white text-neutral-950 dark:bg-black dark:text-neutral-50 font-sans transition',
+          'w-full bg-white text-neutral-950 dark:bg-black dark:text-neutral-50 font-sans transition',
           fontSans.variable,
         )}
       >
