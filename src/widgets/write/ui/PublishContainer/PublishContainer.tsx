@@ -1,11 +1,16 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { useBodyScrollLock, useUpload } from '@/src/shared/lib/hooks';
+import { useCallback, useEffect, useState } from 'react';
+import {
+  useBodyScrollLock,
+  useServerUpload,
+  useUpload,
+} from '@/src/shared/lib/hooks';
 import ThumbnailSection from '@/src/widgets/write/ui/PublishContainer/ThumbnailSection';
 import ConfigSection from '@/src/widgets/write/ui/PublishContainer/ConfigSection';
 import PublishFooter from '@/src/widgets/write/ui/PublishContainer/PublishFooter';
 import { usePublishStore } from '@/src/shared/states';
+import { useMutationPublish } from '@/src/widgets/write/api';
 
 interface Props {
   visible: boolean;
@@ -21,25 +26,49 @@ const PUBLISH_CONTAINER_ANIMATION_REMOVE =
 function PublishContainer({ visible, onClose }: Props) {
   useBodyScrollLock();
 
-  const { title, ...post } = usePublishStore();
+  const post = usePublishStore();
 
   const [upload, file] = useUpload();
+  const { upload: uploadThumbnail, image, setImage } = useServerUpload();
 
   const [description, setDescription] = useState<string>('');
   const [className, setClassName] = useState<string>(
     PUBLISH_CONTAINER_ANIMATION_RENDER,
   );
 
+  const { mutate } = useMutationPublish();
+
+  const handleRemoveImage = () => {
+    setImage(null);
+  };
+
+  const handleReUploadImage = () => {
+    setImage(null);
+    return upload();
+  };
+
   const onPublish = () => {
     console.log({
       id: post.id,
-      title,
+      title: post.title,
       tags: post.tags,
       body: post.body,
       description,
       isPublic: post.isPublic,
-      thumbnail: post.thumbnail,
+      thumbnail: image || '',
       urlSlug: post.urlSlug,
+      seriesId: post.seriesId,
+    });
+    mutate({
+      id: post.id,
+      title: post.title,
+      tags: post.tags,
+      body: post.body,
+      description,
+      isPublic: post.isPublic,
+      thumbnail: image || '',
+      urlSlug: post.urlSlug,
+      seriesId: post.seriesId,
     });
   };
 
@@ -64,6 +93,21 @@ function PublishContainer({ visible, onClose }: Props) {
     }
   };
 
+  useEffect(() => {
+    if (post?.thumbnail) {
+      setImage(post.thumbnail);
+    }
+
+    if (post?.description) {
+      setDescription(post.description);
+    }
+  }, [post]);
+
+  useEffect(() => {
+    if (!file) return;
+    uploadThumbnail(file, { type: 'thumbnail' });
+  }, [file, uploadThumbnail]);
+
   if (!visible) return null;
 
   return (
@@ -72,10 +116,13 @@ function PublishContainer({ visible, onClose }: Props) {
       <div className="flex flex-col md:flex-row gap-y-6 pb-[80px] md:pb-0 overflow-y-auto md:overflow-hidden md:gap-y-0 md:gap-x-[4rem] w-full md:w-[700px]">
         <div className="flex-1 min-w-0 px-5 md:px-0">
           <ThumbnailSection
-            title={title || ''}
+            title={post.title || ''}
+            image={image}
             onUpload={upload}
             description={description}
             onChangeDescription={handleChangeDescription}
+            onReUpload={handleReUploadImage}
+            onRemove={handleRemoveImage}
           />
         </div>
         <div className="flex-1 min-w-0">

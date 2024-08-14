@@ -17,7 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     if (!image) {
       return generateNextResponse<UploadImagePayload>({
-        error: 'Image not found',
+        error: '이미지 파일을 찾을 수 없습니다.',
         payload: {
           path: '',
         },
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     // 5mb limit
     if (image.size > 5242880) {
       return generateNextResponse<UploadImagePayload>({
-        error: 'Image size is too large',
+        error: '5MB 미만 업로드 가능합니다.',
         payload: {
           path: '',
         },
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   } catch (e) {
     console.log('error', e);
     return generateNextResponse<UploadImagePayload>({
-      error: 'upload failed',
+      error: '서버 통신 오류',
       payload: {
         path: '',
       },

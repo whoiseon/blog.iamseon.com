@@ -8,7 +8,7 @@ interface Props {
 }
 
 const TOOLBAR_ITEM_CLASSNAME =
-  'w-[2.5rem] h-[2.5rem] flex items-center justify-center text-[1.5rem] text-neutral-600 dark:text-neutral-400 cursor-pointer shrink-0 rounded-md bg-white dark:bg-black hover:bg-neutral-100 hover:dark:bg-neutral-900 transition';
+  'w-[2.5rem] h-[2.5rem] flex items-center justify-center text-[1.5rem] text-neutral-600 dark:text-neutral-400 cursor-pointer shrink-0 rounded-md bg-transparent dark:bg-transparent hover:bg-neutral-100 hover:dark:bg-neutral-900 transition';
 
 const SEPARATOR_CLASSNAME =
   'w-[1px] h-[1.25rem] bg-neutral-200 dark:bg-neutral-800 mx-2';
@@ -17,7 +17,7 @@ function Toolbar({ onClick = () => {}, innerRef }: Props) {
   return (
     <div
       id="toolbar"
-      className="w-full top-0 flex items-center mb-[1rem] bg-white dark:bg-black z-10 flex-wrap gap-x-1 -ml-2"
+      className="w-full top-0 flex items-center mb-[1rem] bg-neutral-50 dark:bg-neutral-950 z-10 flex-wrap gap-x-1 -ml-2"
       ref={innerRef}
     >
       {[1, 2, 3, 4].map((number) => (

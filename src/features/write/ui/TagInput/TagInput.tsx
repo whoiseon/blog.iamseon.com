@@ -87,6 +87,8 @@ function TagInput({ onChange, tags: initialTags }: TagInputProps) {
     setTags(nextTags);
   };
 
+  console.log(tags);
+
   return (
     <OutsideClickHandler onOutsideClick={onOutsideClick}>
       <div className="w-full mx-auto">
@@ -95,7 +97,7 @@ function TagInput({ onChange, tags: initialTags }: TagInputProps) {
             <Tag key={tag} onClick={() => onRemove(tag)} name={tag} isButton />
           ))}
           <input
-            className="h-[34px] text-md bg-white dark:bg-black outline-none placeholder:text-neutral-600 dark:placeholder:text-neutral-500 mb-2"
+            className="h-[34px] text-md bg-transparent dark:bg-transparent outline-none placeholder:text-neutral-600 dark:placeholder:text-neutral-500 mb-2"
             onChange={onChangeInput}
             value={value}
             onKeyDown={onKeyDown}

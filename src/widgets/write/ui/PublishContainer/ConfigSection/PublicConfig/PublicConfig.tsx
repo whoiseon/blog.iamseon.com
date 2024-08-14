@@ -9,8 +9,8 @@ import { usePublishStore } from '@/src/shared/states';
 function PublicConfig() {
   const { isPublic, actions } = usePublishStore();
 
-  const handleTogglePublicState = () => {
-    actions.setIsPublic(!isPublic);
+  const handleTogglePublicState = (state: boolean) => {
+    actions.setIsPublic(state);
   };
 
   return (
@@ -24,12 +24,12 @@ function PublicConfig() {
           <Radio
             title="전체 공개"
             selected={isPublic}
-            onClick={handleTogglePublicState}
+            onClick={() => handleTogglePublicState(true)}
           />
           <Radio
             title="비공개"
             selected={!isPublic}
-            onClick={handleTogglePublicState}
+            onClick={() => handleTogglePublicState(false)}
           />
         </RadioGroup>
       </div>

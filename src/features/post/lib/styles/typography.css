@@ -48,7 +48,7 @@
     }
 
     h1:nth-child(1) {
-        @apply mt-7 mb-[64px];
+        @apply mt-7 mb-[48px];
     }
 
     h2 {

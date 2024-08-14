@@ -84,6 +84,9 @@ const config: Config = {
           },
         },
       },
+      boxShadow: {
+        r: '4px 0 40px rgba(0, 0, 0, 0.08)',
+      },
       keyframes: {
         fullSlideUp: {
           '0%': {
@@ -101,10 +104,19 @@ const config: Config = {
             transform: 'translateY(100%)',
           },
         },
+        fadeIn: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
       animation: {
         fullSlideUp: 'fullSlideUp 0.25s ease-in',
         fullSlideDown: 'fullSlideDown 0.25s ease-out forwards',
+        fadeIn: 'fadeIn 0.25s ease-in',
       },
     },
   },

@@ -9,6 +9,7 @@ interface PublishStoreState {
   description?: string;
   thumbnail: string;
   isPublic: boolean;
+  seriesId: number;
 }
 
 interface PublishStore extends PublishStoreState {
@@ -27,6 +28,7 @@ const usePublishStore = create<PublishStore>((set) => ({
   description: '',
   thumbnail: '',
   isPublic: true,
+  seriesId: 0,
   actions: {
     setPublishStore: (publishState: PublishStoreState) =>
       set((state) => ({

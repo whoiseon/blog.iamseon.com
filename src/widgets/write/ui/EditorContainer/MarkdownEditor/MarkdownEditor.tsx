@@ -453,8 +453,8 @@ function MarkdownEditor({
   }, []);
 
   return (
-    <div className="markdown-editor-block" ref={blockElement}>
-      <div className="min-h-0 pb-[4rem] flex-1 flex flex-col">
+    <div className="markdown-editor-block animate-fadeIn" ref={blockElement}>
+      <div className="min-h-0 flex-1 flex flex-col">
         <div className="px-[3rem] pt-[2rem]">
           {tagInput}
           <Toolbar onClick={handleToolbarClick} innerRef={toolbarElement} />

@@ -26,3 +26,14 @@
 ::selection {
     @apply bg-editor-green-selection text-neutral-950 dark:text-white !important;;
 }
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+    @apply bg-green-950 dark:bg-green-200;
+}
+
+.custom-scroll-bar::-webkit-scrollbar {
+    @apply w-[5px];
+}
+.custom-scroll-bar::-webkit-scrollbar-track {
+    @apply bg-white dark:bg-black;
+}

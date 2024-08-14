@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { uploadImage, UploadImageInfo } from '@/src/shared/lib/api';
 
-export function useServerUpload() {
-  const [image, setImage] = useState<string | null>(null);
+export function useServerUpload(initialImage?: string) {
+  const [image, setImage] = useState<string | null>(initialImage || null);
 
   const upload = useCallback(async (file: File, info: UploadImageInfo) => {
     const response = await uploadImage(file, info);
@@ -14,5 +14,5 @@ export function useServerUpload() {
     setImage(response.payload.path);
   }, []);
 
-  return { upload, image } as const;
+  return { upload, image, setImage } as const;
 }

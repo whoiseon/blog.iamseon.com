@@ -10,7 +10,7 @@ datasource db {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Post {
-  id          BigInt    @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   createdAt   DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt   DateTime  @default(now()) @db.Timestamptz(6)
   deletedAt   DateTime? @db.Timestamptz(6)
@@ -20,14 +20,25 @@ model Post {
   description String?   @db.VarChar
   thumbnail   String?   @db.VarChar
   isPublic    Boolean   @default(false)
-  tags        Tag[]
+  seriesId    Int?
+  series      Series?   @relation(fields: [seriesId], references: [id])
+  tags        Tag[]     @relation("PostToTag")
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Tag {
-  id        BigInt   @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   name      String   @unique @db.VarChar
+  posts     Post[]   @relation("PostToTag")
+}
 
-  posts Post[]
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Series {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @db.Timestamptz(6)
+  urlSlug   String   @db.VarChar
+  posts     Post[]
 }

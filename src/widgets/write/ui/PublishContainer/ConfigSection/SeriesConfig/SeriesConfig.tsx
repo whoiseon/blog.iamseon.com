@@ -2,6 +2,8 @@
 
 import ConfigToggleWrapper from '@/src/shared/ui/lab/ConfigToggleWrapper';
 import { Icons } from '@/src/shared/assets';
+import AddSeriesBox from '@/src/widgets/write/ui/PublishContainer/ConfigSection/SeriesConfig/AddSeriesBox';
+import SeriesList from '@/src/widgets/write/ui/PublishContainer/ConfigSection/SeriesConfig/SeriesList/SeriesList';
 
 function SeriesConfig() {
   return (
@@ -9,7 +11,12 @@ function SeriesConfig() {
       icon={<Icons.Series width={20} height={20} />}
       title="시리즈 추가"
     >
-      <div className="px-5 md:px-2 md:h-[180px]">1222</div>
+      <div className="">
+        <div className="flex flex-col">
+          <AddSeriesBox />
+          <SeriesList />
+        </div>
+      </div>
     </ConfigToggleWrapper>
   );
 }
