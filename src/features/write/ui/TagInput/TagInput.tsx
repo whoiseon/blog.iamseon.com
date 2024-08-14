@@ -84,10 +84,13 @@ function TagInput({ onChange, tags: initialTags }: TagInputProps) {
 
   const onRemove = (tag: string) => {
     const nextTags = tags.filter((t) => t !== tag);
-    setTags(nextTags);
-  };
 
-  console.log(tags);
+    if (nextTags.length === 0) {
+      setTags([]);
+    } else {
+      setTags(nextTags);
+    }
+  };
 
   return (
     <OutsideClickHandler onOutsideClick={onOutsideClick}>

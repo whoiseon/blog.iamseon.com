@@ -27,6 +27,7 @@ function PublishContainer({ visible, onClose }: Props) {
   useBodyScrollLock();
 
   const post = usePublishStore();
+  console.log(post);
 
   const [upload, file] = useUpload();
   const { upload: uploadThumbnail, image, setImage } = useServerUpload();

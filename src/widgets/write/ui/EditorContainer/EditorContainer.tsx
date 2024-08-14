@@ -67,7 +67,6 @@ function EditorContainer() {
     let body: string[] = [];
 
     const title = getTitle(markdown.split('\n')[0]);
-    console.log(tags);
     if (!title || !markdown) {
       alert('제목 또는 본문이 비어있습니다.');
       return;
@@ -102,7 +101,7 @@ function EditorContainer() {
     });
 
     setPublished(true);
-  }, [tags, markdown, postData]);
+  }, [tags, markdown, postData, postId]);
 
   const onTempSave = useCallback(() => {
     let body: string[] = [];
