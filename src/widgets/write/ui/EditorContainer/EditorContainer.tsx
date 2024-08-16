@@ -11,7 +11,10 @@ import {
   useUpload,
 } from '@/src/shared/lib/hooks';
 import WriteFooter from '@/src/widgets/write/ui/EditorContainer/WriteFooter';
-import { usePublishStore } from '@/src/shared/states/publish/publish';
+import {
+  usePublish,
+  usePublishActions,
+} from '@/src/shared/states/publish/publish';
 import { escapeForUrl } from '@/src/shared/lib/utils';
 import DesktopOnlyMessage from '@/src/widgets/write/ui/DesktopOnlyMessage';
 import { useGetPost, useMutationPublish } from '@/src/widgets/write/api';
@@ -33,7 +36,8 @@ const MarkdownPreview = dynamic(
 function EditorContainer() {
   const [postLoading, setPostLoading] = useState(true);
 
-  const { actions, tags } = usePublishStore();
+  const { setPublishStore, setTags } = usePublishActions();
+  const { tags } = usePublish();
   const { upload: serverUpload, image } = useServerUpload();
 
   const postId = useGetQueryString('id') || undefined;
@@ -84,7 +88,7 @@ function EditorContainer() {
       return;
     }
 
-    actions.setPublishStore({
+    setPublishStore({
       id: Number(postId),
       title,
       tags,
@@ -153,7 +157,7 @@ function EditorContainer() {
     if (!postData) return;
     const body = `# ${postData.payload?.title}\n${postData.payload?.body}`;
 
-    actions.setTags(postData?.payload?.tags || []);
+    setTags(postData?.payload?.tags || []);
     setMarkdown(body);
     setInitialBody(body);
     setPostLoading(false);

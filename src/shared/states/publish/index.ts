@@ -1,1 +1,1 @@
-export { usePublishStore } from './publish';
+export { usePublish, usePublishActions } from './publish';

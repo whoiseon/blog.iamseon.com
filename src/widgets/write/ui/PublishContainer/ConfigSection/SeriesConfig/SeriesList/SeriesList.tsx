@@ -1,16 +1,17 @@
 'use client';
 
 import { useGetListSeries } from '@/src/widgets/write/api/useGetListSeries';
-import { usePublishStore } from '@/src/shared/states';
 import RadioGroup from '@/src/shared/ui/lab/RadioGroup/RadioGroup';
 import Radio from '@/src/shared/ui/controls/Radio/Radio';
+import { usePublish, usePublishActions } from '@/src/shared/states';
 
 function SeriesList() {
   const { data: series, isLoading } = useGetListSeries();
-  const { seriesId, actions, ...store } = usePublishStore();
+  const { seriesId, ...store } = usePublish();
+  const { setPublishStore } = usePublishActions();
 
   const handleChangeSeriesId = (seriesId: number) => {
-    actions.setPublishStore({
+    setPublishStore({
       ...store,
       seriesId,
     });

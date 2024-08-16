@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import AuthProtect from '@/src/shared/ui/protect/AuthProtect';
 
 const EditorContainer = dynamic(
   () => import('@/src/widgets/write/ui/EditorContainer'),
@@ -11,9 +12,11 @@ const EditorContainer = dynamic(
 
 function WritePage() {
   return (
-    <main className="w-full h-dvh overflow-hidden">
-      <EditorContainer />
-    </main>
+    <AuthProtect>
+      <main className="w-full h-dvh overflow-hidden">
+        <EditorContainer />
+      </main>
+    </AuthProtect>
   );
 }
 

@@ -4,13 +4,14 @@ import ConfigToggleWrapper from '@/src/shared/ui/lab/ConfigToggleWrapper';
 import { Icons } from '@/src/shared/assets';
 import RadioGroup from '@/src/shared/ui/lab/RadioGroup/RadioGroup';
 import Radio from '@/src/shared/ui/controls/Radio/Radio';
-import { usePublishStore } from '@/src/shared/states';
+import { usePublish, usePublishActions } from '@/src/shared/states';
 
 function PublicConfig() {
-  const { isPublic, actions } = usePublishStore();
+  const { isPublic } = usePublish();
+  const { setIsPublic } = usePublishActions();
 
   const handleTogglePublicState = (state: boolean) => {
-    actions.setIsPublic(state);
+    setIsPublic(state);
   };
 
   return (

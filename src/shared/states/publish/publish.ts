@@ -48,4 +48,7 @@ const usePublishStore = create<PublishStore>((set) => ({
   },
 }));
 
-export { usePublishStore };
+const usePublish = () => usePublishStore((state) => state);
+const usePublishActions = () => usePublishStore((state) => state.actions);
+
+export { usePublish, usePublishActions };

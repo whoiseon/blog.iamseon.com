@@ -9,8 +9,8 @@ import {
 import ThumbnailSection from '@/src/widgets/write/ui/PublishContainer/ThumbnailSection';
 import ConfigSection from '@/src/widgets/write/ui/PublishContainer/ConfigSection';
 import PublishFooter from '@/src/widgets/write/ui/PublishContainer/PublishFooter';
-import { usePublishStore } from '@/src/shared/states';
 import { useMutationPublish } from '@/src/widgets/write/api';
+import { usePublish } from '@/src/shared/states';
 
 interface Props {
   visible: boolean;
@@ -26,7 +26,7 @@ const PUBLISH_CONTAINER_ANIMATION_REMOVE =
 function PublishContainer({ visible, onClose }: Props) {
   useBodyScrollLock();
 
-  const post = usePublishStore();
+  const post = usePublish();
 
   const [upload, file] = useUpload();
   const { upload: uploadThumbnail, image, setImage } = useServerUpload();

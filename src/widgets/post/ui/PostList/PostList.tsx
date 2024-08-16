@@ -1,18 +1,15 @@
 'use client';
 
 import PostCard from '@/src/widgets/post/ui/PostCard';
+import { useUser } from '@/src/shared/states';
 import { useAuth } from '@/src/shared/lib/hooks';
-import { useUserStore } from '@/src/shared/states';
 
 function PostList() {
-  const { user } = useUserStore();
-  const { signInWithGoogle } = useAuth();
-
+  const user = useUser();
+  const { handleSignOut } = useAuth();
   return (
     <ul className="w-full flex flex-col lg:gap-y-5">
-      <li>
-        <button onClick={signInWithGoogle}>로그인</button>
-      </li>
+      {user && <button onClick={handleSignOut}>로그아웃</button>}
       <PostCard />
       <PostCard />
     </ul>
