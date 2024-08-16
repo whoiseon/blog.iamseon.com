@@ -1,12 +1,7 @@
-import { User } from '@supabase/supabase-js';
-import {
-  create,
-  createStore,
-  useStore,
-  useStore as useZustandStore,
-} from 'zustand';
+import { createStore, useStore as useZustandStore } from 'zustand';
 import { createContext, useContext } from 'react';
 import { PreloadedStoreInterface } from '@/src/shared/states/user/provider';
+import { User } from '@supabase/supabase-js';
 
 interface UserStoreState {
   user: User | null;

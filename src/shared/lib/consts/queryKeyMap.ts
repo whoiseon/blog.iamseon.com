@@ -6,4 +6,8 @@ export const queryKeyMap = {
     key: ['post'],
     getPost: (postId: number) => ['post', postId],
   },
+  tag: {
+    key: ['tag'],
+    getAllTag: ['tag', 'all'],
+  },
 } as const;

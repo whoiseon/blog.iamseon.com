@@ -4,8 +4,8 @@ import ContentContainer from '@/src/shared/ui/lab/ContentContainer';
 import PostList from '@/src/widgets/post/ui/PostList';
 import { useGetQueryString } from '@/src/shared/lib/hooks';
 import { replaceDashToSpace } from '@/src/shared/lib/utils';
-import TagGroup from '@/src/widgets/tag/ui/TagGroup';
 import MainContainer from '@/src/shared/ui/lab/MainContainer';
+import MainSideSection from '@/src/widgets/main/ui/MainSideSection';
 
 function HomePage() {
   const currentTagName = useGetQueryString('tag');
@@ -19,13 +19,7 @@ function HomePage() {
           <PostList />
         </ContentContainer>
       }
-      right={
-        <ContentContainer title="태그" isSticky>
-          <TagGroup
-            tags={['react', 'typescript', 'Machine Learning', 'UX Design']}
-          />
-        </ContentContainer>
-      }
+      right={<MainSideSection />}
     />
   );
 }

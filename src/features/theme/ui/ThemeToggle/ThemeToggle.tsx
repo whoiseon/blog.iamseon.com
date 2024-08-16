@@ -31,15 +31,15 @@ function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
-          <span>Light</span>
+          <span className="font-medium">Light</span>
           <Icons.Sun width={20} height={20} className="text-inherit" />
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <span>Dark</span>
+          <span className="font-medium">Dark</span>
           <Icons.Moon width={20} height={20} className="text-inherit" />
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          <span>System</span>
+          <span className="font-medium">System</span>
           <Icons.Computer width={20} height={20} className="text-inherit" />
         </DropdownMenuItem>
       </DropdownMenuContent>

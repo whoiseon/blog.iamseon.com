@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { supabase } from '@/src/shared/lib/utils/supabase';
 import { redirect, useRouter } from 'next/navigation';
 import { useClearUser, useSetUser } from '@/src/shared/states';
+import { SupabaseUserMeta } from '@/src/shared/entities/user';
 
 export function useAuth() {
   const router = useRouter();

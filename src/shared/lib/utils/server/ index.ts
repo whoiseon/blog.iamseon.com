@@ -12,6 +12,5 @@ export function isAllowedUser() {
   const ip = getIP();
   const allowedIPs = process.env.ALLOWED_IP?.split(';') || [];
 
-  console.log({ ip, allowedIPs });
   return allowedIPs.includes(ip);
 }

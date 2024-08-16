@@ -32,9 +32,9 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <AuthProvider>
-          <AppProvider>{children}</AppProvider>
-        </AuthProvider>
+        <AppProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </AppProvider>
       </body>
     </html>
   );

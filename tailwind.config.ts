@@ -115,11 +115,33 @@ const config: Config = {
             opacity: '1',
           },
         },
+        fadeInSlideDown: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-10px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        fadeOutSlideUp: {
+          '0%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(-10px)',
+          },
+        },
       },
       animation: {
         fullSlideUp: 'fullSlideUp 0.25s ease-in',
         fullSlideDown: 'fullSlideDown 0.25s ease-out forwards',
         fadeIn: 'fadeIn 0.25s ease-in',
+        fadeInSlideDown: 'fadeInSlideDown 0.125s ease-in',
+        fadeOutSlideUp: 'fadeOutSlideUp 0.125s ease-out forwards',
       },
     },
   },

@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import {
   PublishPostParams,
   PublishPostPayload,
 } from '@/src/shared/entities/api/post';
-import { PostService } from '@/src/services';
+import { generateNextResponse } from '@/src/shared/lib/utils/api';
+import { TagService } from '@/src/services';
 
-const postService = new PostService();
+const tagService = new TagService();
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   try {
-    const body = (await req.json()) as PublishPostParams;
-    return postService.publishPost(body);
+    return tagService.getTagAll();
   } catch (e) {
     console.error(e);
     return generateNextResponse<PublishPostPayload | null>({

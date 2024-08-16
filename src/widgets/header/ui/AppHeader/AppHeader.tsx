@@ -3,7 +3,11 @@
 import HeaderNavList from './HeaderNavList';
 import Logo from '@/src/shared/assets/Logo/Logo';
 
-function AppHeader() {
+interface Props {
+  isAdmin: boolean;
+}
+
+function AppHeader({ isAdmin = false }: Props) {
   return (
     <header className={`sticky top-0 h-[50px] z-50 bg-white dark:bg-black`}>
       <div
@@ -14,7 +18,7 @@ function AppHeader() {
             <Logo />
           </div>
           <div className="flex flex-1 max-h-full justify-end">
-            <HeaderNavList />
+            <HeaderNavList isAdmin={isAdmin} />
           </div>
         </div>
       </div>

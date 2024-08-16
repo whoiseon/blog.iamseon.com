@@ -1,8 +1,9 @@
 import { createClientForServer } from '@/src/shared/lib/utils/supabase/server';
 import UserStoreProvider from '@/src/shared/states/user/provider';
+import { ReactNode } from 'react';
 
 interface Props {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 async function AuthProvider({ children }: Props) {

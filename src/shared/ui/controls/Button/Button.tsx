@@ -67,7 +67,7 @@ export interface LinkButtonProps
   extends React.ButtonHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof buttonVariants> {
   href: string;
-  target: React.HTMLAttributeAnchorTarget;
+  target?: React.HTMLAttributeAnchorTarget;
 }
 
 const LinkButton = ({
