@@ -2,7 +2,7 @@ import '@/src/app/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { cn, fontSans } from '@/src/shared/lib/styles';
-import { AppProvider } from '@/src/app/providers';
+import { AppProvider, AuthProvider } from '@/src/app/providers';
 
 export const metadata: Metadata = {
   title: 'imslow',
@@ -32,7 +32,9 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <AppProvider>{children}</AppProvider>
+        <AuthProvider>
+          <AppProvider>{children}</AppProvider>
+        </AuthProvider>
       </body>
     </html>
   );

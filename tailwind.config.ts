@@ -27,6 +27,9 @@ const config: Config = {
               600: 'rgba(22, 163, 74, 0.2)',
             },
           },
+          bg: {
+            white: '#eeeeee',
+          },
         },
         editor: {
           green: {
@@ -85,7 +88,7 @@ const config: Config = {
         },
       },
       boxShadow: {
-        r: '4px 0 40px rgba(0, 0, 0, 0.08)',
+        r: '4px 0 40px rgba(0, 0, 0, 0.03)',
       },
       keyframes: {
         fullSlideUp: {

@@ -40,7 +40,7 @@ export class PostService {
       data.seriesId = seriesId;
     }
 
-    if (tags) {
+    if (tags.length > 0) {
       data.tags = {
         connectOrCreate: tags.map((tag) => {
           const lowerCaseTag = tag.toLowerCase();
@@ -91,6 +91,9 @@ export class PostService {
       where: {
         id,
       },
+      include: {
+        tags: true,
+      },
     });
 
     if (!post) {
@@ -117,9 +120,16 @@ export class PostService {
       }
     }
 
-    if (tags) {
+    const prevTags = post.tags.map((tag) => tag.name);
+    const newTags = tags;
+
+    const tagsToAdd = newTags.filter(
+      (tag) => !prevTags.includes(tag.toLowerCase()),
+    );
+
+    if (tagsToAdd.length > 0) {
       data.tags = {
-        connectOrCreate: tags.map((tag) => {
+        connectOrCreate: tagsToAdd.map((tag) => {
           const lowerCaseTag = tag.toLowerCase();
           return {
             where: {
@@ -128,6 +138,21 @@ export class PostService {
             create: {
               name: lowerCaseTag,
             },
+          };
+        }),
+      };
+    }
+
+    const tagsToRemove = prevTags.filter(
+      (tag) => !newTags.includes(tag.toLowerCase()),
+    );
+
+    if (tagsToRemove.length > 0) {
+      data.tags = {
+        disconnect: tagsToRemove.map((tag) => {
+          const lowerCaseTag = tag.toLowerCase();
+          return {
+            name: lowerCaseTag,
           };
         }),
       };
@@ -155,6 +180,7 @@ export class PostService {
       },
       include: {
         tags: true,
+        series: true,
       },
     });
 
@@ -178,7 +204,9 @@ export class PostService {
         thumbnail: post.thumbnail,
         description: post.description,
         isPublic: post.isPublic,
-        seriesId: post.seriesId,
+        series: post.series
+          ? { id: post.series.id, name: post.series.name }
+          : null,
         tags: post.tags.map((tag) => tag.name),
       },
     });

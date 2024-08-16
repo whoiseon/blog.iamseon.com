@@ -9,16 +9,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-white text-neutral-900 hover:bg-neutral-200 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-100',
+          'bg-white text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-100',
         ghost:
-          'bg-transparent text-neutral-600 hover:text-neutral-800 hover:bg-neutral-200 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-transparent dark:text-neutral-400 dark:hover:text-neutral-200',
+          'bg-transparent text-neutral-600 hover:text-neutral-800 hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-transparent dark:text-neutral-400 dark:hover:text-neutral-200',
         primary:
           'bg-green-500 text-white hover:bg-green-600 active:bg-green-700 dark:bg-green-400 dark:text-neutral-900 dark:hover:bg-green-300 dark:active:bg-green-400',
         primaryGhost:
           'bg-transparent text-green-500 hover:bg-neutral-100 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:active:bg-neutral-700 dark:bg-transparent dark:text-green-400',
         reverse:
           'bg-neutral-900 text-white hover:bg-neutral-800 active:bg-neutral-700 dark:hover:bg-neutral-200 dark:active:bg-neutral-100 dark:bg-neutral-100 dark:text-neutral-900',
-        icon: 'bg-white text-neutral-600 hover:bg-neutral-200 hover:text-neutral-700 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:hover:text-neutral-300 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-400',
+        icon: 'bg-white text-neutral-600 hover:bg-neutral-100 hover:text-neutral-700 active:bg-neutral-200 dark:hover:bg-neutral-900 dark:hover:text-neutral-300 dark:active:bg-neutral-700 dark:bg-black dark:text-neutral-400',
       },
       size: {
         xs: 'text-[13px] px-3 py-1',

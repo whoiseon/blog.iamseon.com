@@ -19,6 +19,19 @@ export class SeriesService {
       });
     }
 
+    const exist = await db.series.findFirst({
+      where: {
+        urlSlug,
+      },
+    });
+
+    if (exist) {
+      return generateNextResponse<AddSeriesPayload | null>({
+        error: '존재하는 URL 입니다.',
+        payload: null,
+      });
+    }
+
     const series = await db.series.create({
       data: {
         name,
@@ -44,7 +57,7 @@ export class SeriesService {
     const series = await db.series.findMany({
       select,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: 'asc',
       },
     });
 

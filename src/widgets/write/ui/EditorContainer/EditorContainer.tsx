@@ -33,13 +33,12 @@ const MarkdownPreview = dynamic(
 function EditorContainer() {
   const [postLoading, setPostLoading] = useState(true);
 
-  const { actions } = usePublishStore();
+  const { actions, tags } = usePublishStore();
   const { upload: serverUpload, image } = useServerUpload();
 
   const postId = useGetQueryString('id') || undefined;
   const { data: postData, isLoading } = useGetPost(Number(postId));
 
-  const [tags, setTags] = useState<string[]>([]);
   const [markdown, setMarkdown] = useState<string>('');
   const [initialBody, setInitialBody] = useState<string>('');
   const [published, setPublished] = useState<boolean>(false);
@@ -97,7 +96,7 @@ function EditorContainer() {
         postData?.payload?.isPublic === undefined
           ? true
           : postData?.payload?.isPublic,
-      seriesId: postData?.payload?.seriesId || 0,
+      seriesId: postData?.payload?.series?.id || 0,
     });
 
     setPublished(true);
@@ -128,8 +127,8 @@ function EditorContainer() {
       description: postData?.payload?.description || '',
       thumbnail: postData?.payload?.thumbnail || '',
       urlSlug: escapeForUrl(title),
-      seriesId: postData?.payload?.seriesId || 0,
-      tags: tags || [],
+      seriesId: postData?.payload?.series?.id || 0,
+      tags,
       isPublic: false,
     });
   }, [tags, markdown, tempSaveMutate]);
@@ -154,7 +153,7 @@ function EditorContainer() {
     if (!postData) return;
     const body = `# ${postData.payload?.title}\n${postData.payload?.body}`;
 
-    setTags(postData.payload?.tags || []);
+    actions.setTags(postData?.payload?.tags || []);
     setMarkdown(body);
     setInitialBody(body);
     setPostLoading(false);
@@ -179,12 +178,12 @@ function EditorContainer() {
   return (
     <div className="flex w-full h-full animate-fadeIn">
       <DesktopOnlyMessage />
-      <div className="z-10 min-w-0 flex-1 hidden md:flex flex-col relative bg-neutral-50 dark:bg-neutral-950 shadow-r dark:shadow-none">
+      <div className="z-10 min-w-0 flex-1 hidden md:flex flex-col relative bg-neutral-50 shadow-r dark:bg-neutral-950">
         <MarkdownEditor
           markdown={markdown}
           onChangeMarkdown={setMarkdown}
           onUpload={upload}
-          tagInput={<TagInput tags={tags} onChange={setTags} />}
+          tagInput={<TagInput tags={tags} />}
           footer={
             <WriteFooter
               edit={!!postId}

@@ -29,6 +29,9 @@ export interface GetPostPayload {
   description: string | null;
   thumbnail: string | null;
   isPublic: boolean;
-  seriesId: number | null;
+  series: {
+    id: number;
+    name: string;
+  } | null;
   tags: string[];
 }

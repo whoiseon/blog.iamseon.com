@@ -3,21 +3,25 @@
 import OutsideClickHandler from 'react-outside-click-handler';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Tag from '@/src/shared/ui/data-display/Tag';
+import { usePublishStore } from '@/src/shared/states';
 
 export interface TagInputProps {
   tags: string[];
-  onChange: (tags: string[]) => void;
 }
 
-function TagInput({ onChange, tags: initialTags }: TagInputProps) {
-  const [tags, setTags] = useState<string[]>(initialTags);
+function TagInput({ tags: initialTags }: TagInputProps) {
+  const {
+    tags,
+    actions: { setTags },
+  } = usePublishStore();
+
   const [value, setValue] = useState<string>('');
   const ignore = useRef<boolean>(false);
 
   useEffect(() => {
     if (tags.length === 0) return;
-    onChange(tags);
-  }, [tags, onChange]);
+    setTags(tags);
+  }, [tags, setTags]);
 
   useEffect(() => {
     setTags(initialTags);
