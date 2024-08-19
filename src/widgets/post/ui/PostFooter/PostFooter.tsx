@@ -22,9 +22,9 @@ function PostFooter() {
         <PostLinkButton type="prev" href="/" />
         <PostLinkButton type="next" href="/" />
       </div>
-      <ContentContainer title="시리즈">
-        <PostList />
-      </ContentContainer>
+      {/*<ContentContainer title="시리즈">*/}
+      {/*  <PostList />*/}
+      {/*</ContentContainer>*/}
     </div>
   );
 }
