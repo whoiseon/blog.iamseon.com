@@ -1,4 +1,5 @@
 import { ApiPayload, UploadImagePayload } from '@/src/shared/entities';
+import { API_ENDPOINT } from '@/src/shared/consts';
 
 export interface UploadImageInfo {
   type: 'post' | 'thumbnail';
@@ -12,7 +13,7 @@ export async function uploadImage(
   formData.append('image', file);
   formData.append('type', info.type);
 
-  const response = await fetch('/api/v1/files/upload', {
+  const response = await fetch(`${API_ENDPOINT}/api/v1/files/upload`, {
     method: 'POST',
     body: formData,
   });

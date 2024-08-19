@@ -1,3 +1,5 @@
+import { Post, Series } from '@prisma/client';
+
 export interface PublishPostPayload {
   slug: string;
 }
@@ -34,4 +36,15 @@ export interface GetPostPayload {
     name: string;
   } | null;
   tags: string[];
+}
+
+export interface GetPostListParams {
+  tag?: string;
+  isPublic?: boolean;
+  seriesSlug?: string;
+}
+
+export interface PostListPayload {
+  list: Post[];
+  series?: Series | null;
 }

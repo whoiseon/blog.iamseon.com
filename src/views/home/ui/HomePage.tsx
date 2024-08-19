@@ -6,17 +6,17 @@ import { useGetQueryString } from '@/src/shared/lib/hooks';
 import { replaceDashToSpace } from '@/src/shared/lib/utils';
 import MainContainer from '@/src/shared/ui/lab/MainContainer';
 import MainSideSection from '@/src/widgets/main/ui/MainSideSection';
+import { useGetPostList } from '@/src/widgets/post/api';
 
 function HomePage() {
-  const currentTagName = useGetQueryString('tag');
+  const tag = useGetQueryString('tag') || '';
+  const { data } = useGetPostList({ tag });
 
   return (
     <MainContainer
       left={
-        <ContentContainer
-          title={replaceDashToSpace(currentTagName || '') || '포스트'}
-        >
-          <PostList />
+        <ContentContainer title={replaceDashToSpace(tag || '') || '포스트'}>
+          <PostList posts={data?.payload?.list || []} />
         </ContentContainer>
       }
       right={<MainSideSection />}

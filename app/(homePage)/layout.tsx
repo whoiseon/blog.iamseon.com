@@ -12,11 +12,11 @@ async function HomeLayout({ children }: Props) {
   const isAllowed = isAllowedUser();
 
   return (
-    <MainServerProvider>
+    <>
       <AppHeader isAdmin={isAllowed} />
       {children}
       <AppFooter />
-    </MainServerProvider>
+    </>
   );
 }
 

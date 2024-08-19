@@ -48,17 +48,20 @@ export class SeriesService {
     });
   }
 
-  public async getListSeries() {
+  public async getSeriesList(count?: number, orderBy?: 'asc' | 'desc') {
     const select: SeriesSelect = {
       id: true,
       name: true,
+      urlSlug: true,
+      createdAt: true,
     };
 
     const series = await db.series.findMany({
       select,
       orderBy: {
-        createdAt: 'asc',
+        createdAt: orderBy ? orderBy : 'asc',
       },
+      take: count ? count : undefined,
     });
 
     return generateNextResponse<Series[] | null>({
@@ -67,8 +70,10 @@ export class SeriesService {
     });
   }
 
-  public async getSeriesById(id: number) {
-    const series: Series | null = await db.series.findUnique({ where: { id } });
+  public async getSeriesBySlug(slug: string) {
+    const series: Series | null = await db.series.findFirst({
+      where: { urlSlug: slug },
+    });
 
     return series;
   }

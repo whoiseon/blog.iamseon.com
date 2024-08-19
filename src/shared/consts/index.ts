@@ -6,6 +6,8 @@ const S3_ENDPOINT = process.env.S3_ENDPOINT || '';
 
 const S3_IMAGE_ENDPOINT = process.env.S3_IMAGE_ENDPOINT || '';
 
+const API_ENDPOINT = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
 export {
   S3_BUCKET_NAME,
   S3_REGION_NAME,
@@ -13,4 +15,5 @@ export {
   S3_SECRET_ACCESS_KEY,
   S3_ENDPOINT,
   S3_IMAGE_ENDPOINT,
+  API_ENDPOINT,
 };

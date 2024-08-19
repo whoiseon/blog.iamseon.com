@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
 import HomePage from '@/src/views/home';
+import MainServerProvider from '@/src/widgets/main/ui/MainServerProvider';
 
-function Home() {
+function Home({ searchParams }: { searchParams: { tag: string } }) {
   return (
-    <Suspense>
+    <MainServerProvider tag={searchParams.tag}>
       <HomePage />
-    </Suspense>
+    </MainServerProvider>
   );
 }
 

@@ -2,12 +2,15 @@
 
 import HeaderNavList from './HeaderNavList';
 import Logo from '@/src/shared/assets/Logo/Logo';
+import { useAuth } from '@/src/shared/lib/hooks';
 
 interface Props {
   isAdmin: boolean;
 }
 
 function AppHeader({ isAdmin = false }: Props) {
+  useAuth();
+
   return (
     <header className={`sticky top-0 h-[50px] z-50 bg-white dark:bg-black`}>
       <div

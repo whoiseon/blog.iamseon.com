@@ -1,13 +1,20 @@
 import {
+  GetPostListParams,
   GetPostPayload,
+  PostListPayload,
   PublishPostParams,
   PublishPostPayload,
 } from '@/src/shared/entities/api/post';
-import { Prisma } from '@prisma/client';
-import PostUncheckedCreateInput = Prisma.PostUncheckedCreateInput;
+import { Prisma, Series } from '@prisma/client';
 import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import db from '@/src/shared/lib/api/db';
+import { SeriesService } from '@/src/services';
+import PostUncheckedCreateInput = Prisma.PostUncheckedCreateInput;
 import PostUncheckedUpdateInput = Prisma.PostUncheckedUpdateInput;
+import PostSelect = Prisma.PostSelect;
+import PostWhereInput = Prisma.PostWhereInput;
+
+const seriesService = new SeriesService();
 
 export class PostService {
   constructor() {}
@@ -208,6 +215,65 @@ export class PostService {
           ? { id: post.series.id, name: post.series.name }
           : null,
         tags: post.tags.map((tag) => tag.name),
+      },
+    });
+  }
+
+  public async getPostList({ tag, isPublic, seriesSlug }: GetPostListParams) {
+    const select: PostSelect = {
+      id: true,
+      createdAt: true,
+      title: true,
+      urlSlug: true,
+      description: true,
+      thumbnail: true,
+    };
+
+    if (!isPublic) {
+      select.thumbnail = false;
+    }
+
+    const where: PostWhereInput = {
+      isPublic: isPublic || true,
+      deletedAt: null,
+    };
+
+    if (tag) {
+      where.tags = {
+        some: {
+          name: tag,
+        },
+      };
+    }
+
+    let series: Series | null = null;
+
+    if (seriesSlug) {
+      const findSeries = await seriesService.getSeriesBySlug(seriesSlug);
+      if (!findSeries) {
+        return generateNextResponse<PostListPayload | null>({
+          error: '시리즈를 찾을 수 없습니다.',
+          payload: null,
+        });
+      }
+
+      series = findSeries;
+      where.seriesId = series.id;
+    }
+
+    const posts = await db.post.findMany({
+      where,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select,
+    });
+
+    return generateNextResponse<PostListPayload | null>({
+      error: '',
+      payload: {
+        list: posts,
+        series,
       },
     });
   }
