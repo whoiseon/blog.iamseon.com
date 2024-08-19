@@ -11,6 +11,7 @@ interface Props {
   description: string | null;
   thumbnail: string | null;
   createdAt: Date;
+  isCurrentPost?: boolean;
 }
 
 function PostCard({
@@ -19,12 +20,13 @@ function PostCard({
   description,
   thumbnail,
   createdAt,
+  isCurrentPost = false,
 }: Props) {
   return (
     <li>
       <Link
         href={`/post/${urlSlug}`}
-        className="flex flex-col-reverse md:flex-row md:items-center py-6 gap-x-[2.5rem] w-full cursor-pointer text-neutral-900 dark:text-neutral-50 hover:text-green-500 dark:hover:text-green-400"
+        className={`flex flex-col-reverse md:flex-row md:items-center py-6 gap-x-[2.5rem] w-full cursor-pointer ${isCurrentPost ? 'text-green-500 dark:text-green-400' : 'text-neutral-900 dark:text-neutral-50'} hover:text-green-500 dark:hover:text-green-400`}
       >
         <div className="flex flex-col md:w-[70%]">
           <h2 className="text-inherit text-lg md:text-xl font-bold line-clamp-2 leading-[1.6] mb-2">

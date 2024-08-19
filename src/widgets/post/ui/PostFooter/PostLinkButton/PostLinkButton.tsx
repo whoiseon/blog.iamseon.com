@@ -5,6 +5,7 @@ import Link from 'next/link';
 interface Props {
   type: 'prev' | 'next';
   href: string;
+  title: string;
 }
 
 const buttonMap = {
@@ -18,7 +19,7 @@ const buttonMap = {
   },
 };
 
-function PostLinkButton({ type, href }: Props) {
+function PostLinkButton({ type, href, title }: Props) {
   const { subText, className } = buttonMap[type];
 
   return (
@@ -30,7 +31,7 @@ function PostLinkButton({ type, href }: Props) {
         {subText}
       </span>
       <span className="font-bold text-neutral-800 dark:text-neutral-100">
-        타입스크립트 using
+        {title}
       </span>
     </Link>
   );

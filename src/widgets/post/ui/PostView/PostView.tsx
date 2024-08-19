@@ -3,13 +3,28 @@
 import PostHeader from '@/src/widgets/post/ui/PostHeader';
 import PostFooter from '@/src/widgets/post/ui/PostFooter';
 import PostContent from '@/src/widgets/post/ui/PostContent';
+import { GetPostPayload } from '@/src/shared/entities';
 
-function PostView() {
+interface Props {
+  post: GetPostPayload;
+}
+
+function PostView({ post }: Props) {
   return (
     <article>
-      <PostHeader />
-      <PostContent />
-      <PostFooter />
+      <PostHeader
+        thumbnail={post.thumbnail || ''}
+        title={post.title || ''}
+        tags={post.tags}
+        createdAt={post.createdAt}
+      />
+      <PostContent markdown={post.body || ''} updatedAt={post.updatedAt} />
+      <PostFooter
+        postId={post.id}
+        prevPost={post.prevPost || null}
+        nextPost={post.nextPost || null}
+        seriesPosts={post.series?.list || []}
+      />
     </article>
   );
 }

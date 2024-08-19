@@ -219,6 +219,82 @@ export class PostService {
     });
   }
 
+  public async getPostBySlug(slug: string) {
+    const post = await db.post.findFirst({
+      where: {
+        urlSlug: slug,
+      },
+      include: {
+        tags: true,
+        series: {
+          include: {
+            posts: true,
+          },
+        },
+      },
+    });
+
+    if (!post) {
+      return generateNextResponse<GetPostPayload | null>({
+        error: '포스트를 찾을 수 없습니다.',
+        payload: null,
+      });
+    }
+
+    const nextOrPrevPostSelect: PostSelect = {
+      id: true,
+      title: true,
+      urlSlug: true,
+    };
+
+    const nextPost = await db.post.findUnique({
+      where: {
+        id: post.id + 1,
+      },
+      select: nextOrPrevPostSelect,
+    });
+
+    const prevPost = await db.post.findUnique({
+      where: {
+        id: post.id - 1,
+      },
+      select: nextOrPrevPostSelect,
+    });
+
+    return generateNextResponse<GetPostPayload | null>({
+      error: '',
+      payload: {
+        id: post.id,
+        createdAt: post.createdAt,
+        updatedAt: post.updatedAt,
+        deletedAt: post.deletedAt,
+        title: post.title,
+        urlSlug: post.urlSlug,
+        body: post.body,
+        thumbnail: post.thumbnail,
+        description: post.description,
+        isPublic: post.isPublic,
+        series: post.series
+          ? {
+              id: post.series.id,
+              name: post.series.name,
+              list: post.series.posts.map((post) => ({
+                id: post.id,
+                createdAt: post.createdAt,
+                title: post.title,
+                urlSlug: post.urlSlug,
+                description: post.description,
+                thumbnail: post.thumbnail,
+              })),
+            }
+          : null,
+        tags: post.tags.map((tag) => tag.name),
+        nextPost,
+        prevPost,
+      },
+    });
+  }
+
   public async getPostList({ tag, isPublic, seriesSlug }: GetPostListParams) {
     const select: PostSelect = {
       id: true,

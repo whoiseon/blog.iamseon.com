@@ -34,8 +34,11 @@ export interface GetPostPayload {
   series: {
     id: number;
     name: string;
+    list?: PostPayloadForPostList[];
   } | null;
   tags: string[];
+  nextPost?: Post | null;
+  prevPost?: Post | null;
 }
 
 export interface GetPostListParams {
@@ -45,6 +48,15 @@ export interface GetPostListParams {
 }
 
 export interface PostListPayload {
-  list: Post[];
+  list: PostPayloadForPostList[];
   series?: Series | null;
+}
+
+export interface PostPayloadForPostList {
+  id: number;
+  createdAt: Date;
+  title: string;
+  urlSlug: string | null;
+  description: string | null;
+  thumbnail: string | null;
 }

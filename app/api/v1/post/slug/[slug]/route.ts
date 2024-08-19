@@ -1,16 +1,17 @@
-import { PostService } from '@/src/services';
+import { NextRequest } from 'next/server';
 import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { Post } from '@prisma/client';
+import { PostService } from '@/src/services';
 
 const postService = new PostService();
 
 export async function GET(
-  req: Request,
-  { params }: { params: { postId: string } },
+  req: NextRequest,
+  { params }: { params: { slug: string } },
 ) {
   try {
-    const postId = parseInt(params.postId);
-    return postService.getPost(postId);
+    const slug = params.slug;
+    return postService.getPostBySlug(slug);
   } catch (e) {
     console.error(e);
     return generateNextResponse<Post | null>({

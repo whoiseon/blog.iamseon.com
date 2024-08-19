@@ -40,6 +40,20 @@ export async function getPost(
   return response.json();
 }
 
+export async function getPostBySlug(
+  slug: string,
+): Promise<ApiPayload<GetPostPayload | null>> {
+  const response = await fetch(`${API_ENDPOINT}/api/v1/post/slug/${slug}`, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response.json();
+}
+
 export async function getPostList({
   tag,
   seriesSlug,

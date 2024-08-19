@@ -15,14 +15,6 @@ interface Props {
 async function EditorServerProvider({ children, postId }: Props) {
   const queryClient = new QueryClient();
 
-  // prefetch for post
-  if (postId) {
-    await queryClient.prefetchQuery({
-      queryKey: queryKeyMap.post.getPost(postId),
-      queryFn: () => getPost({ postId }),
-    });
-  }
-
   // prefetch for series list in publish screen config section
   await queryClient.prefetchQuery({
     queryKey: queryKeyMap.series.list,

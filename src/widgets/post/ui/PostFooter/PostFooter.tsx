@@ -3,8 +3,17 @@
 import PostLinkButton from '@/src/widgets/post/ui/PostFooter/PostLinkButton';
 import ContentContainer from '@/src/shared/ui/lab/ContentContainer';
 import PostList from '@/src/widgets/post/ui/PostList';
+import { Post } from '@prisma/client';
+import { PostPayloadForPostList } from '@/src/shared/entities';
 
-function PostFooter() {
+interface Props {
+  postId: number;
+  prevPost: Post | null;
+  nextPost: Post | null;
+  seriesPosts: PostPayloadForPostList[];
+}
+
+function PostFooter({ postId, prevPost, nextPost, seriesPosts }: Props) {
   return (
     <div className="flex flex-col mt-[4rem]">
       <div className="flex flex-col">
@@ -19,12 +28,28 @@ function PostFooter() {
         </p>
       </div>
       <div className="mt-[3rem] mb-3 flex flex-col gap-y-4 md:flex-row md:gap-x-6 items-center justify-between">
-        <PostLinkButton type="prev" href="/" />
-        <PostLinkButton type="next" href="/" />
+        <div className="flex-1 w-full">
+          {prevPost && (
+            <PostLinkButton
+              type="prev"
+              href={`/post/${prevPost.urlSlug}`}
+              title={prevPost.title}
+            />
+          )}
+        </div>
+        <div className="flex-1 w-full">
+          {nextPost && (
+            <PostLinkButton
+              type="next"
+              href={`/post/${nextPost.urlSlug}`}
+              title={nextPost.title}
+            />
+          )}
+        </div>
       </div>
-      {/*<ContentContainer title="시리즈">*/}
-      {/*  <PostList />*/}
-      {/*</ContentContainer>*/}
+      <ContentContainer title="시리즈">
+        <PostList posts={seriesPosts} currentPostId={postId} />
+      </ContentContainer>
     </div>
   );
 }

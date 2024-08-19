@@ -2,14 +2,22 @@
 
 import Image from 'next/image';
 import TagGroup from '@/src/widgets/tag/ui/TagGroup';
+import { formatDate } from 'date-fns';
 
-function PostHeader() {
+interface Props {
+  thumbnail: string;
+  title: string;
+  tags: string[];
+  createdAt: Date;
+}
+
+function PostHeader({ thumbnail, title, tags, createdAt }: Props) {
   return (
     <header>
       <div className="relative flex justify-center items-center rounded-md overflow-hidden mt-5 lg:mt-[3rem] w-[100%]">
         <Image
           className="w-full h-auto"
-          src="/image/temp-image-1.png"
+          src={thumbnail}
           alt="temp image"
           width={800}
           height={385}
@@ -17,16 +25,12 @@ function PostHeader() {
         />
       </div>
       <h1 className="mt-5 text-[2rem] md:text-[2.75rem] font-semibold text-neutral-900 dark:text-neutral-100 break-keep leading-[1.25]">
-        고성능 GPU 클러스터 도입기 #1: 요리하라고 해서 왔는데 프라이팬이 없어요
+        {title}
       </h1>
-      <TagGroup
-        className="mt-5"
-        tags={['react', 'typescript']}
-        isHighlight={false}
-      />
+      <TagGroup className="mt-5" tags={tags} isHighlight={false} />
       <section className="mt-8">
         <span className="text-neutral-600 dark:text-neutral-400 text-[14px]">
-          2024년 7월 29일
+          {formatDate(new Date(createdAt), 'yyyy년 MM월 dd일')}
         </span>
       </section>
     </header>

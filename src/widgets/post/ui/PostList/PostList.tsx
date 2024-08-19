@@ -1,15 +1,15 @@
 'use client';
 
 import PostCard from '@/src/widgets/post/ui/PostCard';
-import { useGetPostList } from '@/src/widgets/post/api';
-import { useGetQueryString } from '@/src/shared/lib/hooks';
 import { Post } from '@prisma/client';
+import { PostPayloadForPostList } from '@/src/shared/entities';
 
 interface Props {
-  posts: Post[];
+  posts: PostPayloadForPostList[];
+  currentPostId?: number;
 }
 
-function PostList({ posts }: Props) {
+function PostList({ posts, currentPostId }: Props) {
   return (
     <ul className="w-full flex flex-col lg:gap-y-5">
       {posts.map((post) => (
@@ -20,6 +20,7 @@ function PostList({ posts }: Props) {
           description={post.description}
           thumbnail={post.thumbnail}
           createdAt={post.createdAt}
+          isCurrentPost={post.id === currentPostId}
         />
       ))}
     </ul>
