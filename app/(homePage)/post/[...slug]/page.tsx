@@ -3,6 +3,8 @@ import { getPostBySlug, getPostList } from '@/src/shared/lib/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+export const runtime = 'nodejs';
+
 type PageParams = {
   slug: string[];
 };
