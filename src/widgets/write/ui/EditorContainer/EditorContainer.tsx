@@ -204,7 +204,11 @@ function EditorContainer() {
       <div className="min-w-0 flex-1 hidden md:flex flex-col relative bg-white dark:bg-black border-l-[1px] border-l-neutral-200 dark:border-neutral-800">
         <MarkdownPreview markdown={markdown} />
       </div>
-      <PublishContainer visible={published} onClose={handleCancelPublish} />
+      <PublishContainer
+        visible={published}
+        edit={!!postId}
+        onClose={handleCancelPublish}
+      />
     </div>
   );
 }

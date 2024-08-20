@@ -14,16 +14,18 @@ interface Props {
 function PostHeader({ thumbnail, title, tags, createdAt }: Props) {
   return (
     <header>
-      <div className="relative flex justify-center items-center rounded-md overflow-hidden mt-5 lg:mt-[3rem] w-[100%]">
-        <Image
-          className="w-full h-auto"
-          src={thumbnail}
-          alt="temp image"
-          width={800}
-          height={385}
-          priority
-        />
-      </div>
+      {thumbnail && (
+        <div className="relative flex justify-center items-center rounded-md overflow-hidden mt-5 lg:mt-[3rem] w-[100%]">
+          <Image
+            className="w-full h-auto"
+            src={thumbnail}
+            alt="temp image"
+            width={800}
+            height={385}
+            priority
+          />
+        </div>
+      )}
       <h1 className="mt-5 text-[2rem] md:text-[2.75rem] font-semibold text-neutral-900 dark:text-neutral-100 break-keep leading-[1.25]">
         {title}
       </h1>
