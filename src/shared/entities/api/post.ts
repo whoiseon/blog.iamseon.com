@@ -31,7 +31,11 @@ export interface GetPostPayload {
   description: string | null;
   thumbnail: string | null;
   isPublic: boolean;
-  series: Series | null;
+  series: {
+    id: number;
+    name: string;
+    list?: PostPayloadForPostList[];
+  } | null;
   tags: string[];
   nextPost?: Post | null;
   prevPost?: Post | null;
