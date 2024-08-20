@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className="scroll-smooth antialiased motion-reduce:scroll-auto"
+      className="antialiased motion-reduce:scroll-auto"
       suppressHydrationWarning
     >
       <body

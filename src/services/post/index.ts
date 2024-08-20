@@ -14,6 +14,7 @@ import PostUncheckedCreateInput = Prisma.PostUncheckedCreateInput;
 import PostUncheckedUpdateInput = Prisma.PostUncheckedUpdateInput;
 import PostSelect = Prisma.PostSelect;
 import PostWhereInput = Prisma.PostWhereInput;
+import PostInclude = Prisma.PostInclude;
 
 const seriesService = new SeriesService();
 
@@ -182,6 +183,20 @@ export class PostService {
   }
 
   public async getPost(postId: number) {
+    const include: PostInclude = {
+      tags: {
+        select: {
+          name: true,
+        },
+      },
+      series: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    };
+
     const post = await db.post.findUnique({
       where: {
         id: postId,
@@ -212,31 +227,33 @@ export class PostService {
         thumbnail: post.thumbnail,
         description: post.description,
         isPublic: post.isPublic,
-        series: post.series
-          ? { id: post.series.id, name: post.series.name }
-          : null,
+        series: post.series,
         tags: post.tags.map((tag) => tag.name),
       },
     });
   }
 
   public async getPostBySlug(slug: string) {
+    const include: PostInclude = {
+      tags: {
+        select: {
+          name: true,
+        },
+      },
+      series: {
+        select: {
+          id: true,
+          name: true,
+          urlSlug: true,
+        },
+      },
+    };
+
     const post = await db.post.findUnique({
       where: {
         urlSlug: slug,
       },
-      include: {
-        tags: {
-          select: {
-            name: true,
-          },
-        },
-        series: {
-          include: {
-            posts: true,
-          },
-        },
-      },
+      include,
     });
 
     if (!post) {
@@ -280,29 +297,7 @@ export class PostService {
         thumbnail: post.thumbnail,
         description: post.description,
         isPublic: post.isPublic,
-        series: post.series
-          ? {
-              id: post.series.id,
-              name: post.series.name,
-              list: post.series.posts.map(
-                ({
-                  id,
-                  createdAt,
-                  title,
-                  urlSlug,
-                  description,
-                  thumbnail,
-                }) => ({
-                  id,
-                  createdAt,
-                  title,
-                  urlSlug,
-                  description,
-                  thumbnail,
-                }),
-              ),
-            }
-          : null,
+        series: post.series,
         tags: post.tags.map((tag) => tag.name),
         nextPost,
         prevPost,

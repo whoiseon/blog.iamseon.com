@@ -1,19 +1,17 @@
 'use client';
 
 import PostLinkButton from '@/src/widgets/post/ui/PostFooter/PostLinkButton';
-import ContentContainer from '@/src/shared/ui/lab/ContentContainer';
-import PostList from '@/src/widgets/post/ui/PostList';
 import { Post } from '@prisma/client';
-import { PostPayloadForPostList } from '@/src/shared/entities';
+import PostSeriesList from '@/src/widgets/post/ui/PostSeriesList';
 
 interface Props {
   postId: number;
+  seriesUrlSlug?: string;
   prevPost: Post | null;
   nextPost: Post | null;
-  seriesPosts: PostPayloadForPostList[];
 }
 
-function PostFooter({ postId, prevPost, nextPost, seriesPosts }: Props) {
+function PostFooter({ postId, seriesUrlSlug, prevPost, nextPost }: Props) {
   return (
     <div className="flex flex-col mt-[4rem]">
       <div className="flex flex-col">
@@ -47,9 +45,9 @@ function PostFooter({ postId, prevPost, nextPost, seriesPosts }: Props) {
           )}
         </div>
       </div>
-      <ContentContainer title="시리즈">
-        <PostList posts={seriesPosts} currentPostId={postId} />
-      </ContentContainer>
+      {seriesUrlSlug && (
+        <PostSeriesList seriesUrlSlug={seriesUrlSlug} postId={postId} />
+      )}
     </div>
   );
 }

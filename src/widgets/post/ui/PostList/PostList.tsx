@@ -10,6 +10,8 @@ interface Props {
 }
 
 function PostList({ posts, currentPostId }: Props) {
+  if (posts.length === 0) return null;
+
   return (
     <ul className="w-full flex flex-col lg:gap-y-5">
       {posts.map((post) => (

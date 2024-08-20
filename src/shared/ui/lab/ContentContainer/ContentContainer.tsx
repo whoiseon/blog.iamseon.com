@@ -7,6 +7,7 @@ interface Props {
   children: ReactNode;
   isSticky?: boolean;
   titleSize?: 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
 function ContentContainer({
@@ -14,6 +15,7 @@ function ContentContainer({
   children,
   isSticky = false,
   titleSize = 'lg',
+  className,
 }: Props) {
   const parseTitleSize = () => {
     switch (titleSize) {
@@ -28,7 +30,7 @@ function ContentContainer({
 
   return (
     <div
-      className={`${isSticky ? 'sticky top-[74px]' : ''} flex flex-col gap-y-3 mt-[1.25rem] lg:mt-[3rem]`}
+      className={`${className ? className : ''} ${isSticky ? 'sticky top-[74px]' : ''} flex flex-col gap-y-3 mt-[1.25rem] lg:mt-[3rem]`}
     >
       <h3
         className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400`}

@@ -1,5 +1,9 @@
 import { generateNextResponse } from '@/src/shared/lib/utils/api';
-import { AddSeriesParams, AddSeriesPayload } from '@/src/shared/entities';
+import {
+  AddSeriesParams,
+  AddSeriesPayload,
+  PostListPayload,
+} from '@/src/shared/entities';
 import db from '@/src/shared/lib/api/db';
 import { Prisma, Series } from '@prisma/client';
 
@@ -71,7 +75,7 @@ export class SeriesService {
   }
 
   public async getSeriesBySlug(slug: string) {
-    const series: Series | null = await db.series.findFirst({
+    const series: Series | null = await db.series.findUnique({
       where: { urlSlug: slug },
     });
 

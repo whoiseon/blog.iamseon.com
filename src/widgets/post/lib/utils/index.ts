@@ -3,7 +3,11 @@
 import { escapeForUrl } from '@/src/shared/lib/utils';
 
 export function setHeadingId(html: string): string {
-  const div = document.createElement('div');
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const div = document?.createElement('div');
   div.innerHTML = html;
 
   const h1 = div.querySelectorAll('h1');
