@@ -8,16 +8,17 @@ export const queryKeyMap = {
     listForMain: ['series', 'main'],
   },
   post: {
-    key: ['post'],
+    key: ['posts'],
     getPost: (postId: number) => ['post', postId],
     getPostList: ({ tag, seriesSlug }: GetPostListParams) => [
-      'post',
+      'posts',
       'public',
       'series',
       seriesSlug ? seriesSlug : null,
       'tag',
       tag ? replaceDashToSpace(tag) : 'all',
     ],
+    getTempPostList: ['posts', 'temp'],
   },
   tag: {
     key: ['tag'],

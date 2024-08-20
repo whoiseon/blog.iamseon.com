@@ -56,7 +56,11 @@ function PostFooter({
       </div>
       {seriesName && (
         <ContentContainer title={`시리즈 - ${seriesName}`}>
-          <PostList posts={seriesPosts || []} currentPostId={postId} />
+          <PostList
+            posts={seriesPosts || []}
+            currentPostId={postId}
+            isNumbering={true}
+          />
         </ContentContainer>
       )}
     </div>

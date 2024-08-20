@@ -14,8 +14,9 @@ import { replaceDashToSpace } from '@/src/shared/lib/utils';
 
 interface Props {
   children: ReactNode;
-  seriesSlug?: string;
   tag?: string;
+  seriesSlug?: string;
+  isPublic?: boolean;
 }
 
 async function MainServerProvider({ children, seriesSlug, tag }: Props) {

@@ -338,7 +338,7 @@ export class PostService {
     }
 
     const where: PostWhereInput = {
-      isPublic: isPublic || true,
+      isPublic: isPublic,
       deletedAt: null,
     };
 

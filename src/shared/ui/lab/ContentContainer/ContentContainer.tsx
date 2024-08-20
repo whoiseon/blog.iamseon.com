@@ -6,7 +6,7 @@ interface Props {
   title: string;
   children: ReactNode;
   isSticky?: boolean;
-  titleSize?: 'sm' | 'md' | 'lg';
+  titleSize?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }
 
@@ -25,6 +25,8 @@ function ContentContainer({
         return 'text-md';
       case 'lg':
         return 'text-lg';
+      case 'xl':
+        return 'text-xl';
     }
   };
 

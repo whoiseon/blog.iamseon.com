@@ -73,3 +73,17 @@ export async function getPostList({
 
   return response.json();
 }
+
+export async function getTempPostList(): Promise<
+  ApiPayload<PostListPayload | null>
+> {
+  const response = await fetch(`${API_ENDPOINT}/api/v1/post/temp`, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response.json();
+}
