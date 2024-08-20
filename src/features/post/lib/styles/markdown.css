@@ -1,6 +1,6 @@
 .markdown-render-block {
     pre {
-        @apply font-code text-[0.875rem] p-4 rounded-sm leading-[1.5] overflow-x-auto tracking-[0px] my-[1.5rem];
+        @apply font-code text-[0.875rem] p-4 rounded-sm leading-[1.5] overflow-auto tracking-[0px] my-[1.5rem];
 
         code {
             @apply bg-transparent !important;

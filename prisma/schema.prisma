@@ -15,7 +15,7 @@ model Post {
   updatedAt   DateTime  @default(now()) @db.Timestamptz(6)
   deletedAt   DateTime? @db.Timestamptz(6)
   title       String    @db.VarChar
-  urlSlug     String?   @db.VarChar
+  urlSlug     String?   @unique @db.VarChar
   body        String?
   description String?   @db.VarChar
   thumbnail   String?   @db.VarChar
@@ -39,6 +39,6 @@ model Series {
   name      String   @db.VarChar
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @db.Timestamptz(6)
-  urlSlug   String   @db.VarChar
+  urlSlug   String   @unique @db.VarChar
   posts     Post[]
 }

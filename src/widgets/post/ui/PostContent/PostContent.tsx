@@ -10,8 +10,8 @@ interface Props {
 
 function PostContent({ markdown, updatedAt }: Props) {
   return (
-    <div className="mt-[4rem]">
-      <div className="post-content">
+    <div className="w-full mt-[4rem]">
+      <div className="w-full post-content">
         <MarkdownRender markdown={markdown} />
       </div>
       <div className="mt-[10rem]">

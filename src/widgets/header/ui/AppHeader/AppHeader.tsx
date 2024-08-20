@@ -12,7 +12,7 @@ function AppHeader({ isAdmin = false }: Props) {
   useAuth();
 
   return (
-    <header className={`sticky top-0 h-[50px] z-50 bg-white dark:bg-black`}>
+    <header className={`w-full h-[50px] z-50 bg-white dark:bg-black`}>
       <div
         className={`w-full max-w-full h-full border-b-[1px] border-b-neutral-200 dark:border-b-neutral-800`}
       >

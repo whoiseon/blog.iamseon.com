@@ -3,7 +3,7 @@
 }
 
 .prism-theme code[class*="language-"], .prism-theme pre[class*="language-"] {
-    @apply text-prism-text-light dark:text-prism-text-dark bg-transparent text-left whitespace-pre hyphens-none !important;
+    @apply text-prism-text-light dark:text-prism-text-dark text-left whitespace-pre hyphens-none !important;
 
     word-spacing: normal;
     word-break: normal;
@@ -26,7 +26,7 @@
 }
 
 .prism-theme pre[class*="language-"] {
-    @apply p-4 my-2 mx-0;
+    @apply p-4 my-4 mx-0;
 }
 
 .prism-theme:not(pre) > code[class*="language-"] {

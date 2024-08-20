@@ -25,3 +25,10 @@ export function detectJSDOM() {
 export function getTodayDateToString() {
   return formatDate(new Date(), 'yyyy-MM-dd');
 }
+
+export function getScrollTop() {
+  if (!document.body) return 0;
+  return document.documentElement
+    ? document.documentElement.scrollTop || document.body.scrollTop
+    : document.body.scrollTop;
+}

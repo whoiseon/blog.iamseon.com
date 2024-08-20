@@ -1,5 +1,5 @@
 .typography-block {
-    @apply font-sans text-[1.125rem] text-neutral-950 dark:text-neutral-50 transition leading-[1.7] -tracking-[0.004em] break-keep;
+    @apply w-full font-sans text-[1.125rem] text-neutral-950 dark:text-neutral-50 transition leading-[1.7] -tracking-[0.004em] break-keep;
 
     ul {
         @apply list-disc pl-[2.5rem] my-[1.125rem];
@@ -14,7 +14,7 @@
             @apply font-normal;
         }
         code {
-            @apply bg-neutral-100 dark:bg-neutral-800 px-[0.4em] py-[0.2em] text-[85%] rounded-sm;
+            @apply bg-[#EEEEEE] dark:bg-neutral-800 px-[0.4em] py-[0.2em] text-[85%] rounded-sm;
         }
         a {
             @apply text-green-500 dark:text-green-400;

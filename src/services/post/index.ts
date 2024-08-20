@@ -2,6 +2,7 @@ import {
   GetPostListParams,
   GetPostPayload,
   PostListPayload,
+  PostPayloadForPostList,
   PublishPostParams,
   PublishPostPayload,
 } from '@/src/shared/entities/api/post';
@@ -220,12 +221,16 @@ export class PostService {
   }
 
   public async getPostBySlug(slug: string) {
-    const post = await db.post.findFirst({
+    const post = await db.post.findUnique({
       where: {
         urlSlug: slug,
       },
       include: {
-        tags: true,
+        tags: {
+          select: {
+            name: true,
+          },
+        },
         series: {
           include: {
             posts: true,
@@ -247,19 +252,20 @@ export class PostService {
       urlSlug: true,
     };
 
-    const nextPost = await db.post.findUnique({
-      where: {
-        id: post.id + 1,
-      },
-      select: nextOrPrevPostSelect,
-    });
-
-    const prevPost = await db.post.findUnique({
-      where: {
-        id: post.id - 1,
-      },
-      select: nextOrPrevPostSelect,
-    });
+    const [nextPost, prevPost] = await Promise.all([
+      await db.post.findUnique({
+        where: {
+          id: post.id + 1,
+        },
+        select: nextOrPrevPostSelect,
+      }),
+      await db.post.findUnique({
+        where: {
+          id: post.id - 1,
+        },
+        select: nextOrPrevPostSelect,
+      }),
+    ]);
 
     return generateNextResponse<GetPostPayload | null>({
       error: '',
@@ -278,14 +284,23 @@ export class PostService {
           ? {
               id: post.series.id,
               name: post.series.name,
-              list: post.series.posts.map((post) => ({
-                id: post.id,
-                createdAt: post.createdAt,
-                title: post.title,
-                urlSlug: post.urlSlug,
-                description: post.description,
-                thumbnail: post.thumbnail,
-              })),
+              list: post.series.posts.map(
+                ({
+                  id,
+                  createdAt,
+                  title,
+                  urlSlug,
+                  description,
+                  thumbnail,
+                }) => ({
+                  id,
+                  createdAt,
+                  title,
+                  urlSlug,
+                  description,
+                  thumbnail,
+                }),
+              ),
             }
           : null,
         tags: post.tags.map((tag) => tag.name),
