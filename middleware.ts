@@ -8,18 +8,12 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
+  'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
 export async function middleware(request: NextRequest) {
-  const url = new URL(request.url);
-  const pathname = url.pathname;
-  const requestHeaders = new Headers(request.headers);
-
-  requestHeaders.set('x-url', request.url);
-  requestHeaders.set('x-pathname', pathname);
-
   // Check the origin from the request
   const origin = request.headers.get('origin') ?? '';
   const isAllowedOrigin = allowedOrigins.includes(origin);
@@ -36,11 +30,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Handle simple requests
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  const response = NextResponse.next();
 
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin);
