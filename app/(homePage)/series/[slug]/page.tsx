@@ -1,4 +1,3 @@
-import PostPage from '@/src/views/post';
 import MainServerProvider from '@/src/widgets/main/ui/MainServerProvider';
 import SeriesPage from '@/src/views/series';
 
@@ -15,7 +14,7 @@ function SeriesPostPage({ params }: Props) {
   const decodedSlug = decodeURIComponent(slug);
 
   return (
-    <MainServerProvider seriesSlug={decodedSlug}>
+    <MainServerProvider seriesSlug={decodedSlug} orderBy="asc">
       <SeriesPage seriesSlug={decodedSlug} />
     </MainServerProvider>
   );

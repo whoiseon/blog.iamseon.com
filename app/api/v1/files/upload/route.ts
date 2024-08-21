@@ -21,6 +21,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
         payload: {
           path: '',
         },
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
     }
 
@@ -30,6 +33,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
         error: '5MB 미만 업로드 가능합니다.',
         payload: {
           path: '',
+        },
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
       });
     }
@@ -50,6 +56,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       payload: {
         path: `${S3_IMAGE_ENDPOINT}/${Key}`,
       },
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
   } catch (e) {
     console.log('error', e);
@@ -57,6 +66,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       error: '서버 통신 오류',
       payload: {
         path: '',
+      },
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
     });
   }

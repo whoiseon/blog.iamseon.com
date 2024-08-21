@@ -21,7 +21,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 export async function GET() {
   try {
-    return seriesService.getSeriesList();
+    return seriesService.getAllSeriesList();
   } catch (e) {
     console.log('error', e);
     return generateNextResponse<Series[] | null>({

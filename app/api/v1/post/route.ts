@@ -26,11 +26,13 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const url = new URL(req.url);
     const tag = url.searchParams.get('tag');
     const seriesSlug = url.searchParams.get('seriesSlug');
+    const orderBy = url.searchParams.get('orderBy') as 'asc' | 'desc';
 
     return postService.getPostList({
       tag: tag || '',
       seriesSlug: seriesSlug || '',
       isPublic: true,
+      orderBy,
     });
   } catch (e) {
     console.error(e);

@@ -26,6 +26,8 @@ export async function generateStaticParams(): Promise<PageParams[]> {
   }));
 }
 
+const cleanUrl = (url: string) => (url.startsWith('/') ? url : `/${url}`);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);
@@ -34,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = post?.title;
   const description = post?.description;
   const url = post?.urlSlug && `https://imslow.me/post/${post.urlSlug}`;
-  const ogImage = post?.thumbnail ? post.thumbnail : '/opengraph-image.png';
+  const ogImage = post?.thumbnail
+    ? cleanUrl(post.thumbnail)
+    : '/opengraph-image.png';
 
   return {
     title,

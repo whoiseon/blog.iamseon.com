@@ -5,18 +5,28 @@ import { getTodayDateToString } from '@/src/shared/lib/utils';
 type GenerateNextResponseParams<T> = {
   error: string;
   payload: T;
+  headers?: HeadersInit;
 };
 
 export function generateNextResponse<T>({
   error,
   payload,
+  headers,
 }: GenerateNextResponseParams<T>) {
   return NextResponse.json(
     {
       error,
       payload,
     },
-    { status: 200 },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        ...headers,
+      },
+      status: 200,
+    },
   );
 }
 

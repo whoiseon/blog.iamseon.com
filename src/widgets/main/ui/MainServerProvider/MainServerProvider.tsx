@@ -17,9 +17,15 @@ interface Props {
   tag?: string;
   seriesSlug?: string;
   isPublic?: boolean;
+  orderBy?: 'asc' | 'desc';
 }
 
-async function MainServerProvider({ children, seriesSlug, tag }: Props) {
+async function MainServerProvider({
+  children,
+  seriesSlug,
+  tag,
+  orderBy = 'desc',
+}: Props) {
   const queryClient = new QueryClient();
 
   // prefetch for tag list
@@ -36,11 +42,12 @@ async function MainServerProvider({ children, seriesSlug, tag }: Props) {
 
   // prefetch for post list
   await queryClient.prefetchQuery({
-    queryKey: queryKeyMap.post.getPostList({ tag, seriesSlug }),
+    queryKey: queryKeyMap.post.getPostList({ tag, seriesSlug, orderBy }),
     queryFn: () =>
       getPostList({
         seriesSlug: seriesSlug || '',
         tag: replaceDashToSpace(tag || ''),
+        orderBy,
       }),
   });
 

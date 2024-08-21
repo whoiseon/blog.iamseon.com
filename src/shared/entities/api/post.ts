@@ -45,6 +45,7 @@ export interface GetPostListParams {
   tag?: string;
   isPublic?: boolean;
   seriesSlug?: string;
+  orderBy?: 'asc' | 'desc';
 }
 
 export interface PostListPayload {

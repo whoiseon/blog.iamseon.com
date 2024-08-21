@@ -119,13 +119,24 @@ export class PostService {
       thumbnail,
       urlSlug,
       isPublic,
+      updatedAt: new Date(),
     };
 
     if (post.seriesId !== seriesId) {
+      // 다른 시리즈로 변경하는 경우
       if (!seriesId) {
         data.seriesId = null;
       } else {
         data.seriesId = seriesId;
+      }
+    } else {
+      // 시리즈는 그대로 업데이트 하는 경우
+      const isUpdated = await seriesService.refreshUpdatedAt(seriesId);
+      if (!isUpdated) {
+        return generateNextResponse<PublishPostPayload | null>({
+          error: '시리즈를 찾을 수 없습니다.',
+          payload: null,
+        });
       }
     }
 
@@ -323,7 +334,12 @@ export class PostService {
     });
   }
 
-  public async getPostList({ tag, isPublic, seriesSlug }: GetPostListParams) {
+  public async getPostList({
+    tag,
+    isPublic,
+    seriesSlug,
+    orderBy,
+  }: GetPostListParams) {
     const select: PostSelect = {
       id: true,
       createdAt: true,
@@ -368,7 +384,7 @@ export class PostService {
     const posts = await db.post.findMany({
       where,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: orderBy,
       },
       select,
     });

@@ -7,3 +7,12 @@ export interface AddSeriesParams {
   name: string;
   urlSlug: string;
 }
+
+export interface SeriesListPayload {
+  id: number;
+  name: string;
+  urlSlug: string;
+  thumbnail: string | null;
+  totalCount: number;
+  updatedAt: Date;
+}

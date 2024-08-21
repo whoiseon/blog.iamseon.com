@@ -56,9 +56,9 @@ function PostCard({
           </span>
         </div>
         {thumbnail && (
-          <div className="relative flex justify-center items-center rounded-md overflow-hidden mb-4 md:mb-auto w-[100%] md:w-[30%]">
+          <div className="relative flex justify-center items-center mb-4 md:mb-auto w-[100%] md:w-[30%]">
             <Image
-              className="w-full h-auto"
+              className="w-full h-auto rounded-md"
               src={thumbnail || ''}
               alt="temp image"
               width={185}

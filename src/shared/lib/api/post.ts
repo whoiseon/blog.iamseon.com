@@ -57,10 +57,12 @@ export async function getPostBySlug(
 export async function getPostList({
   tag,
   seriesSlug,
+  orderBy,
 }: GetPostListParams): Promise<ApiPayload<PostListPayload | null>> {
   const params = new URLSearchParams({
     tag: replaceDashToSpace(tag || ''),
     seriesSlug: seriesSlug || '',
+    orderBy: orderBy || 'desc',
   });
 
   const response = await fetch(`${API_ENDPOINT}/api/v1/post?${params}`, {

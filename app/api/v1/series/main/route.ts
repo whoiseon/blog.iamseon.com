@@ -6,7 +6,7 @@ const seriesService = new SeriesService();
 
 export async function GET() {
   try {
-    return seriesService.getSeriesList(5, 'desc');
+    return seriesService.getSeriesForMain(3, 'desc');
   } catch (e) {
     console.log('error', e);
     return generateNextResponse<Series[] | null>({

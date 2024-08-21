@@ -34,11 +34,13 @@ function ContentContainer({
     <div
       className={`${className ? className : ''} ${isSticky ? 'sticky top-[74px]' : ''} flex flex-col gap-y-3 mt-[1.25rem] lg:mt-[3rem]`}
     >
-      <h3
-        className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400`}
-      >
-        {title}
-      </h3>
+      <div className="flex items-center justify-between">
+        <h3
+          className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400`}
+        >
+          {title}
+        </h3>
+      </div>
       {children}
     </div>
   );
