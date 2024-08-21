@@ -16,22 +16,22 @@ interface MobileNavItem {
 }
 
 const mobileNavMap: MobileNavItem[] = [
-  { id: 0, title: '포스트', href: '/' },
-  { id: 1, title: '시리즈', href: '/series' },
-  { id: 2, title: '태그', href: '/tags' },
+  { id: 1, title: '포스트', href: '/' },
+  { id: 2, title: '시리즈', href: '/series' },
+  { id: 3, title: '태그', href: '/tags' },
 ];
 
 function MainMobileNav({ visible }: Props) {
   const pathname = usePathname();
   const currentTab =
-    mobileNavMap.find((item) => item.href === pathname)?.id || 0;
+    mobileNavMap.find((item) => item.href === pathname)?.id || 1;
 
-  const activeId = useMainTabActiveId();
+  const activeId = useMainTabActiveId() || currentTab;
   const setActiveId = useMainTabSetActiveId();
 
   useEffect(() => {
-    const currentTab = mobileNavMap.findIndex(({ href }) => href === pathname);
-    setActiveId(currentTab >= 0 ? currentTab : 0); // 기본값은 첫 번째 탭
+    const currentTab = mobileNavMap.find(({ href }) => href === pathname);
+    setActiveId(currentTab?.id || 1); // 기본값은 첫 번째 탭
   }, [pathname]);
 
   if (!visible) return null;
@@ -54,7 +54,7 @@ function MainMobileNav({ visible }: Props) {
       <div
         className="absolute left-0 bottom-0 w-[70px] h-[2px] bg-black dark:bg-white"
         style={{
-          transform: `translateX(${activeId * 100}%)`, // 바의 위치 조정
+          transform: `translateX(${(activeId - 1) * 100}%)`, // 바의 위치 조정
           transition: 'transform 0.3s ease', // 부드러운 애니메이션
         }}
       />
