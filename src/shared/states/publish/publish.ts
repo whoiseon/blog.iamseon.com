@@ -17,6 +17,7 @@ interface PublishStore extends PublishStoreState {
     setPublishStore: (publishState: PublishStoreState) => void;
     setIsPublic: (isPublic: boolean) => void;
     setTags: (tags: string[]) => void;
+    clearPublishStore: () => void;
   };
 }
 
@@ -44,6 +45,18 @@ const usePublishStore = create<PublishStore>((set) => ({
       set((state) => ({
         ...state,
         tags,
+      })),
+    clearPublishStore: () =>
+      set(() => ({
+        id: undefined,
+        title: '',
+        body: '',
+        tags: [],
+        urlSlug: '',
+        description: '',
+        thumbnail: '',
+        isPublic: true,
+        seriesId: 0,
       })),
   },
 }));

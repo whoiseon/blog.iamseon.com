@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import {
   useGetQueryString,
   useServerUpload,
+  useToastMessage,
   useUpload,
 } from '@/src/shared/lib/hooks';
 import WriteFooter from '@/src/widgets/write/ui/EditorContainer/WriteFooter';
@@ -18,6 +19,7 @@ import {
 import { escapeForUrl } from '@/src/shared/lib/utils';
 import DesktopOnlyMessage from '@/src/widgets/write/ui/DesktopOnlyMessage';
 import { useGetPost, useMutationPublish } from '@/src/widgets/write/api';
+import { toast } from 'react-toastify';
 
 const MarkdownEditor = dynamic(
   () => import('@/src/widgets/write/ui/EditorContainer/MarkdownEditor'),
@@ -34,9 +36,10 @@ const MarkdownPreview = dynamic(
 );
 
 function EditorContainer() {
+  const { successToast, errorToast } = useToastMessage();
   const [postLoading, setPostLoading] = useState(true);
 
-  const { setPublishStore, setTags } = usePublishActions();
+  const { setPublishStore, setTags, clearPublishStore } = usePublishActions();
   const { tags } = usePublish();
   const { upload: serverUpload, image } = useServerUpload();
 
@@ -52,7 +55,7 @@ function EditorContainer() {
   const { theme, systemTheme } = useTheme();
 
   const { mutate: tempSaveMutate } = useMutationPublish(() => {
-    alert('임시 저장 완료');
+    successToast('임시 저장이 완료되었습니다.');
   });
 
   const [upload, file] = useUpload();
@@ -71,12 +74,12 @@ function EditorContainer() {
 
     const title = getTitle(markdown.split('\n')[0]);
     if (!title || !markdown) {
-      alert('제목 또는 본문이 비어있습니다.');
+      errorToast('제목 또는 본문이 비어있습니다.');
       return;
     }
 
     if (tags.length < 1) {
-      alert('태그를 하나 이상 입력해주세요.');
+      errorToast('태그를 하나 이상 입력해주세요.');
       return;
     }
 
@@ -84,7 +87,7 @@ function EditorContainer() {
       body = markdown.split('\n');
       body.splice(0, 1);
     } else {
-      alert('제목을 입력해주세요.');
+      errorToast('제목을 입력해주세요.');
       return;
     }
 
@@ -112,7 +115,7 @@ function EditorContainer() {
     const title = getTitle(markdown.split('\n')[0]);
 
     if (!title || !markdown) {
-      alert('제목 또는 본문이 비어있습니다.');
+      errorToast('제목 또는 본문이 비어있습니다.');
       return;
     }
 
@@ -120,7 +123,7 @@ function EditorContainer() {
       body = markdown.split('\n');
       body.splice(0, 1);
     } else {
-      alert('제목을 입력해주세요.');
+      errorToast('제목을 입력해주세요.');
       return;
     }
 
@@ -176,6 +179,12 @@ function EditorContainer() {
 
     preparePost();
   }, [postId, isLoading]);
+
+  useEffect(() => {
+    return () => {
+      clearPublishStore();
+    };
+  }, [clearPublishStore]);
 
   if (postLoading) return null;
 

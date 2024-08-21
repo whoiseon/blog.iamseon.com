@@ -1,5 +1,8 @@
 import WritePage from '@/src/views/write';
 import EditorServerProvider from '@/src/widgets/write/ui/EditorServerProvider';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 type SearchParams = {
   id: string;
@@ -15,6 +18,7 @@ function PostWritePage({ searchParams }: Props) {
   return (
     <EditorServerProvider postId={postId}>
       <WritePage />
+      <ToastContainer />
     </EditorServerProvider>
   );
 }

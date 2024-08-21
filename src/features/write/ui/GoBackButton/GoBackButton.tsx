@@ -4,8 +4,12 @@ import { Button } from '@/src/shared/ui';
 import { useGoBack } from '@/src/shared/lib/hooks';
 import { Icons } from '@/src/shared/assets';
 
-function GoBackButton() {
-  const goBack = useGoBack('/');
+interface Props {
+  backUrl?: string;
+}
+
+function GoBackButton({ backUrl }: Props) {
+  const goBack = useGoBack(backUrl);
   return (
     <Button variant="ghost" size="md" onClick={goBack}>
       <div className="flex items-center gap-x-2">

@@ -9,6 +9,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   try {
     return postService.getPostList({
       isPublic: false,
+      orderBy: 'desc',
     });
   } catch (e) {
     console.error(e);
