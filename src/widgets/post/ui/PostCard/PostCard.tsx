@@ -32,15 +32,15 @@ function PostCard({
 }: Props) {
   return (
     <li
-      className={
+      className={`${
         isTempPost
           ? 'border-b-[1px] border-b-neutral-400 dark:border-b-neutral-600 last:border-0'
           : ''
-      }
+      } ${isTempPost ? 'py-[3rem]' : 'py-6'}`}
     >
       <Link
         href={isTempPost ? `/write?id=${postId}` : `/post/${urlSlug}`}
-        className={`flex flex-col-reverse ${isTempPost ? 'py-[3rem]' : 'py-6'} md:flex-row md:items-center gap-x-[2.5rem] w-full cursor-pointer ${isCurrentPost ? 'text-green-500 dark:text-green-400' : 'text-neutral-900 dark:text-neutral-50'} hover:text-green-500 dark:hover:text-green-400`}
+        className={`flex flex-col-reverse md:flex-row md:items-center gap-x-[2.5rem] w-full cursor-pointer ${isCurrentPost ? 'text-green-500 dark:text-green-400' : 'text-neutral-900 dark:text-neutral-50'} hover:text-green-500 dark:hover:text-green-400`}
       >
         <div
           className={`flex flex-col ${isTempPost ? 'w-full' : 'md:w-[70%]'}`}

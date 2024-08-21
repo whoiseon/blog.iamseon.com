@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import MainMobileNav from '@/src/widgets/main/ui/MainMobileNav';
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
   isSticky?: boolean;
   titleSize?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  hasMobileMenu?: boolean;
 }
 
 function ContentContainer({
@@ -16,6 +18,7 @@ function ContentContainer({
   isSticky = false,
   titleSize = 'lg',
   className,
+  hasMobileMenu = false,
 }: Props) {
   const parseTitleSize = () => {
     switch (titleSize) {
@@ -34,13 +37,12 @@ function ContentContainer({
     <div
       className={`${className ? className : ''} ${isSticky ? 'sticky top-[74px]' : ''} flex flex-col gap-y-3 mt-[1.25rem] lg:mt-[3rem]`}
     >
-      <div className="flex items-center justify-between">
-        <h3
-          className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400`}
-        >
-          {title}
-        </h3>
-      </div>
+      <h3
+        className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400 ${hasMobileMenu ? 'hidden lg:block' : ''}`}
+      >
+        {title}
+      </h3>
+      <MainMobileNav visible={hasMobileMenu} />
       {children}
     </div>
   );

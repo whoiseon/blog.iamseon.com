@@ -17,10 +17,10 @@ function SeriesCard({ urlSlug, name, thumbnail, updatedAt, postCount }: Props) {
     <li>
       <Link
         href={`/series/${urlSlug}`}
-        className="flex flex-col cursor-pointer"
+        className="flex flex-col cursor-pointer py-6"
       >
         {thumbnail && (
-          <div className="relative flex justify-center items-center overflow-hidden mb-4 md:mb-auto w-[100%] min-h-[206px]">
+          <div className="relative flex justify-center items-center overflow-hidden mb-4 w-[100%] lg:h-[204px]">
             <Image
               className="w-full h-auto rounded-md"
               src={thumbnail || ''}
@@ -31,9 +31,11 @@ function SeriesCard({ urlSlug, name, thumbnail, updatedAt, postCount }: Props) {
             />
           </div>
         )}
-        <h4 className="text-lg font-semibold mt-4">{name}</h4>
-        <div className="flex flex-col gap-y-1 mt-2 text-[13px]">
-          <span>
+        <h4 className="text-inherit text-lg md:text-xl font-bold line-clamp-2 leading-[1.6] mb-2">
+          {name}
+        </h4>
+        <div className="flex flex-col text-[14px]">
+          <span className="mb-1">
             <b className="text-green-500 dark:text-green-400">{postCount}</b>
             개의 포스트
           </span>
