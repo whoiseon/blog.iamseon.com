@@ -1,5 +1,5 @@
 import AuthSignPage from '@/src/views/auth';
-import { isAllowedUser } from '@/src/shared/lib/utils/server/ index';
+import { isAllowedUser } from '@/src/shared/lib/utils/server';
 import { redirect } from 'next/navigation';
 
 function SignPage() {

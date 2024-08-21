@@ -95,10 +95,6 @@ export class SeriesService {
       },
     });
 
-    console.log(
-      seriesList.filter(({ name }) => name === '새로운 시리즈')[0].posts,
-    );
-
     return generateNextResponse<SeriesListPayload[] | null>({
       error: '',
       payload: seriesList.map((series) => ({

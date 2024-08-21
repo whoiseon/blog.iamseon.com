@@ -3,6 +3,7 @@
 import HeaderNavList from './HeaderNavList';
 import Logo from '@/src/shared/assets/Logo/Logo';
 import { useAuth } from '@/src/shared/lib/hooks';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   isAdmin: boolean;
@@ -10,9 +11,13 @@ interface Props {
 
 function AppHeader({ isAdmin = false }: Props) {
   useAuth();
+  const pathname = usePathname();
+  const isPostPage = pathname.split('/')[1] === 'post';
 
   return (
-    <header className={`w-full h-[50px] z-50 bg-white dark:bg-black`}>
+    <header
+      className={`${isPostPage ? '' : 'sticky top-0'} w-full h-[50px] z-50 bg-white dark:bg-black`}
+    >
       <div
         className={`w-full max-w-full h-full border-b-[1px] border-b-neutral-200 dark:border-b-neutral-800`}
       >

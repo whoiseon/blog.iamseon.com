@@ -4,12 +4,16 @@ import Logo from '@/src/shared/assets/Logo/Logo';
 import HeaderNavList from '@/src/widgets/header/ui/AppHeader/HeaderNavList';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getScrollTop } from '@/src/shared/lib/utils';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   isAdmin: boolean;
 }
 
 function ScrollTopHeader({ isAdmin }: Props) {
+  const pathname = usePathname();
+  const isPostPage = pathname.split('/')[1] === 'post';
+
   const [visible, setVisible] = useState<boolean>(false);
   const blockRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);

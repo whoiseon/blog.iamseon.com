@@ -2,6 +2,8 @@ import PostPage from '@/src/views/post';
 import { getPostBySlug, getPostList } from '@/src/shared/lib/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import ScrollTopHeader from '@/src/widgets/header/ui/ScrollTopHeader';
+import { isAllowedUser } from '@/src/shared/lib/utils/server';
 
 export const runtime = 'nodejs';
 
@@ -53,6 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function PostViewPage({ params }: Props) {
+  const isAllowed = isAllowedUser();
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);
   const post = await getPost(decodedSlug);
@@ -61,7 +64,12 @@ async function PostViewPage({ params }: Props) {
     return notFound();
   }
 
-  return <PostPage post={post} />;
+  return (
+    <>
+      <ScrollTopHeader isAdmin={isAllowed} />
+      <PostPage post={post} />
+    </>
+  );
 }
 
 export default PostViewPage;
