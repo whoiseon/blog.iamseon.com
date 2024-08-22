@@ -56,6 +56,7 @@ export interface PostListPayload {
 export interface PostPayloadForPostList {
   id: number;
   createdAt: Date;
+  updatedAt: Date;
   title: string;
   urlSlug: string | null;
   description: string | null;

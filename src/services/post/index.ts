@@ -194,20 +194,6 @@ export class PostService {
   }
 
   public async getPost(postId: number) {
-    const include: PostInclude = {
-      tags: {
-        select: {
-          name: true,
-        },
-      },
-      series: {
-        select: {
-          id: true,
-          name: true,
-        },
-      },
-    };
-
     const post = await db.post.findUnique({
       where: {
         id: postId,
@@ -316,9 +302,11 @@ export class PostService {
                   urlSlug,
                   description,
                   thumbnail,
+                  updatedAt,
                 }) => ({
                   id,
                   createdAt,
+                  updatedAt,
                   title,
                   urlSlug,
                   description,
@@ -343,6 +331,7 @@ export class PostService {
     const select: PostSelect = {
       id: true,
       createdAt: true,
+      updatedAt: true,
       title: true,
       urlSlug: true,
       description: true,

@@ -14,5 +14,6 @@ export interface SeriesListPayload {
   urlSlug: string;
   thumbnail: string | null;
   totalCount: number;
+  createdAt: Date;
   updatedAt: Date;
 }

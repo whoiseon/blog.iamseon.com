@@ -102,6 +102,7 @@ export class SeriesService {
         name: series.name,
         urlSlug: series.urlSlug,
         updatedAt: series.updatedAt,
+        createdAt: series.createdAt,
         thumbnail: series.posts[0]?.thumbnail || '',
         totalCount: series.posts.filter(
           (post) => post.isPublic && !post.deletedAt,
