@@ -9,7 +9,7 @@ interface Props {
 function EmptyBox({ text }: Props) {
   return (
     <div className="flex items-center justify-center flex-col">
-      <div className="relative flex items-center justify-center w-[300px] h-[300px] mb-8">
+      <div className="relative flex items-center justify-center w-[320px] h-[320px] my-8">
         <svg
           width="301"
           height="211"
