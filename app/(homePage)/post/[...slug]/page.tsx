@@ -28,6 +28,8 @@ export async function generateStaticParams(): Promise<PageParams[]> {
   }));
 }
 
+export const revalidate = 180;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);
