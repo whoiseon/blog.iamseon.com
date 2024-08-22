@@ -72,6 +72,7 @@ export class PostService {
     return generateNextResponse<PublishPostPayload>({
       error: '',
       payload: {
+        postId: post.id,
         slug: post.urlSlug as string,
       },
     });
@@ -188,6 +189,7 @@ export class PostService {
     return generateNextResponse<PublishPostPayload | null>({
       error: '',
       payload: {
+        postId: post.id,
         slug: updatedPost.urlSlug as string,
       },
     });

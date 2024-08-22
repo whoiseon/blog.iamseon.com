@@ -20,6 +20,7 @@ import { escapeForUrl } from '@/src/shared/lib/utils';
 import DesktopOnlyMessage from '@/src/widgets/write/ui/DesktopOnlyMessage';
 import { useGetPost, useMutationPublish } from '@/src/widgets/write/api';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next-nprogress-bar';
 
 const MarkdownEditor = dynamic(
   () => import('@/src/widgets/write/ui/EditorContainer/MarkdownEditor'),
@@ -36,6 +37,8 @@ const MarkdownPreview = dynamic(
 );
 
 function EditorContainer() {
+  const router = useRouter();
+
   const { successToast, errorToast } = useToastMessage();
   const [postLoading, setPostLoading] = useState(true);
 
@@ -54,8 +57,11 @@ function EditorContainer() {
 
   const { theme, systemTheme } = useTheme();
 
-  const { mutate: tempSaveMutate } = useMutationPublish(() => {
+  const { mutate: tempSaveMutate } = useMutationPublish((data) => {
     successToast('임시 저장이 완료되었습니다.');
+    if (!postId) {
+      router.push(`/write?id=${data.payload.postId}`);
+    }
   });
 
   const [upload, file] = useUpload();

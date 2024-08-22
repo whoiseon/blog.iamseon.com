@@ -1,6 +1,7 @@
 import { Post, Series } from '@prisma/client';
 
 export interface PublishPostPayload {
+  postId: number;
   slug: string;
 }
 
