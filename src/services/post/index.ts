@@ -386,4 +386,33 @@ export class PostService {
       },
     });
   }
+
+  public async deletePost(postId: number) {
+    const post = await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (!post) {
+      return generateNextResponse<boolean>({
+        error: '포스트를 찾을 수 없습니다.',
+        payload: false,
+      });
+    }
+
+    await db.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
+
+    return generateNextResponse<boolean>({
+      error: '',
+      payload: true,
+    });
+  }
 }

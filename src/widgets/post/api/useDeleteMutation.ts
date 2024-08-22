@@ -1,14 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addSeries } from '@/src/shared/lib/api';
-import { queryKeyMap } from '@/src/shared/lib/consts';
+import { deletePost } from '@/src/shared/lib/api';
 import { useToastMessage } from '@/src/shared/lib/hooks';
+import { useRouter } from 'next-nprogress-bar';
+import { queryKeyMap } from '@/src/shared/lib/consts';
 
-export function useMutationAddSeries(callback?: () => void) {
+export function useDeleteMutation() {
+  const router = useRouter();
   const { errorToast } = useToastMessage();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: addSeries,
+    mutationFn: deletePost,
     onSuccess: async (data) => {
       if (data.error) {
         errorToast(data.error);
@@ -16,12 +18,11 @@ export function useMutationAddSeries(callback?: () => void) {
       }
 
       await queryClient.invalidateQueries({
-        queryKey: queryKeyMap.series.list,
+        queryKey: queryKeyMap.post.key,
       });
-      callback && callback();
+
+      router.push('/');
     },
-    onError: (error) => {
-      console.log(error);
-    },
+    onError: (error) => {},
   });
 }

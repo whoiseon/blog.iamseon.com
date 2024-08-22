@@ -3,17 +3,48 @@
 import Image from 'next/image';
 import TagGroup from '@/src/widgets/tag/ui/TagGroup';
 import { formatDate } from 'date-fns';
+import { useUser } from '@/src/shared/states';
+import { Button, LinkButton } from '@/src/shared/ui';
+import { useDeleteMutation } from '@/src/widgets/post/api/useDeleteMutation';
 
 interface Props {
+  postId: number;
   thumbnail: string;
   title: string;
   tags: string[];
   createdAt: Date;
 }
 
-function PostHeader({ thumbnail, title, tags, createdAt }: Props) {
+function PostHeader({ postId, thumbnail, title, tags, createdAt }: Props) {
+  const user = useUser();
+  const { mutate } = useDeleteMutation();
+
+  const onDelete = () => {
+    if (confirm('포스트를 정말 삭제하시겠습니까?')) {
+      mutate(postId);
+    }
+  };
+
   return (
     <header>
+      {user && (
+        <div className="flex items-center gap-x-2 mt-[3rem]">
+          <LinkButton
+            href={`/write?id=${postId}`}
+            weight="medium"
+            className="underline"
+          >
+            수정
+          </LinkButton>
+          <Button
+            className="text-red-500 dark:text-red-400 underline"
+            weight="medium"
+            onClick={onDelete}
+          >
+            삭제
+          </Button>
+        </div>
+      )}
       {thumbnail && (
         <div className="relative flex justify-center items-center rounded-md overflow-hidden mt-5 lg:mt-[3rem] w-[100%]">
           <Image

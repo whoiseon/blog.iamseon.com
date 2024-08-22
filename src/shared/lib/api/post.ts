@@ -89,3 +89,15 @@ export async function getTempPostList(): Promise<
 
   return response.json();
 }
+
+export async function deletePost(postId: number): Promise<ApiPayload<boolean>> {
+  const response = await fetch(`${API_ENDPOINT}/api/v1/post/${postId}`, {
+    method: 'DELETE',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response.json();
+}

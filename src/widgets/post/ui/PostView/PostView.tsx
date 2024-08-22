@@ -13,6 +13,7 @@ function PostView({ post }: Props) {
   return (
     <article>
       <PostHeader
+        postId={post.id}
         thumbnail={post.thumbnail || ''}
         title={post.title || ''}
         tags={post.tags}
