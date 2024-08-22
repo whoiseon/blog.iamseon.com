@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = post?.title;
   const description = post?.description;
-  const url = post?.urlSlug && `https://imslow.me/post/${post.urlSlug}`;
+  const url = post?.urlSlug && `https://iamseon.com/post/${post.urlSlug}`;
   const ogImage = post?.thumbnail ? post.thumbnail : '/opengraph-image.png';
 
   return {

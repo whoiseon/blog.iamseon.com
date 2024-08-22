@@ -3,8 +3,8 @@ import { updateSession } from '@/src/shared/lib/utils/supabase/server';
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://imslow.me',
-  'https://www.imslow.me',
+  'https://iamseon.com',
+  'https://www.iamseon.com',
 ];
 
 const corsOptions = {

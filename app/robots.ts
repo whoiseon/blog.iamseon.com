@@ -5,7 +5,7 @@ export default function robots() {
         userAgent: '*',
       },
     ],
-    sitemap: 'https://imslow.me/sitemap.xml',
-    host: 'https://imslow.me',
+    sitemap: 'https://iamseon.com/sitemap.xml',
+    host: 'https://iamseon.com',
   };
 }

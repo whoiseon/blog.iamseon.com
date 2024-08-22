@@ -5,28 +5,28 @@ import { cn, fontSans } from '@/src/shared/lib/styles';
 import { AppProvider, AuthProvider } from '@/src/app/providers';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://imslow.me'),
+  metadataBase: new URL('https://iamseon.com'),
   title: {
     default: '황인선 기술 블로그',
-    template: '%s | imslow',
+    template: '%s | iamseon',
   },
   description: '프론트엔드 엔지니어 황인선 기술 블로그',
   openGraph: {
     title: {
       default: '황인선 기술 블로그',
-      template: '%s | imslow',
+      template: '%s | iamseon',
     },
     description: '프론트엔드 엔지니어 황인선 기술 블로그',
-    images: [{ url: '/opengraph-image.png', alt: 'imslow' }],
+    images: [{ url: '/opengraph-image.png', alt: 'iamseon' }],
     type: 'website',
-    url: 'https://imslow.me',
+    url: 'https://iamseon.com',
     locale: 'ko_KR',
   },
   twitter: {
     card: 'summary_large_image',
     title: {
       default: '황인선 기술 블로그',
-      template: '%s | imslow',
+      template: '%s | iamseon',
     },
     description: '프론트엔드 엔지니어 황인선 기술 블로그',
   },

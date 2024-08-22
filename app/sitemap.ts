@@ -1,6 +1,6 @@
 import { getListSeries, getPostList } from '@/src/shared/lib/api';
 
-const siteUrl = 'https://imslow.me';
+const siteUrl = 'https://iamseon.com';
 
 export default async function sitemap() {
   const postList = await getPostList({});
