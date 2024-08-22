@@ -9,6 +9,10 @@
         @apply list-decimal pl-[2.5rem] my-[1.125rem];
     }
 
+    p {
+        @apply my-[18px];
+    }
+
     ul, ol, p {
         b {
             @apply font-normal;
