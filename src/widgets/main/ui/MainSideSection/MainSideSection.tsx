@@ -9,7 +9,7 @@ function MainSideSection() {
   const { data } = useGetAllTags();
 
   return (
-    <div className="sticky top-[78px]">
+    <div className="sticky top-[38px]">
       <ContentContainer title="시리즈" titleSize="sm">
         <MainSeriesList />
       </ContentContainer>

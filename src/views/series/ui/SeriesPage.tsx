@@ -20,7 +20,11 @@ function SeriesPage({ seriesSlug }: Props) {
           title={data?.payload?.series?.name || ''}
           titleSize="xl"
         >
-          <PostList posts={data?.payload?.list || []} isNumbering />
+          <PostList
+            posts={data?.payload?.list || []}
+            isNumbering
+            emptyText="아직 시리즈가 없어요!"
+          />
         </ContentContainer>
       </section>
     </main>
