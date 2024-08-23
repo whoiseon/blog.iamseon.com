@@ -94,7 +94,7 @@ function TableOfContentsChildren({ toc }: Props) {
 
   return (
     <ContentContainer
-      title="TABLE OF CONTENTS"
+      title="ON THIS PAGE"
       titleSize="sm"
       className="animate-fadeIn"
       isSticky
