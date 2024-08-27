@@ -3,7 +3,6 @@ import { supabase } from '@/src/shared/lib/utils/supabase';
 import { redirect, useRouter } from 'next/navigation';
 import { useClearUser, useSetUser } from '@/src/shared/states';
 import { SupabaseUserMeta } from '@/src/shared/entities/user';
-import { ADMIN_LIST } from '@/src/shared/consts';
 
 export function useAuth() {
   const router = useRouter();
@@ -37,8 +36,7 @@ export function useAuth() {
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
-        const adminList = ADMIN_LIST.split(';');
-        if (adminList.includes(session.user.email || '')) {
+        if (session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
           handleSignOut();
           return;
         }
