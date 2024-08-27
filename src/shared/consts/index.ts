@@ -8,6 +8,8 @@ const S3_IMAGE_ENDPOINT = process.env.S3_IMAGE_ENDPOINT || '';
 
 const API_ENDPOINT = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
+const ADMIN_LIST = process.env.NEXT_PUBLIC_ADMIN_EMAIL || '';
+
 export {
   S3_BUCKET_NAME,
   S3_REGION_NAME,
@@ -16,4 +18,5 @@ export {
   S3_ENDPOINT,
   S3_IMAGE_ENDPOINT,
   API_ENDPOINT,
+  ADMIN_LIST,
 };
