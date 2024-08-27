@@ -12,20 +12,12 @@ const EditorContainer = dynamic(
 
 function WritePage() {
   return (
-    <main className="w-full h-dvh overflow-hidden">
-      <EditorContainer />
-    </main>
+    <AuthProtect>
+      <main className="w-full h-dvh overflow-hidden">
+        <EditorContainer />
+      </main>
+    </AuthProtect>
   );
 }
-
-// function WritePage() {
-//   return (
-//     <AuthProtect>
-//       <main className="w-full h-dvh overflow-hidden">
-//         <EditorContainer />
-//       </main>
-//     </AuthProtect>
-//   );
-// }
 
 export default WritePage;
