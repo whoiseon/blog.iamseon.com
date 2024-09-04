@@ -265,15 +265,23 @@ export class PostService {
     };
 
     const [nextPost, prevPost] = await Promise.all([
-      await db.post.findUnique({
+      await db.post.findFirst({
         where: {
-          id: post.id + 1,
+          id: {
+            gt: post.id,
+          },
+          deletedAt: null,
+          isPublic: true,
         },
         select: nextOrPrevPostSelect,
       }),
-      await db.post.findUnique({
+      await db.post.findFirst({
         where: {
-          id: post.id - 1,
+          id: {
+            lt: post.id,
+          },
+          deletedAt: null,
+          isPublic: true,
         },
         select: nextOrPrevPostSelect,
       }),
