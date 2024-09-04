@@ -1,5 +1,4 @@
 import SavesPage from '@/src/views/saves';
-import MainServerProvider from '@/src/widgets/main/ui/MainServerProvider';
 import {
   dehydrate,
   HydrationBoundary,

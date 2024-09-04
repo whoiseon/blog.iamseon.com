@@ -51,8 +51,8 @@ function PostHeader({ postId, thumbnail, title, tags, createdAt }: Props) {
             className="w-full h-auto"
             src={thumbnail}
             alt="temp image"
-            width={800}
-            height={385}
+            width={1280}
+            height={720}
             priority
           />
         </div>

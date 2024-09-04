@@ -61,8 +61,8 @@ function PostCard({
               className="w-full h-auto rounded-md"
               src={thumbnail || ''}
               alt="temp image"
-              width={185}
-              height={100}
+              width={1280}
+              height={720}
               priority
             />
             {isNumbering && postNumber && (
