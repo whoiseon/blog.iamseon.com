@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     template: '%s | iamseon',
   },
   description: '프론트엔드 엔지니어 황인선 기술 블로그',
+  keywords:
+    '황인선, 개발자, 프론트엔드, 웹 개발, 기술 블로그, 개발 블로그, 프로그래밍, 자바스크립트, 타입스크립트, javascript, typescript, react, nextjs',
   openGraph: {
     title: {
       default: '황인선 기술 블로그',
