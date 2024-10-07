@@ -3,6 +3,8 @@ import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { PublishPostPayload } from '@/src/shared/entities';
 import { PostService } from '@/src/services';
 
+export const dynamic = 'force-dynamic';
+
 const postService = new PostService();
 
 export async function GET(req: NextRequest, res: NextResponse) {
