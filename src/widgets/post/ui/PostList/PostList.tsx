@@ -2,7 +2,6 @@
 
 import PostCard from '@/src/widgets/post/ui/PostCard';
 import { PostPayloadForPostList } from '@/src/shared/entities';
-import { ReactNode } from 'react';
 import EmptyBox from '@/src/shared/ui/data-display/EmptyBox/EmptyBox';
 
 interface Props {
