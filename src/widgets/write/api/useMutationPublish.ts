@@ -18,15 +18,15 @@ export function useMutationPublish(
         return;
       }
 
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: queryKeyMap.tag.key,
       });
 
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: queryKeyMap.series.key,
       });
 
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: queryKeyMap.post.key,
       });
 
