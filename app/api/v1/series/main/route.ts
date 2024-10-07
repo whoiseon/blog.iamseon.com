@@ -2,8 +2,6 @@ import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { Series } from '@prisma/client';
 import { SeriesService } from '@/src/services';
 
-export const dynamic = 'force-dynamic';
-
 const seriesService = new SeriesService();
 
 export async function GET() {

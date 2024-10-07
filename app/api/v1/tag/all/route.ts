@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  PublishPostParams,
-  PublishPostPayload,
-} from '@/src/shared/entities/api/post';
+import { PublishPostPayload } from '@/src/shared/entities/api/post';
 import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { TagService } from '@/src/services';
-
-export const dynamic = 'force-dynamic';
 
 const tagService = new TagService();
 
