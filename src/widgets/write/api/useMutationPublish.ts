@@ -18,18 +18,6 @@ export function useMutationPublish(
         return;
       }
 
-      await queryClient.invalidateQueries({
-        queryKey: queryKeyMap.tag.key,
-      });
-
-      await queryClient.invalidateQueries({
-        queryKey: queryKeyMap.series.key,
-      });
-
-      await queryClient.invalidateQueries({
-        queryKey: queryKeyMap.post.key,
-      });
-
       callback && callback(data);
     },
     onError: (error) => {
