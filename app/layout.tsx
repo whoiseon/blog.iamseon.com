@@ -4,8 +4,6 @@ import type { Metadata, Viewport } from 'next';
 import { cn, fontSans } from '@/src/shared/lib/styles';
 import { AppProvider, AuthProvider } from '@/src/app/providers';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://iamseon.com'),
   title: {

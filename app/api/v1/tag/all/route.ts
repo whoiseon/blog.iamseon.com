@@ -3,6 +3,8 @@ import { PublishPostPayload } from '@/src/shared/entities/api/post';
 import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { TagService } from '@/src/services';
 
+export const dynamic = 'force-dynamic';
+
 const tagService = new TagService();
 
 export async function GET(req: NextRequest, res: NextResponse) {

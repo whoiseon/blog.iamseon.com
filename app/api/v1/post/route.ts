@@ -6,6 +6,8 @@ import {
 } from '@/src/shared/entities/api/post';
 import { PostService } from '@/src/services';
 
+export const dynamic = 'force-dynamic';
+
 const postService = new PostService();
 
 export async function POST(req: NextRequest, res: NextResponse) {
