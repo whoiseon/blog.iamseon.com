@@ -9,10 +9,11 @@ type SearchParams = {
 };
 
 interface Props {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }
 
-function PostWritePage({ searchParams }: Props) {
+async function PostWritePage(props: Props) {
+  const searchParams = await props.searchParams;
   const postId = Number(searchParams.id);
 
   return (

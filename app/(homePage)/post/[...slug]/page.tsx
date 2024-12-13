@@ -12,7 +12,7 @@ type PageParams = {
 };
 
 interface Props {
-  params: PageParams;
+  params: Promise<PageParams>;
 }
 
 async function getPost(slug: string) {
@@ -30,7 +30,8 @@ export async function generateStaticParams(): Promise<PageParams[]> {
 
 export const revalidate = 180;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);
   const post = await getPost(decodedSlug);
@@ -52,7 +53,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-async function PostViewPage({ params }: Props) {
+async function PostViewPage(props: Props) {
+  const params = await props.params;
   const isAllowed = isAllowedUser();
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);

@@ -1,7 +1,8 @@
 import HomePage from '@/src/views/home';
 import MainServerProvider from '@/src/widgets/main/ui/MainServerProvider';
 
-function Home({ searchParams }: { searchParams: { tag: string } }) {
+async function Home(props: { searchParams: Promise<{ tag: string }> }) {
+  const searchParams = await props.searchParams;
   return (
     <MainServerProvider tag={searchParams.tag}>
       <HomePage />

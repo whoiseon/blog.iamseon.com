@@ -35,7 +35,7 @@ export async function updateSession(request: NextRequest) {
 }
 
 export async function createClientForServer() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return createServerClient(SUPABASE_URL, SUPABASE_KEY, {
     cookies: {

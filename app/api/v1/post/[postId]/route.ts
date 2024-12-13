@@ -6,10 +6,8 @@ import { PublishPostPayload } from '@/src/shared/entities';
 
 const postService = new PostService();
 
-export async function GET(
-  req: Request,
-  { params }: { params: { postId: string } },
-) {
+export async function GET(req: Request, props: { params: Promise<{ postId: string }> }) {
+  const params = await props.params;
   try {
     const postId = parseInt(params.postId);
     return postService.getPost(postId);
@@ -22,10 +20,8 @@ export async function GET(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { postId: string } },
-) {
+export async function DELETE(req: NextRequest, props: { params: Promise<{ postId: string }> }) {
+  const params = await props.params;
   try {
     const postId = parseInt(params.postId);
 

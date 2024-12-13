@@ -6,10 +6,11 @@ type PageParams = {
 };
 
 interface Props {
-  params: PageParams;
+  params: Promise<PageParams>;
 }
 
-function SeriesPostPage({ params }: Props) {
+async function SeriesPostPage(props: Props) {
+  const params = await props.params;
   const slug = params.slug;
   const decodedSlug = decodeURIComponent(slug);
 
