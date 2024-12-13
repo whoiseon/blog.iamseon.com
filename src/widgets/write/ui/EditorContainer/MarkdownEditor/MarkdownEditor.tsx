@@ -2,21 +2,21 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import CodeMirror, { EditorFromTextArea } from 'codemirror';
 import { detectJSDOM } from '@/src/shared/lib/utils';
+import CodeMirror, { EditorFromTextArea } from 'codemirror';
 
 import '../../../lib/styles/editor.css';
 
-import 'codemirror/mode/markdown/markdown';
-import 'codemirror/mode/jsx/jsx';
-import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/display/placeholder';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/mode/markdown/markdown';
 
-import 'codemirror/lib/codemirror.css';
-import '../../../lib/styles/atom-one-light.css';
-import '../../../lib/styles/atom-one-dark.css';
-import Toolbar from '@/src/widgets/write/ui/EditorContainer/MarkdownEditor/Toolbar';
 import AddLinkModal from '@/src/widgets/write/ui/EditorContainer/MarkdownEditor/AddLinkModal/AddLinkModal';
+import Toolbar from '@/src/widgets/write/ui/EditorContainer/MarkdownEditor/Toolbar';
+import 'codemirror/lib/codemirror.css';
+import '../../../lib/styles/atom-one-dark.css';
+import '../../../lib/styles/atom-one-light.css';
 
 const removeHeading = (text: string) => {
   return text.replace(/#{1,6} /, '');
@@ -183,7 +183,6 @@ function MarkdownEditor({
         .map((number) => () => {
           const characters = '#'.repeat(number);
           const plain = removeHeading(line);
-          console.log('plain', plain);
           selectWholeLine();
           doc.replaceSelection(`${characters} ${plain}`);
         })

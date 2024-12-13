@@ -23,7 +23,6 @@ async function getPost(slug: string) {
 export async function generateStaticParams(): Promise<PageParams[]> {
   try {
     const response = (await getPostList({})) || { payload: { list: [] } };
-    console.log(response);
 
     return response.payload!.list.map((post) => ({
       slug: post.urlSlug!.split('/'),

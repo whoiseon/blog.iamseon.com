@@ -1,6 +1,6 @@
-import { usePathname } from 'next/navigation';
 import { useIsomorphicLayoutEffect } from '@/src/shared/lib/hooks/useIsomorphicLayoutEffect';
 import { useHeadingView } from '@/src/widgets/post/ui/TableOfContents/HeadingViewProvider/HeadingViewProvider';
+import { usePathname } from 'next/navigation';
 
 export function useHeadingViewEffect(id: string) {
   const { setHeadingId } = useHeadingView();
@@ -14,7 +14,6 @@ export function useHeadingViewEffect(id: string) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          console.log('123');
           setHeadingId(id);
         }
       },
