@@ -1,8 +1,9 @@
 import '@/src/app/styles/globals.css';
 
-import type { Metadata, Viewport } from 'next';
-import { cn, fontSans } from '@/src/shared/lib/styles';
 import { AppProvider, AuthProvider } from '@/src/app/providers';
+import { cn, fontSans } from '@/src/shared/lib/styles';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://iamseon.com'),
@@ -77,6 +78,7 @@ export default function RootLayout({
         <AppProvider>
           <AuthProvider>{children}</AuthProvider>
         </AppProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
