@@ -4,7 +4,7 @@ import { Icons } from '@/src/shared/assets';
 
 interface Props {
   onClick?: Function;
-  innerRef?: React.RefObject<HTMLDivElement>;
+  innerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const TOOLBAR_ITEM_CLASSNAME =

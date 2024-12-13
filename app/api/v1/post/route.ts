@@ -1,16 +1,16 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { generateNextResponse } from '@/src/shared/lib/utils/api';
+import { PostService } from '@/src/services';
 import {
   PublishPostParams,
   PublishPostPayload,
 } from '@/src/shared/entities/api/post';
-import { PostService } from '@/src/services';
+import { generateNextResponse } from '@/src/shared/lib/utils/api';
+import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
 const postService = new PostService();
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as PublishPostParams;
     return postService.publishPost(body);
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
     const tag = url.searchParams.get('tag');

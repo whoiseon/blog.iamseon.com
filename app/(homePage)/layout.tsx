@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-import AppHeader from '@/src/widgets/header/ui/AppHeader';
-import AppFooter from '@/src/widgets/footer/ui/AppFooter';
 import { isAllowedUser } from '@/src/shared/lib/utils/server';
+import AppFooter from '@/src/widgets/footer/ui/AppFooter';
+import AppHeader from '@/src/widgets/header/ui/AppHeader';
+import { ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode;
 }
 
 async function HomeLayout({ children }: Props) {
-  const isAllowed = isAllowedUser();
+  const isAllowed = await isAllowedUser();
 
   return (
     <>

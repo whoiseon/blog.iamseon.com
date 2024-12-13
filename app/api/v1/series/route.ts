@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { SeriesService } from '@/src/services';
 import { AddSeriesParams, AddSeriesPayload } from '@/src/shared/entities';
+import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import { Series } from '@prisma/client';
+import { NextRequest } from 'next/server';
 
 const seriesService = new SeriesService();
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as AddSeriesParams;
     return seriesService.addSeries(body);

@@ -1,9 +1,9 @@
-import PostPage from '@/src/views/post';
 import { getPostBySlug, getPostList } from '@/src/shared/lib/api';
+import { isAllowedUser } from '@/src/shared/lib/utils/server';
+import PostPage from '@/src/views/post';
+import ScrollTopHeader from '@/src/widgets/header/ui/ScrollTopHeader';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ScrollTopHeader from '@/src/widgets/header/ui/ScrollTopHeader';
-import { isAllowedUser } from '@/src/shared/lib/utils/server';
 
 export const runtime = 'nodejs';
 
@@ -21,11 +21,17 @@ async function getPost(slug: string) {
 }
 
 export async function generateStaticParams(): Promise<PageParams[]> {
-  const response = (await getPostList({})) || { payload: { list: [] } };
+  try {
+    const response = (await getPostList({})) || { payload: { list: [] } };
+    console.log(response);
 
-  return response.payload!.list.map((post) => ({
-    slug: post.urlSlug!.split('/'),
-  }));
+    return response.payload!.list.map((post) => ({
+      slug: post.urlSlug!.split('/'),
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return []; // 에러 발생 시 빈 배열 반환
+  }
 }
 
 export const revalidate = 180;
@@ -55,7 +61,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 async function PostViewPage(props: Props) {
   const params = await props.params;
-  const isAllowed = isAllowedUser();
+  const isAllowed = await isAllowedUser();
   const slug = params?.slug?.join('/') || '';
   const decodedSlug = decodeURIComponent(slug);
   const post = await getPost(decodedSlug);

@@ -1,14 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { s3 } from '@/src/shared/lib/utils/aws';
-import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { S3_BUCKET_NAME, S3_IMAGE_ENDPOINT } from '@/src/shared/consts';
+import { UploadImagePayload } from '@/src/shared/entities';
 import {
   generateFilePath,
   generateNextResponse,
 } from '@/src/shared/lib/utils/api';
-import { UploadImagePayload } from '@/src/shared/entities';
+import { s3 } from '@/src/shared/lib/utils/aws';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { NextRequest } from 'next/server';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const image = formData.get('image') as File;

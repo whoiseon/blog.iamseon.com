@@ -14,7 +14,7 @@ export default function UserStoreProvider({
   children,
   ...props
 }: PropsWithChildren<PreloadedStoreInterface>) {
-  const storeRef = useRef<UserStoreType>();
+  const storeRef = useRef<UserStoreType>(null);
 
   if (!storeRef.current) {
     storeRef.current = initializeUserStore(props);

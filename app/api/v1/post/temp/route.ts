@@ -1,13 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { generateNextResponse } from '@/src/shared/lib/utils/api';
-import { PublishPostPayload } from '@/src/shared/entities';
 import { PostService } from '@/src/services';
+import { PublishPostPayload } from '@/src/shared/entities';
+import { generateNextResponse } from '@/src/shared/lib/utils/api';
 
 export const dynamic = 'force-dynamic';
 
 const postService = new PostService();
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET() {
   try {
     return postService.getPostList({
       isPublic: false,
