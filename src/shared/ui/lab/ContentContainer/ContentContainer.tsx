@@ -1,7 +1,7 @@
 'use client';
 
-import { ReactNode } from 'react';
 import MainMobileNav from '@/src/widgets/main/ui/MainMobileNav';
+import { ReactNode } from 'react';
 
 interface Props {
   title: string;
@@ -10,6 +10,8 @@ interface Props {
   titleSize?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   hasMobileMenu?: boolean;
+  fontWeight?: 'medium' | 'bold';
+  titleColor?: 'default' | 'muted';
 }
 
 function ContentContainer({
@@ -19,6 +21,8 @@ function ContentContainer({
   titleSize = 'lg',
   className,
   hasMobileMenu = false,
+  fontWeight = 'bold',
+  titleColor = 'muted',
 }: Props) {
   const parseTitleSize = () => {
     switch (titleSize) {
@@ -38,7 +42,7 @@ function ContentContainer({
       className={`${className ? className : ''} ${isSticky ? 'sticky top-[74px]' : ''} flex flex-col gap-y-3 mt-[1.25rem] lg:mt-[3rem]`}
     >
       <h3
-        className={`${parseTitleSize()} font-bold text-neutral-600 dark:text-neutral-400 ${hasMobileMenu ? 'hidden lg:block' : ''}`}
+        className={`${parseTitleSize()} font-${fontWeight} ${titleColor === 'muted' ? 'text-neutral-600 dark:text-neutral-400' : 'text-neutral-900 dark:text-neutral-50'} ${hasMobileMenu ? 'hidden lg:block' : ''}`}
       >
         {title}
       </h3>

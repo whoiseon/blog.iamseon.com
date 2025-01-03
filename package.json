@@ -50,6 +50,7 @@
     "remark-rehype": "^11.1.0",
     "sanitize-html": "^2.13.0",
     "tailwind-merge": "^2.4.0",
+    "tailwind-scrollbar-hide": "^2.0.0",
     "throttle-debounce": "^5.0.2",
     "unist-util-visit": "2.0.1",
     "uuid": "^10.0.0",

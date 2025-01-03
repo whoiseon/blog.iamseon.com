@@ -1,12 +1,12 @@
 'use client';
 
-import { TOCItem } from '@/src/widgets/post/lib/utils';
-import TableOfContentItem from '@/src/widgets/post/ui/TableOfContents/TableOfContentItem';
-import HeadingViewProvider from '@/src/widgets/post/ui/TableOfContents/HeadingViewProvider';
-import { useHeadingView } from '@/src/widgets/post/ui/TableOfContents/HeadingViewProvider/HeadingViewProvider';
-import { useCallback, useEffect, useState } from 'react';
 import { getScrollTop } from '@/src/shared/lib/utils';
 import ContentContainer from '@/src/shared/ui/lab/ContentContainer';
+import { TOCItem } from '@/src/widgets/post/lib/utils';
+import HeadingViewProvider from '@/src/widgets/post/ui/TableOfContents/HeadingViewProvider';
+import { useHeadingView } from '@/src/widgets/post/ui/TableOfContents/HeadingViewProvider/HeadingViewProvider';
+import TableOfContentItem from '@/src/widgets/post/ui/TableOfContents/TableOfContentItem';
+import { useCallback, useEffect, useState } from 'react';
 
 interface Props {
   toc: TOCItem[];
@@ -94,12 +94,14 @@ function TableOfContentsChildren({ toc }: Props) {
 
   return (
     <ContentContainer
-      title="ON THIS PAGE"
+      title="On This Page"
       titleSize="sm"
       className="animate-fadeIn"
       isSticky
+      fontWeight="medium"
+      titleColor="default"
     >
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-1 table-of-contents-max-height overflow-y-auto custom-scroll-bar-thin">
         {toc.map((item) => (
           <TableOfContentItem
             key={item.id}

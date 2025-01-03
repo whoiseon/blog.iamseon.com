@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateSession } from '@/src/shared/lib/utils/supabase/server';
 
 const allowedOrigins = [
   'http://localhost:3000',

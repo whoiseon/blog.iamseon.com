@@ -3,37 +3,52 @@
 @tailwind utilities;
 
 @layer components {
-    .logo-text-highlight {
-        @apply text-green-500 dark:text-green-400
-    }
+  .logo-text-highlight {
+    @apply text-green-500 dark:text-green-400;
+  }
 }
 
 @font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    src: url("/fonts/code/FiraMono-Regular.ttf") format("truetype");
+  font-family: 'Fira Mono';
+  font-style: normal;
+  src: url('/fonts/code/FiraMono-Regular.ttf') format('truetype');
 }
 
 .header-inner {
-    width: 92%;
-    max-width: calc(100% - 40px);
+  width: 92%;
+  max-width: calc(100% - 40px);
 }
 
 ::-moz-selection {
-    background: #f00 !important;
-    color: #fff !important;;
+  background: #f00 !important;
+  color: #fff !important;
 }
 ::selection {
-    @apply bg-editor-green-selection text-neutral-950 dark:text-white !important;;
+  @apply bg-editor-green-selection text-neutral-950 dark:text-white !important;
 }
 
 .custom-scroll-bar::-webkit-scrollbar-thumb {
-    @apply bg-green-950 dark:bg-green-200;
+  @apply bg-green-950 dark:bg-green-200;
 }
 
 .custom-scroll-bar::-webkit-scrollbar {
-    @apply w-[5px];
+  @apply w-[5px];
 }
 .custom-scroll-bar::-webkit-scrollbar-track {
-    @apply bg-white dark:bg-black;
+  @apply bg-white dark:bg-black;
+}
+
+.custom-scroll-bar-thin::-webkit-scrollbar-thumb {
+  @apply bg-green-950/30 dark:bg-green-200/50 rounded-full;
+}
+
+.custom-scroll-bar-thin::-webkit-scrollbar {
+  @apply w-[3px];
+}
+.custom-scroll-bar-thine::-webkit-scrollbar-track {
+  @apply bg-white dark:bg-black;
+}
+
+.table-of-contents-max-height {
+  max-height: calc(-128px + 100vh);
 }
