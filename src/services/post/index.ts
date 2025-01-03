@@ -1,15 +1,14 @@
+import { SeriesService } from '@/src/services';
 import {
   GetPostListParams,
   GetPostPayload,
   PostListPayload,
-  PostPayloadForPostList,
   PublishPostParams,
   PublishPostPayload,
 } from '@/src/shared/entities/api/post';
-import { Prisma, Series } from '@prisma/client';
-import { generateNextResponse } from '@/src/shared/lib/utils/api';
 import db from '@/src/shared/lib/api/db';
-import { SeriesService } from '@/src/services';
+import { generateNextResponse } from '@/src/shared/lib/utils/api';
+import { Prisma, Series } from '@prisma/client';
 import PostUncheckedCreateInput = Prisma.PostUncheckedCreateInput;
 import PostUncheckedUpdateInput = Prisma.PostUncheckedUpdateInput;
 import PostSelect = Prisma.PostSelect;
