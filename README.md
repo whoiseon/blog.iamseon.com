@@ -2,8 +2,6 @@
 
 ![iamseon-blog](./public/image/main.png)
 
----
-
 This is fullstack blog project to share technical experience and problems that have been addressed.
 
 ## Design
