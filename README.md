@@ -22,7 +22,7 @@ This is fullstack blog project to share technical experience and problems that h
 - [Vercel](https://vercel.com/)
 - [Supabase](https://supabase.com/)
 
-## Usage FSD Architecture
+## Use FSD Architecture
 
 ```
 src/
