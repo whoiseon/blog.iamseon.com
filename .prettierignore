@@ -1,0 +1,5 @@
+renovate.json
+dist
+node_modules
+.next
+build
