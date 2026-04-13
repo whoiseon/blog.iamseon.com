@@ -37,6 +37,7 @@ const eslintConfig = defineConfig([
     "dist/**",
     "build/**",
     "next-env.d.ts",
+    ".lintstagedrc.mjs",
     "public/",
   ]),
 ]);
