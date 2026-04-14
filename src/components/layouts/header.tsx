@@ -135,7 +135,7 @@ function MobileMenu({
 
   useEffect(() => {
     setVisible(false);
-  }, [pathname]);
+  }, [pathname, setVisible]);
 
   useEffect(() => {
     document.body.style.overflow = visible ? "hidden" : "";

@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cacheComponents: true,
+  images: {
+    domains: ["yqdhwswwwnxwamqghdbz.supabase.co", "lh3.googleusercontent.com", "iamseon.com"],
+  },
 };
 
 export default nextConfig;

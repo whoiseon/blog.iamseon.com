@@ -40,8 +40,9 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html
       lang="ko"
+      data-scroll-behavior="smooth"
       className={cn(
-        "scroll-smooth antialiased motion-reduce:scroll-auto",
+        "antialiased motion-reduce:scroll-auto",
         "bg-app-background text-foreground",
         geist.variable,
         mono.variable
