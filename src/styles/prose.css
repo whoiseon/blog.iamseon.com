@@ -260,6 +260,7 @@
   :where(img):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     margin-top: 2em;
     margin-bottom: 2em;
+    border-radius: var(--radius-lg);
   }
 
   :where(picture):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -296,7 +297,7 @@
 
   /* Code */
   :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    padding: 3px 5px;
+    padding: 3px 4px;
     border: solid 1px;
     font-size: 13px;
     border-color: var(--color-border);
@@ -464,6 +465,10 @@ figure[data-code-block] {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   overflow: hidden;
+  box-shadow:
+    0 4px 10px -1px rgb(0 0 0 / 0.07),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background: var(--color-muted);
 }
 
 [data-code-header] {

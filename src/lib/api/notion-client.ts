@@ -6,7 +6,7 @@ import {
   TitleProperties,
   UniqueIdProperties,
   UrlProperties,
-} from "@/app/api/_lib/types/properties.types";
+} from "@/lib/api/types/properties.types";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY!;
 const NOTION_DATA_SOURCE_ID = process.env.NOTION_DATA_SOURCE_ID!;
@@ -96,7 +96,6 @@ export interface QueryDataProperties {
   title: TitleProperties;
   type: SelectProperties;
   tags: MultiSelectProperties;
-  thumbnail: UrlProperties;
 
   created_at: DateProperties;
   published_at: DateProperties;

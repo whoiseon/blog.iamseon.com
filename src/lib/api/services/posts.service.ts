@@ -6,7 +6,7 @@ import {
   type NotionDataSourceResult,
   type NotionPaginatedResponse,
   type QueryDataProperties,
-} from "@/app/api/_lib/notion-client";
+} from "@/lib/api/notion-client";
 
 // --- Types ---
 
@@ -27,7 +27,6 @@ export interface Post {
   isPublic: boolean;
   slug: string;
   tags: PostTag[];
-  thumbnail: string | null;
   title: string;
   type: string;
   createdAt: string | null;
@@ -56,7 +55,6 @@ function transformPost(raw: NotionDataSourceResult<QueryDataProperties>): Post {
     isPublic: p.is_public.select.name === "public",
     slug: p.slug.rich_text[0]?.plain_text ?? "",
     tags: p.tags.multi_select.map((tag) => ({ id: tag.id, name: tag.name })),
-    thumbnail: p.thumbnail.url ?? null,
     title: p.title.title[0]?.plain_text ?? "",
     type: p.type.select.name,
     createdAt: p.created_at.date?.start ?? null,
@@ -99,7 +97,7 @@ function transformPostsGroupByCategory(payload: PostsResult | null) {
 export async function getPosts(
   type: string = "post",
   cursor?: string,
-  page_size: number = 30
+  page_size: number = 100
 ): Promise<{ error: string | null; payload: PostsResult | null }> {
   "use cache";
   cacheLife("minutes");
@@ -153,7 +151,7 @@ export async function getPostBySlug(
   const { error, payload } = await queryDataSource({
     filter: {
       and: [
-        { property: "slug", rich_text: { equals: slug } },
+        { property: "slug", rich_text: { equals: decodeURIComponent(slug) } },
         { property: "deleted_at", date: { is_empty: true } },
       ],
     },

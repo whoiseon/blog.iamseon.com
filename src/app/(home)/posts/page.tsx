@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 
-import { getPosts } from "@/app/api/_lib/services/posts.service";
+import { getPosts } from "@/lib/api/services/posts.service";
 
 async function PostList() {
   const { error, payload } = await getPosts();

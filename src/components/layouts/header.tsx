@@ -119,7 +119,7 @@ function ThemeToggle({ className }: { className?: string }) {
       <div className="flex size-5.5 items-center justify-center">
         <MoonIcon className="text-muted-foreground fill-muted-foreground dark:text-foreground/80 dark:fill-foreground/80 size-3.5 transition-colors" />
       </div>
-      <div className="bg-muted absolute -z-1 size-5.5 translate-x-0 transition-transform duration-300 ease-in-out dark:translate-x-5.5" />
+      <div className="bg-muted absolute -z-1 size-5.5 translate-x-0 transition-transform duration-300 ease-in-out dark:translate-x-5.5 dark:bg-neutral-800" />
     </button>
   );
 }

@@ -1,15 +1,14 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
-import { MarkdownRender } from "@/app/(home)/posts/[slug]/_components/markdown-render";
+import { getPostBySlug, getPostsByCategory } from "@/lib/api/services/posts.service";
 import { OtherPosts } from "@/app/(home)/posts/[slug]/_components/other-posts";
+import { PostArticle } from "@/app/(home)/posts/[slug]/_components/post-article";
 import { TableOfContents } from "@/app/(home)/posts/[slug]/_components/table-of-contents";
 import { parseHeadings } from "@/app/(home)/posts/[slug]/_lib/parse-headings";
-import { getPostBySlug, getPostsByCategory } from "@/app/api/_lib/services/posts.service";
 
 async function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-
   const { error: getPostError, payload: post } = await getPostBySlug(slug);
 
   const { error: getPostsError, payload: posts } = await getPostsByCategory();
@@ -24,7 +23,7 @@ async function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
         {!getPostsError && posts && (posts?.size || 0) > 0 && (
           <OtherPosts posts={posts} slug={slug} />
         )}
-        <MarkdownRender post={post} />
+        <PostArticle post={post} />
         <TableOfContents headings={parseHeadings(post.markdown)} />
       </div>
     </main>

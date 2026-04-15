@@ -157,6 +157,13 @@ body {
   }
 }
 
+[data-rmiz-modal-overlay="visible"] {
+  background-color: var(--color-app-background) !important;
+}
+[data-rmiz-btn-unzoom] {
+  display: none;
+}
+
 @utility scrollbar-hide {
   /* Firefox */
   scrollbar-width: none;

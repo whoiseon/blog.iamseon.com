@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { getPosts } from "@/app/api/_lib/services/posts.service";
+import { getPosts } from "@/lib/api/services/posts.service";
 
 async function ShortList() {
   const { error, payload } = await getPosts("short");
