@@ -3,10 +3,13 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { personSchema, serializeJsonLd, websiteSchema } from "@/lib/json-ld";
 import { baseUrl, createMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { Providers } from "@/app/providers";
 
 export const metadata: Metadata = createMetadata({
@@ -81,7 +84,13 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <Providers>{children}</Providers>
       </body>
 
-      {/*TODO: google analytics & vercel analytics*/}
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <SpeedInsights />
+          <GoogleAnalytics />
+          <Analytics />
+        </>
+      )}
     </html>
   );
 }
