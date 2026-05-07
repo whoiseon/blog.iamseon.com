@@ -4,12 +4,19 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { getPreviousPath } from "@/components/layouts/route-history-tracker";
 
 export function ShortsBackButton() {
   const router = useRouter();
 
   const goBack = () => {
-    router.back();
+    const previousPath = getPreviousPath();
+
+    if (previousPath === "/shorts" && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/shorts");
+    }
   };
 
   return (
