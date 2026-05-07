@@ -1,0 +1,37 @@
+"use client";
+
+import Link from "next/link";
+import { format } from "date-fns";
+
+import { Post } from "@/lib/api/services/posts.service";
+import { cn } from "@/lib/utils";
+
+interface PostCardProps {
+  post: Post;
+  className?: string;
+}
+
+export function PostCard({ post, className }: PostCardProps) {
+  return (
+    <Link
+      href={`/posts/${post.slug}`}
+      className={cn(
+        "group text-muted-foreground hover:text-foreground flex flex-col gap-4 rounded-lg p-4 transition-colors md:p-6",
+        className
+      )}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex flex-initial flex-row items-center justify-start gap-2">
+          <span className="text-[13px]">{post.category.name}</span>
+        </div>
+        <time className="text-[13px]" dateTime={post.publishedAt!}>
+          {format(post.publishedAt!, "M월 d일")}
+        </time>
+      </div>
+      <h2 className="text-foreground line-clamp-2 text-xl font-semibold tracking-tight break-keep">
+        {post.title}
+      </h2>
+      <p className="line-clamp-3 text-sm">{post.description}</p>
+    </Link>
+  );
+}
