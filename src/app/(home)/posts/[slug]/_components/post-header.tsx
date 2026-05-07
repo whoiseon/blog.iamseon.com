@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { CheckIcon, LinkIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Tag } from "@/components/ui/tag";
 
 interface PostHeaderProps {
   title: string;
@@ -50,12 +51,7 @@ export function PostHeader({ title, publishedAt, category, tags }: PostHeaderPro
         </div>
         <div className="flex flex-wrap items-center gap-x-1">
           {tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-muted rounded-sm px-2 py-1 text-xs font-medium dark:bg-neutral-800/80"
-            >
-              {tag}
-            </span>
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
       </div>
