@@ -48,7 +48,7 @@ export default function Page({ searchParams }: PageProps) {
 function ShortsListSkeleton() {
   return (
     <div className="flex flex-col">
-      {Array.from({ length: 3 }).map((_, i) => (
+      {Array.from({ length: 4 }).map((_, i) => (
         <div
           key={i}
           className="border-border flex flex-col gap-6 border-b px-6 pt-8 pb-10 last:border-b-0 md:px-10 md:pt-10 lg:border-x"

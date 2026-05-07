@@ -37,15 +37,24 @@ export async function ShortPostArticle({
             <h1 className="leadng-[1.25] wrap-break-word break-keep">{post.title}</h1>
           </Link>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-start justify-between">
           <div className="flex flex-wrap items-center gap-x-1">
             {post.tags.map((tag) => (
               <Tag key={tag.id}>{tag.name}</Tag>
             ))}
           </div>
-          {post.publishedAt && (
-            <RelativeTime date={post.publishedAt} className="text-muted-foreground text-sm" />
-          )}
+          <div className="flex flex-col items-end gap-x-2">
+            {post.publishedAt && (
+              <RelativeTime date={post.publishedAt} className="text-muted-foreground text-sm" />
+            )}
+            {post.updatedAt && (
+              <RelativeTime
+                date={post.updatedAt}
+                className="text-primary text-xs"
+                format="{date} 업데이트"
+              />
+            )}
+          </div>
         </div>
       </header>
       <CodeCopyHandler />
