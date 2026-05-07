@@ -6,13 +6,15 @@ import Zoom from "react-medium-image-zoom";
 
 import "react-medium-image-zoom/dist/styles.css";
 
+import { cn } from "@/lib/utils";
+
 function isElement(domNode: DOMNode): domNode is Element {
   return domNode.type === "tag";
 }
 
-export function MarkdownRender({ html }: { html: string }) {
+export function MarkdownRender({ html, className }: { html: string; className?: string }) {
   return (
-    <div className="prose max-w-none">
+    <div className={cn("prose max-w-none", className)}>
       {parse(html, {
         replace(domNode: DOMNode) {
           if (!isElement(domNode) || domNode.name !== "img") return;
