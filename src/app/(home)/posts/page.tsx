@@ -19,8 +19,8 @@ export default async function Page() {
   const { payload } = await getPosts();
 
   return (
-    <main className="w-full pt-12 pb-22.5">
-      <div className="relative mx-auto flex w-full flex-col gap-4 px-4 xl:w-(--app-layout-width) xl:max-w-(--app-layout-width)">
+    <main className="w-full pt-5 pb-22.5 md:pt-12">
+      <div className="relative mx-auto flex w-full flex-col gap-4 px-5 md:px-0 xl:w-(--app-layout-width) xl:max-w-(--app-layout-width)">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {payload?.results.map((post) => (
             <PostCard key={post.id} post={post} />

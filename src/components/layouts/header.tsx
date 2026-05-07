@@ -44,7 +44,7 @@ export function Header() {
           isMobileMenuOpen && "border-none"
         )}
       >
-        <div className="flex h-14 w-full items-center gap-6 px-4">
+        <div className="flex h-14 w-full items-center gap-6 px-5">
           <Logo className="text-foreground -translate-y-[0.5px]" />
           <nav className="text-muted-foreground flex items-center gap-6 max-md:hidden">
             {NAV_MAP.map(({ href, title }) => (

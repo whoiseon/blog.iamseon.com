@@ -27,7 +27,7 @@ export async function ShortPostArticle({
     <div
       className={cn("border-border flex flex-col border-b last:border-b-0 lg:border-x", className)}
     >
-      <header className="mb-8 px-6 pt-8 md:px-10 md:pt-10">
+      <header className="mb-8 px-5 pt-8 md:px-10 md:pt-10">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-x-2">{headerAction}</div>
           <Link

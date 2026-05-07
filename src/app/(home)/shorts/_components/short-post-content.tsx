@@ -18,7 +18,7 @@ export function ShortPostContent({ html, slug, collapsible = true }: ShortPostCo
   if (!collapsible) {
     return (
       <div className="pb-6 md:pb-10">
-        <MarkdownRender html={html} className="px-6 md:px-10" />
+        <MarkdownRender html={html} className="px-5 md:px-10" />
       </div>
     );
   }
@@ -50,7 +50,7 @@ function CollapsibleShortPostContent({ html, slug }: { html: string; slug: strin
         ref={contentRef}
         className={cn("overflow-hidden", isOverflow ? "max-h-150" : "pb-6 md:pb-10")}
       >
-        <MarkdownRender html={html} className="px-6 md:px-10" />
+        <MarkdownRender html={html} className="px-5 md:px-10" />
       </div>
       {isOverflow && (
         <>

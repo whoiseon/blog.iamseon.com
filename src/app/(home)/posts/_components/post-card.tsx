@@ -16,7 +16,7 @@ export function PostCard({ post, className }: PostCardProps) {
     <Link
       href={`/posts/${post.slug}`}
       className={cn(
-        "group text-muted-foreground hover:text-foreground flex flex-col gap-4 rounded-lg p-4 transition-colors md:p-6",
+        "group text-muted-foreground hover:text-foreground lg:hover:bg-muted flex flex-col gap-4 rounded-sm px-0 py-4 transition-colors md:p-6",
         className
       )}
     >
