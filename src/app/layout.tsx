@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 
 import "@/styles/globals.css";
@@ -82,15 +83,15 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(personSchema) }}
         />
         <Providers>{children}</Providers>
-      </body>
 
-      {process.env.NODE_ENV === "production" && (
-        <>
-          <SpeedInsights />
-          <GoogleAnalytics />
-          <Analytics />
-        </>
-      )}
+        {process.env.NODE_ENV === "production" && (
+          <Suspense fallback={null}>
+            <SpeedInsights />
+            <GoogleAnalytics />
+            <Analytics />
+          </Suspense>
+        )}
+      </body>
     </html>
   );
 }
