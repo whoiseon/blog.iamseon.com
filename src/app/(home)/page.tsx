@@ -36,7 +36,11 @@ export default async function Home() {
             {posts.length > 0 && (
               <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:col-span-2">
                 {posts.map((post) => (
-                  <PostCard key={post.id} post={post} className="p-0 md:p-0" />
+                  <PostCard
+                    key={post.id}
+                    post={post}
+                    className="p-0 md:p-0 lg:hover:bg-transparent"
+                  />
                 ))}
               </div>
             )}
