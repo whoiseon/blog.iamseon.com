@@ -66,9 +66,7 @@ export default async function Home() {
                         className="group hover:bg-secondary/40 flex items-center justify-between gap-3 px-4 py-3.5 transition-colors"
                       >
                         <div className="flex items-center gap-x-2">
-                          <span className="text-muted-foreground text-xs">
-                            {post.category.name}
-                          </span>
+                          <span className="text-muted-foreground text-xs">{post.tags[0].name}</span>
                           <h3 className="group-hover:text-primary line-clamp-1 text-sm font-medium tracking-tight transition-colors">
                             {post.title}
                           </h3>
