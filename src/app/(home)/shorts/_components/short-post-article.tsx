@@ -12,9 +12,15 @@ interface ShortPostArticleProps {
   post: PostDetail;
   headerAction?: React.ReactNode;
   className?: string;
+  collapsible?: boolean;
 }
 
-export async function ShortPostArticle({ post, headerAction, className }: ShortPostArticleProps) {
+export async function ShortPostArticle({
+  post,
+  headerAction,
+  className,
+  collapsible = true,
+}: ShortPostArticleProps) {
   const html = await markdownToHtml(post.markdown);
 
   return (
@@ -43,7 +49,7 @@ export async function ShortPostArticle({ post, headerAction, className }: ShortP
         </div>
       </header>
       <CodeCopyHandler />
-      <ShortPostContent html={html} slug={post.slug} />
+      <ShortPostContent html={html} slug={post.slug} collapsible={collapsible} />
     </div>
   );
 }

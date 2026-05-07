@@ -9,11 +9,24 @@ import { MarkdownRender } from "@/app/(home)/_components/markdown-render";
 interface ShortPostContentProps {
   html: string;
   slug: string;
+  collapsible?: boolean;
 }
 
 const COLLAPSED_HEIGHT = 600;
 
-export function ShortPostContent({ html, slug }: ShortPostContentProps) {
+export function ShortPostContent({ html, slug, collapsible = true }: ShortPostContentProps) {
+  if (!collapsible) {
+    return (
+      <div className="pb-6 md:pb-10">
+        <MarkdownRender html={html} className="px-6 md:px-10" />
+      </div>
+    );
+  }
+
+  return <CollapsibleShortPostContent html={html} slug={slug} />;
+}
+
+function CollapsibleShortPostContent({ html, slug }: { html: string; slug: string }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isOverflow, setIsOverflow] = useState(false);
 

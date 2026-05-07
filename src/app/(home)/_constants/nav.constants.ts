@@ -7,8 +7,8 @@ export const NAV_MAP = [
     title: "Shorts",
     href: "/shorts",
   },
-  {
-    title: "About",
-    href: "/about",
-  },
+  // {
+  //   title: "About",
+  //   href: "/about",
+  // },
 ];

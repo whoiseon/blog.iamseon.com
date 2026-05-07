@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -74,6 +75,9 @@ function normalizeNotionLineBreaks(markdown: string): string {
 }
 
 export async function markdownToHtml(markdown: string): Promise<string> {
+  "use cache";
+  cacheLife("max");
+
   const normalized = normalizeNotionLineBreaks(markdown);
 
   const result = await unified()

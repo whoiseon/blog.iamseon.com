@@ -6,7 +6,6 @@ import {
   SelectProperties,
   TitleProperties,
   UniqueIdProperties,
-  UrlProperties,
 } from "@/lib/api/types/properties.types";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY!;
