@@ -27,7 +27,7 @@ export default function Page({ searchParams }: PageProps) {
     <main className="flex flex-col-reverse items-stretch md:flex-row">
       <section className="flex w-full grow flex-col items-start lg:w-auto lg:items-end">
         <div className="h-full min-h-12 w-full lg:w-200 lg:max-w-200 lg:px-6">
-          <Suspense fallback={null}>
+          <Suspense fallback={<ShortsListSkeleton />}>
             <FilteredShortsList searchParams={searchParams} />
           </Suspense>
         </div>
@@ -35,13 +35,61 @@ export default function Page({ searchParams }: PageProps) {
       <section className="border-border flex grow flex-col items-start border-b py-6 md:border-none md:py-0">
         <div className="h-full w-xs px-6 md:mb-15">
           <div className="static md:sticky md:top-24">
-            <Suspense fallback={null}>
+            <Suspense fallback={<TagFilterSkeleton />}>
               <TagFilterSection />
             </Suspense>
           </div>
         </div>
       </section>
     </main>
+  );
+}
+
+function ShortsListSkeleton() {
+  return (
+    <div className="flex flex-col">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div
+          key={i}
+          className="border-border flex flex-col gap-6 border-b px-6 pt-8 pb-10 last:border-b-0 md:px-10 md:pt-10 lg:border-x"
+        >
+          <div className="flex flex-col gap-4">
+            <div className="bg-muted h-8 w-3/4 animate-pulse rounded" />
+            <div className="flex items-center justify-between">
+              <div className="flex gap-1.5">
+                <div className="bg-muted h-6 w-12 animate-pulse rounded-md" />
+                <div className="bg-muted h-6 w-16 animate-pulse rounded-md" />
+              </div>
+              <div className="bg-muted h-4 w-16 animate-pulse rounded" />
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="bg-muted h-4 w-full animate-pulse rounded" />
+            <div className="bg-muted h-4 w-full animate-pulse rounded" />
+            <div className="bg-muted h-4 w-2/3 animate-pulse rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function TagFilterSkeleton() {
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex min-h-7.5 items-center justify-between">
+        <div className="bg-muted h-3 w-12 animate-pulse rounded" />
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {[14, 18, 12, 20, 16, 14].map((w, i) => (
+          <div
+            key={i}
+            className="bg-muted h-6 animate-pulse rounded-md"
+            style={{ width: `${w * 4}px` }}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
