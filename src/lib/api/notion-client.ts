@@ -2,6 +2,7 @@ import {
   DateProperties,
   MultiSelectProperties,
   RichTextProperties,
+  Select,
   SelectProperties,
   TitleProperties,
   UniqueIdProperties,
@@ -85,6 +86,7 @@ interface QueryOptions {
   sorts?: NotionSort[];
   page_size?: number;
   start_cursor?: string;
+  filter_properties?: string[];
 }
 
 export interface QueryDataProperties {
@@ -108,10 +110,41 @@ type PostsDataSourceProperties = NotionDataSourceResult<QueryDataProperties>;
 // --- Data Source (목록 조회) ---
 
 export async function queryDataSource(options: QueryOptions = {}) {
-  return notionFetch<NotionPaginatedResponse<PostsDataSourceProperties>>(
-    `/data_sources/${NOTION_DATA_SOURCE_ID}/query`,
-    { method: "POST", body: options }
-  );
+  const { filter_properties, ...body } = options;
+
+  let path = `/data_sources/${NOTION_DATA_SOURCE_ID}/query`;
+  if (filter_properties && filter_properties.length > 0) {
+    const params = new URLSearchParams();
+    for (const id of filter_properties) {
+      params.append("filter_properties", id);
+    }
+    path += `?${params.toString()}`;
+  }
+
+  return notionFetch<NotionPaginatedResponse<PostsDataSourceProperties>>(path, {
+    method: "POST",
+    body,
+  });
+}
+
+// --- Data Source (스키마 조회) ---
+
+export interface MultiSelectSchemaProperty {
+  id: string;
+  name: string;
+  type: "multi_select";
+  multi_select: { options: Select[] };
+}
+
+export interface DataSourceSchema {
+  id: string;
+  properties: {
+    tags: MultiSelectSchemaProperty;
+  } & Record<string, unknown>;
+}
+
+export async function getDataSource() {
+  return notionFetch<DataSourceSchema>(`/data_sources/${NOTION_DATA_SOURCE_ID}`);
 }
 
 // --- Page (상세 조회) ---

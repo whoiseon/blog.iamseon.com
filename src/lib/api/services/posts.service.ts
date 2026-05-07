@@ -1,12 +1,14 @@
 import { cacheLife, cacheTag } from "next/cache";
 
 import {
+  getDataSource,
   getPageMarkdown,
   queryDataSource,
   type NotionDataSourceResult,
   type NotionPaginatedResponse,
   type QueryDataProperties,
 } from "@/lib/api/notion-client";
+import type { Select } from "@/lib/api/types/properties.types";
 
 // --- Types ---
 
@@ -94,23 +96,40 @@ function transformPostsGroupByCategory(payload: PostsResult | null) {
 
 // --- Cached Service ---
 
-export async function getPosts(
-  type: string = "post",
-  cursor?: string,
-  page_size: number = 100
-): Promise<{ error: string | null; payload: PostsResult | null }> {
+interface GetPostsOptions {
+  type?: string;
+  cursor?: string;
+  page_size?: number;
+  tags?: string[];
+}
+
+export async function getPosts({
+  type = "post",
+  cursor,
+  page_size = 100,
+  tags,
+}: GetPostsOptions = {}): Promise<{ error: string | null; payload: PostsResult | null }> {
   "use cache";
   cacheLife("minutes");
   cacheTag("posts", `posts:${type}`);
 
+  const andFilters: Array<Record<string, unknown>> = [
+    { property: "type", select: { equals: type } },
+    { property: "deleted_at", date: { is_empty: true } },
+    { property: "published_at", date: { is_not_empty: true } },
+  ];
+
+  if (tags && tags.length > 0) {
+    andFilters.push({
+      or: tags.map((name) => ({
+        property: "tags",
+        multi_select: { contains: name },
+      })),
+    });
+  }
+
   const { error, payload } = await queryDataSource({
-    filter: {
-      and: [
-        { property: "type", select: { equals: type } },
-        { property: "deleted_at", date: { is_empty: true } },
-        { property: "published_at", date: { is_not_empty: true } },
-      ],
-    },
+    filter: { and: andFilters },
     sorts: [{ property: "published_at", direction: "descending" }],
     start_cursor: cursor,
     page_size,
@@ -128,7 +147,7 @@ export async function getPostsByCategory(type: string = "post") {
   cacheLife("minutes");
   cacheTag("posts", `posts:${type}:by-category`);
 
-  const posts = await getPosts(type);
+  const posts = await getPosts({ type });
 
   if (posts.error || !posts.payload) {
     return { error: posts.error ?? "Unknown error", payload: null };
@@ -139,6 +158,58 @@ export async function getPostsByCategory(type: string = "post") {
 
 export interface PostDetail extends Post {
   markdown: string;
+}
+
+export interface PostsWithContentResult {
+  results: PostDetail[];
+  has_more: boolean;
+  next_cursor: string | null;
+}
+
+interface GetPostsWithContentOptions {
+  type?: string;
+  cursor?: string;
+  page_size?: number;
+  tags?: string[];
+}
+
+export async function getPostsWithContent({
+  type = "short",
+  cursor,
+  page_size = 10,
+  tags,
+}: GetPostsWithContentOptions = {}): Promise<{
+  error: string | null;
+  payload: PostsWithContentResult | null;
+}> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag("posts", `posts:${type}:with-content`);
+
+  const { error, payload } = await getPosts({ type, cursor, page_size, tags });
+
+  if (error || !payload) {
+    return { error: error ?? "Unknown error", payload: null };
+  }
+
+  const results = await Promise.all(
+    payload.results.map(async (post): Promise<PostDetail> => {
+      const mdResult = await getPageMarkdown(post.id);
+      return {
+        ...post,
+        markdown: mdResult.payload?.markdown ?? "",
+      };
+    })
+  );
+
+  return {
+    error: null,
+    payload: {
+      results,
+      has_more: payload.has_more,
+      next_cursor: payload.next_cursor,
+    },
+  };
 }
 
 export async function getPostBySlug(
@@ -179,5 +250,75 @@ export async function getPostBySlug(
       ...transformPost(page),
       markdown: mdResult.payload.markdown,
     },
+  };
+}
+
+export type Tag = Select;
+
+export type PostType = "post" | "short";
+
+interface GetTagsOptions {
+  type?: PostType;
+}
+
+export async function getTags({ type }: GetTagsOptions = {}): Promise<{
+  error: string | null;
+  payload: Tag[] | null;
+}> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("tags", type ? `tags:${type}` : "tags:all");
+
+  const { error: schemaError, payload: schema } = await getDataSource();
+
+  if (schemaError || !schema) {
+    return { error: schemaError ?? "Unknown error", payload: null };
+  }
+
+  const allTags = schema.properties.tags.multi_select.options;
+
+  if (!type) {
+    return { error: null, payload: allTags };
+  }
+
+  const tagsPropertyId = schema.properties.tags.id;
+  const totalTagCount = allTags.length;
+  const usedTagIds = new Set<string>();
+  let cursor: string | undefined;
+
+  do {
+    const { error, payload } = await queryDataSource({
+      filter: {
+        and: [
+          { property: "type", select: { equals: type } },
+          { property: "deleted_at", date: { is_empty: true } },
+          { property: "published_at", date: { is_not_empty: true } },
+        ],
+      },
+      filter_properties: [tagsPropertyId],
+      page_size: 100,
+      start_cursor: cursor,
+    });
+
+    if (error || !payload) {
+      return { error: error ?? "Unknown error", payload: null };
+    }
+
+    for (const page of payload.results) {
+      for (const tag of page.properties.tags.multi_select) {
+        usedTagIds.add(tag.id);
+      }
+    }
+
+    if (usedTagIds.size >= totalTagCount) {
+      break;
+    }
+
+    cursor = payload.has_more ? (payload.next_cursor ?? undefined) : undefined;
+  } while (cursor);
+
+  return {
+    error: null,
+    payload: allTags.filter((tag) => usedTagIds.has(tag.id)),
   };
 }
