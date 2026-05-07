@@ -41,6 +41,8 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   --app-background: #ffffff;
+  --table-header: oklch(1 0 0);
+  --table-row: oklch(0.985 0 0);
 
   --shiki-light: oklch(0.145 0 0);
   --shiki-light-bg: oklch(1 0 0);
@@ -83,6 +85,8 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   --app-background: #121212;
+  --table-header: oklch(0.24 0 0);
+  --table-row: oklch(0.205 0 0);
 
   .prose pre.shiki,
   .prose pre.shiki span {
@@ -126,7 +130,14 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
+  --color-table-header: var(--table-header);
+  --color-table-row: var(--table-row);
+
   --app-layout-width: 1400px;
+}
+
+* {
+  @apply selection:bg-foreground selection:text-app-background;
 }
 
 html {
