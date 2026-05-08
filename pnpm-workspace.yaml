@@ -1,6 +1,0 @@
-onlyBuiltDependencies:
-  - sharp
-ignoredBuiltDependencies:
-  - msw
-  - simple-git-hooks
-  - unrs-resolver
