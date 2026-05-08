@@ -35,6 +35,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           className="border-0 lg:border-0"
           headerAction={<ShortsBackButton />}
           collapsible={false}
+          isDetailPage
         />
       </div>
     </main>
