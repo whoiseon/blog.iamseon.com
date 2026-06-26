@@ -110,11 +110,12 @@ export async function getPosts({
   tags,
 }: GetPostsOptions = {}): Promise<{ error: string | null; payload: PostsResult | null }> {
   "use cache";
-  cacheLife("minutes");
+  cacheLife("hours");
   cacheTag("posts", `posts:${type}`);
 
   const andFilters: Array<Record<string, unknown>> = [
     { property: "type", select: { equals: type } },
+    { property: "is_public", select: { equals: "public" } },
     { property: "deleted_at", date: { is_empty: true } },
     { property: "published_at", date: { is_not_empty: true } },
   ];
@@ -144,7 +145,7 @@ export async function getPosts({
 
 export async function getPostsByCategory(type: string = "post") {
   "use cache";
-  cacheLife("minutes");
+  cacheLife("hours");
   cacheTag("posts", `posts:${type}:by-category`);
 
   const posts = await getPosts({ type });
@@ -183,7 +184,7 @@ export async function getPostsWithContent({
   payload: PostsWithContentResult | null;
 }> {
   "use cache";
-  cacheLife("minutes");
+  cacheLife("hours");
   cacheTag("posts", `posts:${type}:with-content`);
 
   const { error, payload } = await getPosts({ type, cursor, page_size, tags });
@@ -223,7 +224,9 @@ export async function getPostBySlug(
     filter: {
       and: [
         { property: "slug", rich_text: { equals: decodeURIComponent(slug) } },
+        { property: "is_public", select: { equals: "public" } },
         { property: "deleted_at", date: { is_empty: true } },
+        { property: "published_at", date: { is_not_empty: true } },
       ],
     },
     page_size: 1,
