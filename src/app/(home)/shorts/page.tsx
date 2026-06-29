@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { cacheLife, cacheTag } from "next/cache";
 
 import { getPostsWithContent, getTags } from "@/lib/api/services/posts.service";
 import { createMetadata } from "@/lib/metadata";
@@ -104,7 +105,21 @@ async function FilteredShortsList({ searchParams }: PageProps) {
   const activeTags = (params.tags ?? "")
     .split(",")
     .map((t) => t.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .sort();
+
+  return <CachedShortsList activeTags={activeTags} />;
+}
+
+async function CachedShortsList({ activeTags }: { activeTags: string[] }) {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(
+    "posts",
+    "posts:short",
+    "posts:short:with-content",
+    activeTags.length > 0 ? `posts:short:tags:${activeTags.join(",")}` : "posts:short:all"
+  );
 
   const { error, payload } = await getPostsWithContent({
     type: "short",
