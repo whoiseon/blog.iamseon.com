@@ -1,10 +1,9 @@
-"use client";
-
+import { Suspense } from "react";
 import Link from "next/link";
-import { format } from "date-fns";
 
 import { Post } from "@/lib/api/services/posts.service";
 import { cn } from "@/lib/utils";
+import { PostTime } from "@/app/(home)/posts/_components/post-time";
 
 interface PostCardProps {
   post: Post;
@@ -24,9 +23,9 @@ export function PostCard({ post, className }: PostCardProps) {
         <div className="flex flex-initial flex-row items-center justify-start gap-2">
           <span className="text-[13px]">{post.category.name}</span>
         </div>
-        <time className="text-[13px]" dateTime={post.publishedAt!}>
-          {format(post.publishedAt!, "M월 d일")}
-        </time>
+        <Suspense fallback={<time className="text-[13px]" dateTime={post.publishedAt!} />}>
+          <PostTime time={post.publishedAt!} />
+        </Suspense>
       </div>
       <h2 className="text-foreground line-clamp-2 text-xl font-semibold tracking-tight break-keep">
         {post.title}

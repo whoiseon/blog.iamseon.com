@@ -24,5 +24,17 @@ export const formatDate = (date: string): string => {
   if (diff < 1000 * 60 * 60 * 24 * 7) {
     return formatDistanceToNowStrict(d, { addSuffix: true, locale: ko });
   }
+
+  if (diffYear(d) === 0) {
+    return format(d, "M월 d일");
+  }
+
   return format(d, "yyyy년 M월 d일");
+};
+
+const diffYear = (targetDate: Date) => {
+  const postYear = targetDate.getFullYear();
+  const currentYear = new Date().getFullYear();
+
+  return currentYear - postYear;
 };
