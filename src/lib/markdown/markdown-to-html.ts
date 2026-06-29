@@ -25,6 +25,7 @@ function normalizeNotionLineBreaks(markdown: string): string {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trimStart();
+    let closesHtmlBlock = false;
 
     if (trimmed.startsWith("```")) {
       inCodeBlock = !inCodeBlock;
@@ -37,12 +38,23 @@ function normalizeNotionLineBreaks(markdown: string): string {
       const closeTags = trimmed.match(
         /<\/(table|div|details|figure|section|aside|nav|header|footer|dl)\b/gi
       );
+      closesHtmlBlock = Boolean(closeTags);
       if (openTags) inHtmlBlock += openTags.length;
       if (closeTags) inHtmlBlock -= closeTags.length;
       if (inHtmlBlock < 0) inHtmlBlock = 0;
     }
 
     result.push(line);
+
+    if (
+      closesHtmlBlock &&
+      inHtmlBlock === 0 &&
+      i < lines.length - 1 &&
+      lines[i + 1].trim() !== ""
+    ) {
+      result.push("");
+      continue;
+    }
 
     if (
       !inCodeBlock &&
